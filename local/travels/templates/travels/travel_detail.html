@@ -15,6 +15,20 @@
   조희수{{travel.views}}
   {{travel.location}}
   {{travel.content}}
+  {% if user.is_authenticated %}
+  <form action="{% url 'travels:travel_likes' travel.pk %}" method='POST'>
+    {% csrf_token %}
+    {% if user in travel.likes.all %}
+    <button>
+      저장
+    </button>
+    {% else %}
+    <button>
+      저장안함
+    </button>
+    {% endif %}
+  </form>
+  {% endif %}
 
   {% for comment in travel.travelcomment_set.all %}
     {{comment.author}}

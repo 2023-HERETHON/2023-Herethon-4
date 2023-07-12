@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from .models import *
 from .forms import TravelCommentForm
 
@@ -60,3 +61,17 @@ def travel_delete(request, pk):
     travel = get_object_or_404(TravelPost, pk=pk)
     travel.delete()
   return redirect('travels:travel_list')
+
+@require_POST
+def travel_likes(request, pk, *args, **kwargs):
+  if request.user.is_authenticated:
+    travel = get_object_or_404(TravelPost, pk=pk)
+    users = travel.likes.all()
+    if users.filter(pk=request.user.pk).exists():
+      travel.likes.remove(request.user)
+      print('삭제')
+    else:
+      travel.likes.add(request.user)
+      print('추가')
+    return redirect('travels:travel_detail',pk)
+  return render(request, 'travels/travel_detail.html')

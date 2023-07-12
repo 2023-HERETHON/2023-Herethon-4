@@ -14,8 +14,8 @@ class TravelPost(models.Model):
   create_date = models.DateTimeField(auto_now_add=True)
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   views = models.IntegerField(default=0)
+  likes = models.ManyToManyField(User, related_name='TravelLikes', blank=True)
 
-  
   def __str__(self):
     return self.title
   
