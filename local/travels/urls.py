@@ -8,5 +8,5 @@ urlpatterns = [
   path('<int:pk>/', travel_detail, name='travel_detail'),
   path("likes/<int:pk>/", travel_likes, name='travel_likes'),
   path('create/', travel_create, name='travel_creaet'),
-  path('delete/<int:pk>/', travel_delete, name='travel_delete'),
+  # path('delete/<int:pk>/', travel_delete, name='travel_delete'),
 ]

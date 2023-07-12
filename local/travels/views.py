@@ -8,8 +8,12 @@ from .forms import TravelCommentForm
 # Create your views here.
 def travel_list(request):
   travels = TravelPost.objects.all()
+  query = request.GET.get('query')
+  if query:
+    travels = TravelPost.objects.filter(location__icontains=query)
   context = {
     'travels' : travels,
+    'query': query,
   }
   return render(request, 'travels/travel_list.html', context)
 
@@ -55,12 +59,11 @@ def travel_create(request):
   
   return render(request, 'travels/travel_create.html')
 
-  
-def travel_delete(request, pk):
-  if request.method == "POST":
-    travel = get_object_or_404(TravelPost, pk=pk)
-    travel.delete()
-  return redirect('travels:travel_list')
+# def travel_delete(request, pk):
+#   if request.method == "POST":
+#     travel = get_object_or_404(TravelPost, pk=pk)
+#     travel.delete()
+#   return redirect('travels:travel_list')
 
 @require_POST
 def travel_likes(request, pk, *args, **kwargs):
@@ -69,9 +72,7 @@ def travel_likes(request, pk, *args, **kwargs):
     users = travel.likes.all()
     if users.filter(pk=request.user.pk).exists():
       travel.likes.remove(request.user)
-      print('삭제')
     else:
       travel.likes.add(request.user)
-      print('추가')
     return redirect('travels:travel_detail',pk)
   return render(request, 'travels/travel_detail.html')

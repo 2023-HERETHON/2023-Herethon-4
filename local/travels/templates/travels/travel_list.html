@@ -6,6 +6,21 @@
   <title>Document</title>
 </head>
 <body>
+
+  <!-- 검색 폼 -->
+<form action="{% url 'travels:travel_list' %}">
+  <input type="text" name="query" value="" placeholder="위치를 입력하세요.">
+  <button type="submit">검색</button>
+</form>
+
+<!-- 검색 결과 표시 -->
+{% if query %}
+  <h2>"{{ query }}"에 대한 검색 결과</h2>
+{% else %}
+  <h2>전체 여행</h2>
+{% endif %}
+
+
   {% for travel in travels %}
     {{travel.title}}
     {% with photo=travel.travelphoto_set.first %}
@@ -14,6 +29,9 @@
     {% endif %}
     {% endwith %}
     {{travel.content | truncatechars:15 }}
+
+  {% empty %}
+  검색 결과가 없습니다.
   {% endfor %}
 </body>
 </html>
