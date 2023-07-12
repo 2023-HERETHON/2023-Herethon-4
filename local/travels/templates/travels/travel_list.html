@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% for travel in travels %}
+    {{travel.title}}
+    {% with photo=travel.travelphoto_set.first %}
+    {% if photo %}
+        <img src="{{ photo.image.url }}" alt="여행 사진">
+    {% endif %}
+    {% endwith %}
+    {{travel.content | truncatechars:15 }}
+  {% endfor %}
+</body>
+</html>
