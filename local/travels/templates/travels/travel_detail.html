@@ -15,5 +15,22 @@
   조희수{{travel.views}}
   {{travel.location}}
   {{travel.content}}
+
+  {% for comment in travel.travelcomment_set.all %}
+    {{comment.author}}
+    {{comment.content}}
+  {% empty %}
+  가장 먼저 댓글을 작성해보세요
+  {% endfor %}
+
+  {% if user.is_authenticated %}
+  <form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Submit</button>
+  </form>
+  {% else %}
+  로그인을 하세요
+  {% endif %}
 </body>
 </html>
