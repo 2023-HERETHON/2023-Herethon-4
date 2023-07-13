@@ -10,20 +10,20 @@
     </head>
     <body>
         <div class="top">
-            <img src="{% static 'media/logo.svg' %}" />
-            <img src="{% static 'media/alert.svg' %}" />
-            <img src="{% static 'media/ticket.svg' %}" />
+            <img src="{% static 'logo.svg' %}" />
+            <img src="{% static 'alert.svg' %}" />
+            <img src="{% static 'ticket.svg' %}" />
         </div>
         <div>
             <ul class="menu1">
                 <li>
-                    <a href="{% url 'live_home' %}">홈</a>
+                    <a href="">홈</a>
                 </li>
                 <li>
-                    <a href="{% url 'live_recent' %}">최근 시청한</a>
+                    <a href="">최근 시청한</a>
                 </li>
                 <li>
-                    <a href="{% url 'live_Soon' %}"><b>라이브 예고</b></a>
+                    <a href=""><b>라이브 예고</b></a>
                 </li>
             </ul>
         </div>
@@ -47,7 +47,7 @@
                 </ul>
                 <button id="button">
                     <div class="btn">
-                        <img src="{% static 'media/alert.svg' %}" />
+                        <img src="{% static 'alert.svg' %}" />
                         <b>알림 받기</b>
                     </div>
                 </button>
@@ -72,7 +72,7 @@
                 </ul>
                 <button id="button">
                     <div class="btn">
-                        <img src="{% static 'media/alert.svg' %}" />
+                        <img src="{% static 'alert.svg' %}" />
                         <b>알림 받기</b>
                     </div>
                 </button>
@@ -97,7 +97,7 @@
                 </ul>
                 <button id="button">
                     <div class="btn">
-                        <img src="{% static 'media/alert.svg' %}" />
+                        <img src="{% static 'alert.svg' %}" />
                         <b>알림 받기</b>
                     </div>
                 </button>
@@ -109,17 +109,15 @@
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href="{% url 'live_home' %}"
-                            ><img src="{% static 'media/Group 4on.svg' %}"
+                        <a href=""
+                            ><img src="{% static 'Group 4on.svg' %}"
                         /></a>
                     </li>
                     <li>
-                        <a href="{% url 'dispatch_all' %}"
-                            ><img src="{% static 'media/Group 3.svg' %}"
-                        /></a>
+                        <a href=""><img src="{% static 'Group 3.svg' %}" /></a>
                     </li>
-                    <li><img src="{% static 'media/Group 2.svg' %}" /></li>
-                    <li><img src="{% static 'media/Group 511.svg' %}" /></li>
+                    <li><img src="{% static 'Group 2.svg' %}" /></li>
+                    <li><img src="{% static 'Group 511.svg' %}" /></li>
                 </ul>
             </div>
         </footer>

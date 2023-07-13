@@ -11,7 +11,7 @@
 .left {
     flex: left;
     margin-right: 10px;
-    border: 1px solid;
+    border: 1px;
     border-radius: 20px;
 }
 .highlight {
@@ -22,7 +22,7 @@
     display: flex;
 }
 .box1 {
-    border: 1px solid;
+    border: 1px;
     border-radius: 20px;
 }
 .today {
@@ -48,7 +48,7 @@
 }
 
 .live_item {
-    display: inline-block;
+    display: inline;
     width: 300px;
     height: 200px;
 }

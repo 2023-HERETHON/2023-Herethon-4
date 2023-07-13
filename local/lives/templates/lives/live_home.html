@@ -10,20 +10,20 @@
     </head>
     <body>
         <div class="top">
-            <img src="{% static 'media/logo.svg' %}" />
-            <img src="{% static 'media/alert.svg' %}" />
-            <img src="{% static 'media/ticket.svg' %}" />
+            <img src="{% static 'logo.svg' %}" />
+            <img src="{% static 'alert.svg' %}" />
+            <img src="{% static 'ticket.svg' %}" />
         </div>
         <div>
             <ul class="menu1">
                 {% if request.user.is_authenticated %}
                 <li>
-                    <b><a href="{% url 'live_home' %}">홈</a></b>
+                    <b><a href="">홈</a></b>
                 </li>
-                <li><a href="{% url 'live_recent' %}">최근 시청한</a></li>
-                <li><a href="{% url 'live_Soon' %}">라이브 예고</a></li>
+                <li><a href="">최근 시청한</a></li>
+                <li><a href="">라이브 예고</a></li>
                 {% else %}
-                <li><a href="{% url 'login:login' %}">로그인</a></li>
+                <li><a href="">로그인</a></li>
                 <!--추후에 로그인 페이지명 나오면 수정-->
                 {% endif %}
             </ul>
@@ -41,24 +41,24 @@
         <p>지금 <b style="color: #ff552b">오사카</b>는?</p>
         <div class="container">
             {% if osaka1 %}
-            <div class="left"><img src="{{osaka1.thumbnail.url}}" /></div>
+            <img src="{{osaka1.thumbnail.url}}" class="left" style="width: 220px; height: 380px"/>
             {% else %}
-            <div class="left"><img src="{% static 'media/osaka.jpg' %}" /></div>
+            <img src="{% static 'media/osaka.jpg' %}" class="left" style="width: 220px; height: 380px"/>
             {% endif %}
             <div class="highlight">
                 {% for osaka in osakas %}
-                <div class="box1">
-                    <img src="{{osaka.thumbnail.url}}" />
-                </div>
+                
+                    <img src="{{osaka.thumbnail.url}}" class="box1" style="width: 100px; height: 120px"/>
+                
                 {% empty %}
-                <div class="box1">
-                    <img src="" alt="없음" />
-                </div>
-                <div class="box1">
-                    <img src="" alt="없음" />
-                </div>
-                <div class="box1">
-                    <img src="" alt="없음" />
+                
+                    <img src="" alt="없음" class="box1" style="width: 100px; height: 120px" />
+                
+                
+                    <img src="" alt="없음" class="box1" style="width: 100px; height: 120px"/>
+                
+                
+                    <img src="" alt="없음" class="box1" style="width: 100px; height: 120px"/>
                 </div>
                 {% endfor %}
             </div>
@@ -77,25 +77,21 @@
             <div class="live_item">
                 <img src="{{video.thumbnail.url}}" />
             </div>
-            {% empty %}
-
-            {% endfor %}
+            {% empty %} {% endfor %}
         </div>
         <footer>
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href="{% url 'live_home' %}"
-                            ><img src="{% static 'media/Group 4on.svg' %}"
+                        <a href=""
+                            ><img src="{% static 'Group 4on.svg' %}"
                         /></a>
                     </li>
                     <li>
-                        <a href="{% url 'dispatch_all' %}"
-                            ><img src="{% static 'media/Group 3.svg' %}"
-                        /></a>
+                        <a href=""><img src="{% static 'Group 3.svg' %}" /></a>
                     </li>
-                    <li><img src="{% static 'media/Group 2.svg' %}" /></li>
-                    <li><img src="{% static 'media/Group 511.svg' %}" /></li>
+                    <li><img src="{% static 'Group 2.svg' %}" /></li>
+                    <li><img src="{% static 'Group 511.svg' %}" /></li>
                 </ul>
             </div>
         </footer>
