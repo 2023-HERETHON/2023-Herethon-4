@@ -1,3 +1,7 @@
+
+from django.shortcuts import render, redirect
+from django.views import View
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import *
@@ -8,6 +12,18 @@ import cv2
 import threading
 from .forms import VideoCommentForm
 from django.contrib.auth.decorators import login_required
+
+
+from users.models import Profile
+
+
+
+# class VideoStreamingView(View):
+#   def get(self, request, *args, **kwargs):
+#     channel_layer = get_channel_layer()
+#     async_to_sync(channel_layer.group_send)("video_stream", {"type": "stream.video"})
+#     return HttpResponse("Video streaming started.")
+
 
 
 @gzip.gzip_page
@@ -41,6 +57,26 @@ class VideoCamera(object):
 def gen(camera):
   while True:
     frame = camera.get_frame()
+
+    yield (b'--fram\r\n'
+            b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+    
+
+def home(request):
+    if request.user.is_authenticated:  # 로그인된 상태인지 확인
+        try:
+            profile = request.user.profile  # 프로필 객체 가져오기
+        except Profile.DoesNotExist:
+            # 프로필 객체가 없는 경우 신규 프로필 생성
+            profile = Profile.objects.create(user=request.user)
+
+        if not profile.phone:  # phone 필드가 비어있는지 확인
+            return redirect('users:more_info')
+    else:
+        return render(request, 'index.html')
+
+    return render(request, 'index.html')
+
     yield (b'--frame\r\n'
           b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
     
@@ -163,5 +199,6 @@ def live_create(request):
     return redirect('lives:live_detail', video_id=video.id)
   # GET 요청 처리
   return render(request, 'lives/live_create.html')
+
 
 
