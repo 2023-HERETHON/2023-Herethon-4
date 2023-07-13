@@ -1,0 +1,44 @@
+.blank {
+    width: 150px;
+    height: 200px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: gray;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    border: 1px solid;
+    color: #ff552b;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+    height: 35px;
+}
+.box4 {
+    display: flex;
+}
+.later {
+    margin-left: 20px;
+}
+.btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+.btn img {
+    width: 20px;
+}
+.list1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 15pt;
+    font-size: 10pt;
+    color: gray;
+}
