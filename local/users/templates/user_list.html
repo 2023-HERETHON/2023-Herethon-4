@@ -1,0 +1,21 @@
+<h5>{{ current_user.profile.nickname }}</h5>
+<div>
+    나를 팔로우 하는 사람 수 : {{ current_user.profile.followers.count }} 명 / 내가 팔로우 하는 사람 수 : {{ current_user.profile.followings.count }} 명
+</div>
+
+<hr>
+<!-- 나를 제외한 사용자 리스트 반복문 -->
+{% for ul in user_list %}
+
+    <h5>{{ ul.user.profile.nickname }}</h5>
+    <p>
+        팔로잉 {{ ul.followings.count }} 명 / 팔로워 {{ ul.followers.count }} 명
+    </p>
+
+    {% if current_user in ul.user.profile.followers.all %}
+        <a href="{% url 'users:user_follow' ul.user.id %}">[팔로우 취소]</a>
+    {% else %}
+        <a href="{% url 'users:user_follow' ul.user.id %}">[팔로우]</a>
+    {% endif %}
+
+{% endfor %}

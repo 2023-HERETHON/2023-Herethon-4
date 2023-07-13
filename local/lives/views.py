@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse
 from channels.layers import get_channel_layer
@@ -9,6 +9,10 @@ import threading
 from django.core.mail import EmailMessage
 from django.views.decorators import gzip
 from django.http import StreamingHttpResponse
+
+from users.models import Profile
+
+
 
 # class VideoStreamingView(View):
 #   def get(self, request, *args, **kwargs):
@@ -49,3 +53,19 @@ def gen(camera):
     frame = camera.get_frame()
     yield (b'--fram\r\n'
             b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+    
+
+def home(request):
+    if request.user.is_authenticated:  # 로그인된 상태인지 확인
+        try:
+            profile = request.user.profile  # 프로필 객체 가져오기
+        except Profile.DoesNotExist:
+            # 프로필 객체가 없는 경우 신규 프로필 생성
+            profile = Profile.objects.create(user=request.user)
+
+        if not profile.phone:  # phone 필드가 비어있는지 확인
+            return redirect('users:more_info')
+    else:
+        return render(request, 'index.html')
+
+    return render(request, 'index.html')
