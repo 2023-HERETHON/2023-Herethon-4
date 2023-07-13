@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- create_video.html -->
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="state">상태:</label>
+    <select name="state" id="state">
+      <option value="ongoing">지금 라이브 중</option>
+      <option value="reservation">방송 예정</option>
+      <option value="finished">방송 종료</option>
+    </select>
+    <br>
+    <input type="text" name="title">
+    <input type="text" name="sub1">
+    <input type="text" name="sub2">
+    <input type="text" name="sub3">
+    <input type="file" name="video_file">
+    <input type="file" name="thumbnail">
+
+    <br>
+    <input type="text" name="nation">
+    <input type="text" name="city">
+    <input type="datetime-local" name="date">
+
+    <input type="submit">
+  </form>
+
+</body>
+</html>

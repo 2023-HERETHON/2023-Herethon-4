@@ -1,0 +1,25 @@
+<body>
+    <h1>기타 정보 입력</h1>
+    <form  method="POST">
+        {% csrf_token %}
+        <div>
+            이름 : <input type="text" name="name" placeholder="이름 입력">
+            닉네임 : <input type="text" name="nickname" placeholder="닉네임 입력">
+            전화번호 : <input type="text" name="phone" placeholder="전화번호 입력">
+        </div>
+        <div>
+            거주 중인 국가 : <input type="text" name="cntry_residence" placeholder="거주 중인 국가 입력">
+            거주 중인 도시 : <input type="text" name="city_residence" placeholder="거주 중인 도시 입력">
+        </div>
+        <div>  <!-- 추가된 부분 -->
+            자주 방문하는 국가 : <input type="text" name="visited_cntry" placeholder="자주 방문하는 국가 입력">
+            자주 방문하는 도시 : <input type="text" name="visited_city" placeholder="자주 방문하는 도시 입력">
+        </div>
+        <div>
+            가고 싶은 국가 : <input type="text" name="preferred_cntry" placeholder="가고 싶은 국가 입력">
+            가고 싶은 도시 : <input type="text" name="preferred_city" placeholder="가고 싶은 도시 입력">
+        </div>
+        <br><hr>
+        <input type="submit" value="로컬 시작하기">
+    </form>
+</body>

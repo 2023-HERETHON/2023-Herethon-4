@@ -18,12 +18,12 @@
             <ul class="menu1">
                 {% if request.user.is_authenticated %}
                 <li>
-                    <b><a href="{% url 'live_home' %}">홈</a></b>
+                    <b><a href="{% url 'lives:live_list' %}">홈</a></b>
                 </li>
-                <li><a href="{% url 'live_recent' %}">최근 시청한</a></li>
-                <li><a href="{% url 'live_Soon' %}">라이브 예고</a></li>
+                <li><a href="{% url 'lives:live_recent' %}">최신 방송순</a></li>
+                <li><a href="{% url 'lives:live_soon' %}">라이브 예고</a></li>
                 {% else %}
-                <li><a href="{% url 'login:login' %}">로그인</a></li>
+                <li><a href="">로그인</a></li>
                 <!--추후에 로그인 페이지명 나오면 수정-->
                 {% endif %}
             </ul>
@@ -85,12 +85,12 @@
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href="{% url 'live_home' %}"
+                        <a href="{% url 'lives:live_list' %}"
                             ><img src="{% static 'media/Group 4on.svg' %}"
                         /></a>
                     </li>
                     <li>
-                        <a href="{% url 'dispatch_all' %}"
+                        <a href=""
                             ><img src="{% static 'media/Group 3.svg' %}"
                         /></a>
                     </li>
