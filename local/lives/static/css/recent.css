@@ -1,0 +1,16 @@
+.thumb {
+    border-radius: 10px;
+    width: 50%;
+}
+.box3 {
+    display: flex;
+}
+.vid {
+    margin-left: 20px;
+    font-size: 7pt;
+    line-height: 20px;
+}
+
+.vid b:first-of-type {
+    font-size: 12pt;
+}

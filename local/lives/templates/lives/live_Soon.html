@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'css/soon.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    </head>
+    <body>
+        <div class="top">
+            <img src="{% static 'media/logo.svg' %}" />
+            <img src="{% static 'media/alert.svg' %}" />
+            <img src="{% static 'media/ticket.svg' %}" />
+        </div>
+        <div>
+            <ul class="menu1">
+                <li><a href="live_home.html">홈</a></li>
+                <li><a href="live_recent.html">최근 시청한</a></li>
+                <li>
+                    <b><a href="live_Soon.html">라이브 예고</a></b>
+                </li>
+            </ul>
+        </div>
+
+        <p><b>라이브 예고</b></p>
+        <div class="box4">
+            <div class="blank">
+                7월 20일 <br />
+                18:00
+            </div>
+            <section class="later">
+                <b style="font-size: 12pt">라이브 제목</b>
+                <br /><b style="font-size: 10pt; color: #ff552b"
+                    >태국 치앙마이</b
+                ><br />
+                <b style="font-size: 7pt">여행은 삶</b><br />
+                <ul class="list1">
+                    <li>방문할 장소 1</li>
+                    <li>방문할 장소 2</li>
+                    <li>방문할 장소 3</li>
+                </ul>
+                <button id="button">
+                    <div class="btn">
+                        <img src="{% static 'media/alert.svg' %}" />
+                        <b>알림 받기</b>
+                    </div>
+                </button>
+            </section>
+        </div>
+        <br />
+        <div class="box4">
+            <div class="blank">
+                7월 20일 <br />
+                20:00
+            </div>
+            <section class="later">
+                <b style="font-size: 12pt">라이브 제목</b>
+                <br /><b style="font-size: 10pt; color: #ff552b"
+                    >태국 치앙마이</b
+                ><br />
+                <b style="font-size: 7pt">여행은 삶</b><br />
+                <ul class="list1">
+                    <li>방문할 장소 1</li>
+                    <li>방문할 장소 2</li>
+                    <li>방문할 장소 3</li>
+                </ul>
+                <button id="button">
+                    <div class="btn">
+                        <img src="{% static 'media/alert.svg' %}" />
+                        <b>알림 받기</b>
+                    </div>
+                </button>
+            </section>
+        </div>
+        <br />
+        <div class="box4">
+            <div class="blank">
+                7월 21일 <br />
+                10:00
+            </div>
+            <section class="later">
+                <b style="font-size: 12pt">라이브 제목</b>
+                <br /><b style="font-size: 10pt; color: #ff552b"
+                    >태국 치앙마이</b
+                ><br />
+                <b style="font-size: 7pt">여행은 삶</b><br />
+                <ul class="list1">
+                    <li>방문할 장소 1</li>
+                    <li>방문할 장소 2</li>
+                    <li>방문할 장소 3</li>
+                </ul>
+                <button id="button">
+                    <div class="btn">
+                        <img src="{% static 'media/alert.svg' %}" />
+                        <b>알림 받기</b>
+                    </div>
+                </button>
+            </section>
+        </div>
+        <br />
+
+        <footer>
+            <div class="footer">
+                <ul class="foot">
+                    <li>
+                        <a href="live_home.html"
+                            ><img src="{% static 'media/Group 4on.svg' %}"
+                        /></a>
+                    </li>
+                    <li>
+                        <a href="dispatch_all.html"
+                            ><img src="{% static 'media/Group 3.svg' %}"
+                        /></a>
+                    </li>
+                    <li><img src="{% static 'media/Group 2.svg' %}" /></li>
+                    <li><img src="{% static 'media/Group 511.svg' %}" /></li>
+                </ul>
+            </div>
+        </footer>
+        <script>
+            var button = document.getElementById("button");
+            button.addEventListener("click", function () {
+                alert("선택하신 라이브에 대한 알림 받기가 설정되었습니다.");
+            });
+        </script>
+    </body>
+</html>

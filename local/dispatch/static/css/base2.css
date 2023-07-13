@@ -1,0 +1,107 @@
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    /* 가로모드
+@media all and (min-width: 576px) and (max-width: 767px) {
+}
+ */
+}
+.top {
+    display: flex;
+    flex-direction: row;
+}
+
+.menu1 {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+
+    padding: 0;
+}
+.menu1 li {
+    margin-right: 10px;
+}
+.menu1 :hover {
+    font-weight: bold;
+}
+
+.foot img {
+    width: 45px;
+    margin-top: 10px;
+}
+
+.foot img :hover {
+    color: #ff552b;
+}
+
+.foot {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin-top: 10px;
+}
+.footer {
+    width: 100%;
+    background-color: white;
+    height: 90px;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 0;
+}
+body {
+    padding-bottom: 80px;
+}
+.footer img :hover {
+    color: #ff552b;
+}
+* {
+    padding: 3px;
+}
+li a:link,
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+hr {
+    padding: 0;
+    color: lightgray;
+}
+.prof {
+    display: flex;
+    flex-direction: row;
+    font-size: 10pt;
+}
+#diff {
+    flex: none;
+
+    text-decoration: underline;
+    margin-left: 40px;
+    font-size: 10pt;
+}
+.share {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.box5 {
+    font-size: 12pt;
+}
+p {
+    font-size: 9pt;
+}
+#plus {
+    position: fixed;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 0;
+    width: 80px;
+    margin-left: 75%;
+}
