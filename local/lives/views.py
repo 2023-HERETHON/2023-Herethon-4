@@ -99,13 +99,9 @@ def live_recent(request):
   return render(request, 'lives/live_recent.html', context)
 
 def live_soon(request):
-  video = Video.objects.all().order_by('-id')
-  query = request.GET.get('query')
-  if query:
-    travels = Video.objects.filter(nation__icontains=query) | Video.objects.filter(city__icontains=query)
+  video = Video.objects.filter(state='reservation')
   context = {
     'video': video,
-    'query': query,
   }
   return render(request, 'lives/live_soon.html', context)
 

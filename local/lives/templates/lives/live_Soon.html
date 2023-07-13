@@ -17,33 +17,34 @@
         <div>
             <ul class="menu1">
                 <li>
-                    <a href="{% url 'live_home' %}">홈</a>
+                    <a href="{% url 'lives:live_list' %}">홈</a>
                 </li>
                 <li>
-                    <a href="{% url 'live_recent' %}">최근 시청한</a>
+                    <a href="{% url 'lives:live_recent' %}">최신 방송순</a>
                 </li>
                 <li>
-                    <a href="{% url 'live_Soon' %}"><b>라이브 예고</b></a>
+                    <a href="{% url 'lives:live_soon' %}"><b>라이브 예고</b></a>
                 </li>
             </ul>
         </div>
 
         <p><b>라이브 예고</b></p>
+        {% for video in video %}
         <div class="box4">
             <div class="blank">
-                7월 20일 <br />
-                18:00
+                {{ video.date|date:"m월d일" }}<br />
+                {{ video.date|time:"H:i" }} 
             </div>
             <section class="later">
-                <b style="font-size: 12pt">라이브 제목</b>
+                <b style="font-size: 12pt">{{ video.title }}</b>
                 <br /><b style="font-size: 10pt; color: #ff552b"
-                    >태국 치앙마이</b
+                    >{{ video.nation }}, {{ video.city }}</b
                 ><br />
-                <b style="font-size: 7pt">여행은 삶</b><br />
+                <b style="font-size: 7pt">닉네임</b><br />
                 <ul class="list1">
-                    <li>방문할 장소 1</li>
-                    <li>방문할 장소 2</li>
-                    <li>방문할 장소 3</li>
+                    <li>{{ video.sub1 }}</li>
+                    <li>{{ video.sub2 }}</li>
+                    <li>{{ video.sub3 }}</li>
                 </ul>
                 <button id="button">
                     <div class="btn">
@@ -54,67 +55,20 @@
             </section>
         </div>
         <br />
-        <div class="box4">
-            <div class="blank">
-                7월 20일 <br />
-                20:00
-            </div>
-            <section class="later">
-                <b style="font-size: 12pt">라이브 제목</b>
-                <br /><b style="font-size: 10pt; color: #ff552b"
-                    >태국 치앙마이</b
-                ><br />
-                <b style="font-size: 7pt">여행은 삶</b><br />
-                <ul class="list1">
-                    <li>방문할 장소 1</li>
-                    <li>방문할 장소 2</li>
-                    <li>방문할 장소 3</li>
-                </ul>
-                <button id="button">
-                    <div class="btn">
-                        <img src="{% static 'media/alert.svg' %}" />
-                        <b>알림 받기</b>
-                    </div>
-                </button>
-            </section>
-        </div>
-        <br />
-        <div class="box4">
-            <div class="blank">
-                7월 21일 <br />
-                10:00
-            </div>
-            <section class="later">
-                <b style="font-size: 12pt">라이브 제목</b>
-                <br /><b style="font-size: 10pt; color: #ff552b"
-                    >태국 치앙마이</b
-                ><br />
-                <b style="font-size: 7pt">여행은 삶</b><br />
-                <ul class="list1">
-                    <li>방문할 장소 1</li>
-                    <li>방문할 장소 2</li>
-                    <li>방문할 장소 3</li>
-                </ul>
-                <button id="button">
-                    <div class="btn">
-                        <img src="{% static 'media/alert.svg' %}" />
-                        <b>알림 받기</b>
-                    </div>
-                </button>
-            </section>
-        </div>
-        <br />
+        {% empty %}
+        예정된 라이브가 없습니다.
+        {% endfor %}
 
         <footer>
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href="{% url 'live_home' %}"
+                        <a href="{% url 'lives:live_list' %}"
                             ><img src="{% static 'media/Group 4on.svg' %}"
                         /></a>
                     </li>
                     <li>
-                        <a href="{% url 'dispatch_all' %}"
+                        <a href=""
                             ><img src="{% static 'media/Group 3.svg' %}"
                         /></a>
                     </li>
