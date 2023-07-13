@@ -91,12 +91,24 @@ def live_recent(request):
   video = Video.objects.all().order_by('-id')
   query = request.GET.get('query')
   if query:
+    video = Video.objects.filter(nation__icontains=query) | Video.objects.filter(city__icontains=query)
+  context = {
+    'video': video,
+    'query': query,
+  }
+  return render(request, 'lives/live_recent.html', context)
+
+def live_soon(request):
+  video = Video.objects.all().order_by('-id')
+  query = request.GET.get('query')
+  if query:
     travels = Video.objects.filter(nation__icontains=query) | Video.objects.filter(city__icontains=query)
   context = {
     'video': video,
     'query': query,
   }
-  return render(request, 'lives/live_home.html', context)
+  return render(request, 'lives/live_soon.html', context)
+
 
 def live_detail(request, pk):
   video = Video.objects.get(pk=pk)

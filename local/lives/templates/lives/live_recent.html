@@ -17,89 +17,51 @@
         <div>
             <ul class="menu1">
                 <li>
-                    <a href="{% url 'live_home' %}">홈</a>
+                    <a href="{% url 'lives:live_list' %}">홈</a>
                 </li>
                 <li>
-                    <a href="{% url 'live_recent' %}"><b>최근 시청한</b></a>
+                    <a href="{% url 'lives:live_recent' %}"><b>최근 시청한</b></a>
                 </li>
-                <li><a href="{% url 'live_Soon' %}">라이브 예고</a></li>
+                <li><a href="{% url 'lives:live_soon' %}">라이브 예고</a></li>
             </ul>
         </div>
-
+        {% if query %}
+        <p><b>"{{query}}" 에 대한 결과</b></p>
+        {% else %}
         <p><b>최근 시청한 Live</b></p>
-        <form>
-            {% csrf_token %}
+        {% endif %}
+        <form action={% url 'lives:live_recent' %}>
             <input
-                type="search"
+                type="text" name="query"
                 placeholder="현재 상황이 궁금한 여행지를 검색해보세요!"
-                style="width: 90%"
+                style="width: 80%"
             />
             <input type="submit" value="&#128269;" />
         </form>
+        {% for video in video %}
         <div class="box3">
-            <img src="{% static 'media/ja4.jpg' %}" class="thumb" />
+            <img src="{{video.thumbnail.url}}" class="thumb" />
             <section class="vid">
-                <b>치앙마이 한 달 살기 3주째, 찐로컬맛집 알려줌</b>
+                <b>{{video.title}}</b>
                 <br /><b style="font-size: 10pt; color: #ff552b"
-                    >태국 치앙마이</b
+                    >{{video.nation}}, {{video.city}}</b
                 ><br />
-                <b>여행은 삶</b> <br />조회수 10만회 1일 전
+                <b>닉네임자리</b> <br />조회수 {{video.views}}
             </section>
         </div>
         <br />
-        <div class="box3">
-            <img src="{% static 'media/ja7.jpg' %}" class="thumb" />
-            <section class="vid">
-                <b>치앙마이 한 달 살기 3주째, 찐로컬맛집 알려줌</b>
-                <br /><b style="font-size: 10pt; color: #ff552b"
-                    >태국 치앙마이</b
-                ><br />
-                <b>여행은 삶</b> <br />조회수 10만회 1일 전
-            </section>
-        </div>
-        <br />
-        <div class="box3">
-            <img src="{% static 'media/ja8.jpg' %}" class="thumb" />
-            <section class="vid">
-                <b>치앙마이 한 달 살기 3주째, 찐로컬맛집 알려줌</b>
-                <br /><b style="font-size: 10pt; color: #ff552b"
-                    >태국 치앙마이</b
-                ><br />
-                <b>여행은 삶</b> <br />조회수 10만회 1일 전
-            </section>
-        </div>
-        <br />
-        <div class="box3">
-            <img src="{% static 'media/ja9.jpg' %}" class="thumb" />
-            <section class="vid">
-                <b>치앙마이 한 달 살기 3주째, 찐로컬맛집 알려줌</b>
-                <br /><b style="font-size: 10pt; color: #ff552b"
-                    >태국 치앙마이</b
-                ><br />
-                <b>여행은 삶</b> <br />조회수 10만회 1일 전
-            </section>
-        </div>
-        <br />
-        <div class="box3">
-            <img src="{% static 'media/ja1.jpg' %}" class="thumb" />
-            <section class="vid">
-                <b>치앙마이 한 달 살기 3주째, 찐로컬맛집 알려줌</b>
-                <br /><b style="font-size: 10pt; color: #ff552b"
-                    >태국 치앙마이</b
-                ><br />
-                <b>여행은 삶</b> <br />조회수 10만회 1일 전
-            </section>
-        </div>
+        {% empty %}
+        {% endfor %}
         <footer>
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href="{% url 'live_home' %}"
+                        <a href="{% url 'lives:live_list' %}"
                             ><img src="{% static 'media/Group 4on.svg' %}"
                         /></a>
                     </li>
                     <li>
-                        <a href="{% url 'dispatch_all' %}"
+                        <a href=""
                             ><img src="{% static 'media/Group 3.svg' %}"
                         /></a>
                     </li>
