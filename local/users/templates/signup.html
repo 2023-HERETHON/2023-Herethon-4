@@ -1,0 +1,19 @@
+<body>
+    <h1>일반 회원가입(카카오 로그인 X)</h1>
+    <form class="user" method="POST">
+        {% csrf_token %}
+        <div>
+            <input type="text" name="username" placeholder="Enter Your ID">
+        </div>
+        <div>
+            <div>
+                <input type="password" name="password" placeholder="Password">
+            </div>
+            <div>
+                <input type="password" name="repeat" placeholder="Repeat Password">
+            </div>
+        </div>
+        <br><hr>
+        <input type="submit" value="가입하기">
+    </form>
+</body>
