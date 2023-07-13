@@ -15,6 +15,7 @@ class Video(models.Model):
   sub2 = models.CharField(max_length=30)
   sub3 = models.CharField(max_length=30)
   video_file = models.FileField(upload_to='lives/')
+  thumbnail = models.ImageField(upload_to='lives/thumbnail/')
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   nation = models.TextField()
   city = models.TextField()
@@ -25,3 +26,10 @@ class Video(models.Model):
 
   def __str__(self):
     return self.title
+  
+  
+class VideoComment(models.Model):
+  video = models.ForeignKey(Video, on_delete=models.CASCADE)
+  author = models.ForeignKey(User, on_delete=models.CASCADE)
+  content = models.TextField()
+  create_date = models.DateTimeField(auto_now_add=True)
