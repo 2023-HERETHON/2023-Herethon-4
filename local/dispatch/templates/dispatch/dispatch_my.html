@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'css/base2.css' %}" />
+    </head>
+    <body>
+        <div class="top">
+            <img src="{% static 'media/logo.svg' %}" />
+            <img src="{% static 'media/alert.svg' %}" />
+            <img src="{% static 'media/ticket.svg' %}" />
+        </div>
+        <div>
+            <ul class="menu1">
+                <li>
+                    <a href="{% url 'dispatch_all' %}">전체</a>
+                </li>
+                <li><a href="{% url 'dispatch_near' %}">여기근처</a></li>
+                <li>
+                    <a href="{% url 'dispatch_my' %}"><b>내파견</b></a>
+                </li>
+            </ul>
+        </div>
+        <!---->
+
+        <div class="prof">
+            <div
+                style="
+                    width: 40px;
+                    height: 40px;
+                    border: 1px solid;
+                    border-radius: 100%;
+                "
+            ></div>
+            <div style="margin-left: 5px"><b>닉네임</b><br />삿포로, 일본</div>
+        </div>
+        <p class="box5">
+            지금 삿포로 시내 스스키노 거리 부근이 다 공사 중이라는데 맞나요?
+            숙소를 그 근처에 잡았는데 소음이 심할까봐 걱정됩니다.. 그 근처에
+            계시는 분 아무나 알려주세요!
+        </p>
+        <p>1시간 전</p>
+        <p>답변 2개 · 나도 궁금해요 12</p>
+        <hr />
+        <div class="share">
+            <b>저장하기</b> <b>댓글 쓰기</b> <b>공유하기</b>
+        </div>
+        <hr />
+        <!---->
+        <div class="prof">
+            <div
+                style="
+                    width: 30px;
+                    height: 30px;
+                    border: 1px solid;
+                    border-radius: 100%;
+                "
+            ></div>
+            <div style="margin-left: 5px">
+                <b>닉네임</b>리얼로컬<br />스스키노 1번가 쪽만 공사 중이고 다른
+                곳은 괜찮아요~
+            </div>
+        </div>
+        <b id="diff" name="diff">다른 답변 보기</b>
+        <div class="empty"></div>
+        <hr />
+        <div class="prof">
+            <div
+                style="
+                    width: 40px;
+                    height: 40px;
+                    border: 1px solid;
+                    border-radius: 100%;
+                "
+            ></div>
+            <div style="margin-left: 5px"><b>닉네임</b><br />삿포로, 일본</div>
+        </div>
+        <p class="box5">
+            지금 삿포로 시내 스스키노 거리 부근이 다 공사 중이라는데 맞나요?
+            숙소를 그 근처에 잡았는데 소음이 심할까봐 걱정됩니다.. 그 근처에
+            계시는 분 아무나 알려주세요!
+        </p>
+        <p>1시간 전</p>
+        <p>답변 2개 · 나도 궁금해요 12</p>
+        <hr />
+        <div class="share">
+            <b>저장하기</b> <b>댓글 쓰기</b> <b>공유하기</b>
+        </div>
+        <hr />
+        <!---->
+        <div class="prof">
+            <div
+                style="
+                    width: 30px;
+                    height: 30px;
+                    border: 1px solid;
+                    border-radius: 100%;
+                "
+            ></div>
+            <div style="margin-left: 5px">
+                <b>닉네임</b>리얼로컬<br />스스키노 1번가 쪽만 공사 중이고 다른
+                곳은 괜찮아요~
+            </div>
+        </div>
+        <b id="diff" name="diff">다른 답변 보기</b>
+        <div id="empty"></div>
+
+        <a href="{% url 'dispatch_req' %}"
+            ><img src="{% static 'media/plus.svg' %}" id="plus"
+        /></a>
+        <footer>
+            <div class="footer">
+                <ul class="foot">
+                    <li>
+                        <a href="{% url 'live_home' %}"
+                            ><img src="{% static 'media/Group 4.svg' %}"
+                        /></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'dispatch_all' %}"
+                            ><img src="{% static 'media/Group 3on.svg' %}"
+                        /></a>
+                    </li>
+                    <li><img src="{% static 'media/Group 2.svg' %}" /></li>
+                    <li><img src="{% static 'media/Group 511.svg' %}" /></li>
+                </ul>
+            </div>
+        </footer>
+        <script src="{% static 'js/moreComments.js' %}"></script>
+    </body>
+</html>

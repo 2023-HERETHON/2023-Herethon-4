@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'css/live.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    </head>
+    <body>
+        <div class="top">
+            <img src="{% static 'media/logo.svg' %}" />
+            <img src="{% static 'media/alert.svg' %}" />
+            <img src="{% static 'media/ticket.svg' %}" />
+        </div>
+        <div>
+            <ul class="menu1">
+                {% if request.user.is_authenticated %}
+                <li>
+                    <b><a href="{% url 'lives:live_list' %}">홈</a></b>
+                </li>
+                <li><a href="{% url 'lives:live_recent' %}">최근 시청한</a></li>
+                <li><a href="{% url 'lives:live_soon' %}">라이브 예고</a></li>
+                {% else %}
+                <li><a href="">로그인</a></li>
+                <!--추후에 로그인 페이지명 나오면 수정-->
+                {% endif %}
+            </ul>
+        </div>
+        <form>
+            {% csrf_token %}
+            <input
+                type="search"
+                placeholder="현재 상황이 궁금한 여행지를 검색해보세요!"
+                style="width: 90%"
+            />
+            <input type="submit" value="&#128269;" />
+        </form>
+        <br />
+        <p>지금 <b style="color: #ff552b">오사카</b>는?</p>
+        <div class="container">
+            {% if osaka1 %}
+            <div class="left"><img src="{{osaka1.thumbnail.url}}" /></div>
+            {% else %}
+            <div class="left"><img src="{% static 'media/osaka.jpg' %}" /></div>
+            {% endif %}
+            <div class="highlight">
+                {% for osaka in osakas %}
+                <div class="box1">
+                    <img src="{{osaka.thumbnail.url}}" />
+                </div>
+                {% empty %}
+                <div class="box1">
+                    <img src="" alt="없음" />
+                </div>
+                <div class="box1">
+                    <img src="" alt="없음" />
+                </div>
+                <div class="box1">
+                    <img src="" alt="없음" />
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <br />
+        <b>오늘의 Live</b>
+        <div>
+            <ul class="today">
+                <li class="box2">채팅 많은</li>
+                <li class="box2">좋아요 폭발</li>
+                <li class="box2">조회수 급상승</li>
+            </ul>
+        </div>
+        <div class="container2">
+            {% for video in video %}
+            <div class="live_item">
+                <img src="{{video.thumbnail.url}}" />
+            </div>
+            {% empty %}
+
+            {% endfor %}
+        </div>
+        <footer>
+            <div class="footer">
+                <ul class="foot">
+                    <li>
+                        <a href="{% url 'lives:live_list' %}"
+                            ><img src="{% static 'media/Group 4on.svg' %}"
+                        /></a>
+                    </li>
+                    <li>
+                        <a href=""
+                            ><img src="{% static 'media/Group 3.svg' %}"
+                        /></a>
+                    </li>
+                    <li><img src="{% static 'media/Group 2.svg' %}" /></li>
+                    <li><img src="{% static 'media/Group 511.svg' %}" /></li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

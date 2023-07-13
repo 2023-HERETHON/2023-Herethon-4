@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'css/req.css' %}" />
+    </head>
+    <body>
+        <form action="update.html" method="GET" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="head">
+                <a href="{% url 'dispatch_my' %}"
+                    ><img src="{% static 'media/Union.svg' %}"
+                /></a>
+                <b>파견 요청 작성하기</b>
+                <input type="submit" value="등록" id="done" name="done" />
+            </div>
+            <hr />
+            <input type="text" placeholder="나라 입력" id="country" />
+            <br /><br />
+            <div class="in">
+                <input type="file" name="image" accept="image/*" />
+            </div>
+            <br />
+            <input
+                type="text"
+                name="content"
+                id="content"
+                placeholder="로컬에게 묻고 싶은 현지 상황에 대해 작성해주세요."
+            />
+            <br /><br />
+            <div id="modal_btn">
+                <b id="sub">작성 완료</b>
+            </div>
+            <div class="modal_wrap">
+                <div class="modal_background"></div>
+                <div class="modal_close"><b>X</b></div>
+                <div class="text">
+                    로컬에게 파견을 요청하기 위해 티켓 1개를 사용합니다.
+                </div>
+            </div>
+        </form>
+        <script>
+            const modal_wrap = document.querySelector(".modal_wrap");
+
+            document
+                .querySelector("#modal_btn")
+                .addEventListener("click", () => {
+                    showModal();
+                });
+
+            document
+                .querySelector(".modal_close")
+                .addEventListener("click", () => {
+                    closeModal();
+                });
+
+            function closeModal() {
+                modal_wrap.classList.remove("show-modal");
+            }
+
+            function showModal() {
+                modal_wrap.classList.add("show-modal");
+            }
+        </script>
+        <script src="{% static 'js/moreComments.js' %}"></script>
+    </body>
+</html>

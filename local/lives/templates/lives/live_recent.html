@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'css/recent.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    </head>
+    <body>
+        <div class="top">
+            <img src="{% static 'media/logo.svg' %}" />
+            <img src="{% static 'media/alert.svg' %}" />
+            <img src="{% static 'media/ticket.svg' %}" />
+        </div>
+        <div>
+            <ul class="menu1">
+                <li>
+                    <a href="{% url 'lives:live_list' %}">홈</a>
+                </li>
+                <li>
+                    <a href="{% url 'lives:live_recent' %}"><b>최근 시청한</b></a>
+                </li>
+                <li><a href="{% url 'lives:live_soon' %}">라이브 예고</a></li>
+            </ul>
+        </div>
+        {% if query %}
+        <p><b>"{{query}}" 에 대한 결과</b></p>
+        {% else %}
+        <p><b>최근 시청한 Live</b></p>
+        {% endif %}
+        <form action={% url 'lives:live_recent' %}>
+            <input
+                type="text" name="query"
+                placeholder="현재 상황이 궁금한 여행지를 검색해보세요!"
+                style="width: 80%"
+            />
+            <input type="submit" value="&#128269;" />
+        </form>
+        {% for video in video %}
+        <div class="box3">
+            <img src="{{video.thumbnail.url}}" class="thumb" />
+            <section class="vid">
+                <b>{{video.title}}</b>
+                <br /><b style="font-size: 10pt; color: #ff552b"
+                    >{{video.nation}}, {{video.city}}</b
+                ><br />
+                <b>닉네임자리</b> <br />조회수 {{video.views}}
+            </section>
+        </div>
+        <br />
+        {% empty %}
+        {% endfor %}
+        <footer>
+            <div class="footer">
+                <ul class="foot">
+                    <li>
+                        <a href="{% url 'lives:live_list' %}"
+                            ><img src="{% static 'media/Group 4on.svg' %}"
+                        /></a>
+                    </li>
+                    <li>
+                        <a href=""
+                            ><img src="{% static 'media/Group 3.svg' %}"
+                        /></a>
+                    </li>
+                    <li><img src="{% static 'media/Group 2.svg' %}" /></li>
+                    <li><img src="{% static 'media/Group 511.svg' %}" /></li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>
