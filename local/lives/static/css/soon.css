@@ -25,6 +25,7 @@ button {
 }
 .later {
     margin-left: 20px;
+    width: 135px;
 }
 .btn {
     display: flex;

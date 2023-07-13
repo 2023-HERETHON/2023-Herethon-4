@@ -9,18 +9,18 @@
     </head>
     <body>
         <div class="top">
-            <img src="{% static 'media/logo.svg' %}" />
-            <img src="{% static 'media/alert.svg' %}" />
-            <img src="{% static 'media/ticket.svg' %}" />
+            <img src="{% static 'logo.svg' %}" />
+            <img src="{% static 'alert.svg' %}" />
+            <img src="{% static 'ticket.svg' %}" />
         </div>
         <div>
             <ul class="menu1">
                 <li>
-                    <a href="{% url 'dispatch_all' %}">전체</a>
+                    <a href="">전체</a>
                 </li>
-                <li><a href="{% url 'dispatch_near' %}">여기근처</a></li>
+                <li><a href="">여기근처</a></li>
                 <li>
-                    <a href="{% url 'dispatch_my' %}"><b>내파견</b></a>
+                    <a href=""><b>내파견</b></a>
                 </li>
             </ul>
         </div>
@@ -108,24 +108,20 @@
         <b id="diff" name="diff">다른 답변 보기</b>
         <div id="empty"></div>
 
-        <a href="{% url 'dispatch_req' %}"
-            ><img src="{% static 'media/plus.svg' %}" id="plus"
-        /></a>
+        <a href=""><img src="{% static 'plus.svg' %}" id="plus" /></a>
         <footer>
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href="{% url 'live_home' %}"
-                            ><img src="{% static 'media/Group 4.svg' %}"
-                        /></a>
+                        <a href=""><img src="{% static 'Group 4.svg' %}" /></a>
                     </li>
                     <li>
-                        <a href="{% url 'dispatch_all' %}"
-                            ><img src="{% static 'media/Group 3on.svg' %}"
+                        <a href=""
+                            ><img src="{% static 'Group 3on.svg' %}"
                         /></a>
                     </li>
-                    <li><img src="{% static 'media/Group 2.svg' %}" /></li>
-                    <li><img src="{% static 'media/Group 511.svg' %}" /></li>
+                    <li><img src="{% static 'Group 2.svg' %}" /></li>
+                    <li><img src="{% static 'Group 511.svg' %}" /></li>
                 </ul>
             </div>
         </footer>

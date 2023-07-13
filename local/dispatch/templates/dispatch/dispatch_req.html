@@ -11,15 +11,30 @@
         <form action="update.html" method="GET" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="head">
-                <a href="{% url 'dispatch_my' %}"
-                    ><img src="{% static 'media/Union.svg' %}"
-                /></a>
+                <a href=""><img src="{% static 'Union.svg' %}" /></a>
                 <b>파견 요청 작성하기</b>
                 <input type="submit" value="등록" id="done" name="done" />
             </div>
             <hr />
-            <input type="text" placeholder="나라 입력" id="country" />
-            <br /><br />
+            <form>
+                {% csrf_token %}
+                <p><b>로컬에게 파견 요청할 국가</b></p>
+                <input
+                    type="text"
+                    placeholder="예: 대한민국, 대만, 미국"
+                    id="country"
+                    style="width: 90%"
+                />
+                <input type="submit" value="&#128269;" />
+                <p><b>로컬에게 파견 요청할 도시</b></p>
+                <input
+                    type="text"
+                    placeholder="예: 서울, 제주, 파리, 로마"
+                    id="country"
+                    style="width: 90%"
+                />
+                <input type="submit" value="&#128269;" />
+            </form>
             <div class="in">
                 <input type="file" name="image" accept="image/*" />
             </div>
