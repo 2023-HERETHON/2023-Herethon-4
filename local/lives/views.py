@@ -1,11 +1,14 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from django.core.mail import EmailMessage
 from django.views.decorators import gzip
 from django.http import StreamingHttpResponse
 import cv2
 import threading
+from .forms import VideoCommentForm
+from django.contrib.auth.decorators import login_required
+
 
 @gzip.gzip_page
 def live_stream(request):
@@ -58,7 +61,7 @@ def gen(camera):
 #   return render(request, 'lives/live_home.html',context)
 
 def live_list(request):
-  video = Video.objects.all()
+  video = Video.objects.all()[:6]
   osaka1 = None
   osakas = None
 
@@ -84,6 +87,73 @@ def live_list(request):
   }
   return render(request, 'lives/live_home.html', context)
 
-# def live_recent(request):
-  
+def live_recent(request):
+  video = Video.objects.all().order_by('-id')
+  query = request.GET.get('query')
+  if query:
+    travels = Video.objects.filter(nation__icontains=query) | Video.objects.filter(city__icontains=query)
+  context = {
+    'video': video,
+    'query': query,
+  }
+  return render(request, 'lives/live_home.html', context)
+
+def live_detail(request, pk):
+  video = Video.objects.get(pk=pk)
+  comments = VideoComment.objects.filter(video=pk)
+  if request.method == 'POST':
+    form = VideoCommentForm(request.POST)
+    if form.is_valid():
+      comment = form.save(commit=False)
+      comment.video = video
+      comment.author = request.user
+      comment.save()
+      return redirect('lives:live_detail',video.pk) 
+    
+  else:
+    form = VideoCommentForm()
+  context = {
+    'video' : video,
+    'comments' : comments,
+    'form' : form
+  } 
+  return render(request, 'lives/live_detail.html', context)
+
+@login_required
+def live_create(request):
+  if request.method == 'POST':
+    # POST 요청을 처리하여 새로운 Video 객체 생성
+    state = request.POST.get('state')
+    title = request.POST.get('title')
+    sub1 = request.POST.get('sub1')
+    sub2 = request.POST.get('sub2')
+    sub3 = request.POST.get('sub3')
+    video_file = request.FILES.get('video_file')
+    thumbnail = request.FILES.get('thumbnail')
+    author = request.user 
+    nation = request.POST.get('nation')
+    city = request.POST.get('city')
+    views = 0 
+    date = request.POST.get('date')
+    
+    video = Video.objects.create(
+      state=state,
+      title=title,
+      sub1=sub1,
+      sub2=sub2,
+      sub3=sub3,
+      video_file=video_file,
+      thumbnail=thumbnail,
+      author=author,
+      nation=nation,
+      city=city,
+      views=views,
+      date=date
+    )
+    # 새로운 Video 객체 생성 후, 어떤 작업을 수행하거나 리디렉션할 수 있음
+    
+    return redirect('lives:live_detail', video_id=video.id)
+  # GET 요청 처리
+  return render(request, 'lives/live_create.html')
+
 
