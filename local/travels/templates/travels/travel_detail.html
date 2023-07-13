@@ -13,7 +13,8 @@
   작성일{{travel.create_date}}
   작성자{{travel.author}}
   조희수{{travel.views}}
-  {{travel.location}}
+  {{travel.nation}}
+  {{travel.city}}
   {{travel.content}}
   {% if user.is_authenticated %}
   <form action="{% url 'travels:travel_likes' travel.pk %}" method='POST'>

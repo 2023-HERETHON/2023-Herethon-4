@@ -3,11 +3,11 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-# Create your models here.
 class TravelPost(models.Model):
   title = models.CharField(max_length=30)
   content = models.TextField()
-  location = models.TextField(blank=True, null=True)
+  nation = models.TextField()
+  city = models.TextField()
   together = models.IntegerField(default=1)
   start_date = models.DateTimeField()
   end_date = models.DateTimeField()

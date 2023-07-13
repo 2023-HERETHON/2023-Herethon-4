@@ -1,8 +1,9 @@
 from django.urls import path
 from .views import *
 
+
+app_name = "lives"
+
 urlpatterns = [
-  path('', video, name='video')
-    # path('admin/', admin.site.urls),
-    # path('lives/', include('lives.urls')),
+  path('', live_stream, name='live_stream'),
 ]

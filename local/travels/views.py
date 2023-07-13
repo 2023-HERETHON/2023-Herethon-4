@@ -10,7 +10,7 @@ def travel_list(request):
   travels = TravelPost.objects.all()
   query = request.GET.get('query')
   if query:
-    travels = TravelPost.objects.filter(location__icontains=query)
+    travels = TravelPost.objects.filter(nation__icontains=query) | TravelPost.objects.filter(city__icontains=query)
   context = {
     'travels' : travels,
     'query': query,
@@ -45,7 +45,8 @@ def travel_create(request):
     travel_post = TravelPost.objects.create(
       title=request.POST.get('title'),
       content=request.POST.get('content'),
-      location=request.POST.get('location'),
+      nation=request.POST.get('nation'),
+      city=request.POST.get('city'),
       together=int(request.POST.get('together')),
       start_date=request.POST.get('start_date'),
       end_date=request.POST.get('end_date'),
