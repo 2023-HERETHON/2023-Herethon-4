@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'css/live.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    </head>
+    <body>
+        <div class="top">
+            <img src="{% static 'media/logo.svg' %}" />
+            <img src="{% static 'media/alert.svg' %}" />
+            <img src="{% static 'media/ticket.svg' %}" />
+        </div>
+        <div>
+            <ul class="menu1">
+                <li>
+                    <b><a href="live_home.html">홈</a></b>
+                </li>
+                <li><a href="live_recent.html">최근 시청한</a></li>
+                <li><a href="live_Soon.html">라이브 예고</a></li>
+            </ul>
+        </div>
+        <input
+            type="search"
+            placeholder="현재 상황이 궁금한 여행지를 검색해보세요!"
+            style="width: 100%"
+        />
+        <br />
+        <p>지금 <b style="color: #ff552b">오사카</b>는?</p>
+        <div class="container">
+            <div class="left"><img src="{% static 'media/osaka.jpg' %}" /></div>
+            <div class="highlight">
+                <div class="box1">
+                    <img src="{% static 'media/ja1.jpg' %}" />
+                </div>
+                <div class="box1">
+                    <img src="{% static 'media/ja2.jpg' %}" />
+                </div>
+                <div class="box1">
+                    <img src="{% static 'media/ja3.jpg' %}" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <b>오늘의 Live</b>
+        <div>
+            <ul class="today">
+                <li class="box2">채팅 많은</li>
+                <li class="box2">좋아요 폭발</li>
+                <li class="box2">조회수 급상승</li>
+            </ul>
+        </div>
+        <div class="container2">
+            <div class="live_item">
+                <img src="{% static 'media/ja4.jpg' %}" />
+            </div>
+            <div class="live_item">
+                <img src="{% static 'media/ja5.jpg' %}" />
+            </div>
+            <div class="live_item">
+                <img src="{% static 'media/ja6.jpg' %}" />
+            </div>
+        </div>
+        <footer>
+            <div class="footer">
+                <ul class="foot">
+                    <li>
+                        <a href="live_home.html"
+                            ><img src="{% static 'media/Group 4on.svg' %}"
+                        /></a>
+                    </li>
+                    <li>
+                        <a href="dispatch_all.html"
+                            ><img src="{% static 'media/Group 3.svg' %}"
+                        /></a>
+                    </li>
+                    <li><img src="{% static 'media/Group 2.svg' %}" /></li>
+                    <li><img src="{% static 'media/Group 511.svg' %}" /></li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>
