@@ -29,17 +29,18 @@
         </div>
 
         <p><b>라이브 예고</b></p>
+        {% for video in video %}
         <div class="box4">
             <div class="blank">
-                7월 20일 <br />
-                18:00
+                {{ video.date|date:"m월d일" }}<br />
+                {{ video.date|time:"H:i" }}
             </div>
             <section class="later">
-                <b style="font-size: 12pt">라이브 제목</b>
+                <b style="font-size: 12pt">{{ video.title }}</b>
                 <br /><b style="font-size: 10pt; color: #ff552b"
-                    >태국 치앙마이</b
+                    >{{ video.nation }}, {{ video.city }}</b
                 ><br />
-                <b style="font-size: 7pt">여행은 삶</b><br />
+                <b style="font-size: 7pt">닉네임</b><br />
                 <ul class="list1">
                     <li>방문할 장소 1</li>
                     <li>방문할 장소 2</li>
@@ -104,6 +105,7 @@
             </section>
         </div>
         <br />
+        {% empty %} 예정된 라이브가 없습니다. {% endfor %}
 
         <footer>
             <div class="footer">
