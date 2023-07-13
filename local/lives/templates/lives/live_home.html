@@ -40,17 +40,27 @@
         <br />
         <p>지금 <b style="color: #ff552b">오사카</b>는?</p>
         <div class="container">
+            {% if osaka1 %}
+            <div class="left"><img src="{{osaka1.thumbnail.url}}" /></div>
+            {% else %}
             <div class="left"><img src="{% static 'media/osaka.jpg' %}" /></div>
+            {% endif %}
             <div class="highlight">
+                {% for osaka in osakas %}
                 <div class="box1">
-                    <img src="{% static 'media/ja1.jpg' %}" />
+                    <img src="{{osaka.thumbnail.url}}" />
+                </div>
+                {% empty %}
+                <div class="box1">
+                    <img src="" alt="없음" />
                 </div>
                 <div class="box1">
-                    <img src="{% static 'media/ja2.jpg' %}" />
+                    <img src="" alt="없음" />
                 </div>
                 <div class="box1">
-                    <img src="{% static 'media/ja3.jpg' %}" />
+                    <img src="" alt="없음" />
                 </div>
+                {% endfor %}
             </div>
         </div>
         <br />
@@ -63,15 +73,13 @@
             </ul>
         </div>
         <div class="container2">
+            {% for video in video %}
             <div class="live_item">
-                <img src="{% static 'media/ja4.jpg' %}" />
+                <img src="{{video.thumbnail.url}}" />
             </div>
-            <div class="live_item">
-                <img src="{% static 'media/ja5.jpg' %}" />
-            </div>
-            <div class="live_item">
-                <img src="{% static 'media/ja6.jpg' %}" />
-            </div>
+            {% empty %}
+
+            {% endfor %}
         </div>
         <footer>
             <div class="footer">
