@@ -1,50 +1,29 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  {{travel.title}}
-  {{travel.together}}
-  {{travel.start_date}}
-  {{travel.end_date}}
-  작성일{{travel.create_date}}
-  작성자{{travel.author}}
-  조희수{{travel.views}}
-  {{travel.location}}
-  {{travel.content}}
-  {% if user.is_authenticated %}
-  <form action="{% url 'travels:travel_likes' travel.pk %}" method='POST'>
-    {% csrf_token %}
-    {% if user in travel.likes.all %}
-    <button>
-      저장
-    </button>
-    {% else %}
-    <button>
-      저장안함
-    </button>
-    {% endif %}
-  </form>
-  {% endif %}
-
-  {% for comment in travel.travelcomment_set.all %}
-    {{comment.author}}
-    {{comment.content}}
-  {% empty %}
-  가장 먼저 댓글을 작성해보세요
-  {% endfor %}
-
-  {% if user.is_authenticated %}
-  <form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Submit</button>
-  </form>
-  {% else %}
-  로그인을 하세요
-  {% endif %}
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        {{travel.title}} {{travel.together}} {{travel.start_date}}
+        {{travel.end_date}} 작성일{{travel.create_date}} 작성자{{travel.author}}
+        조희수{{travel.views}} {{travel.location}} {{travel.content}} {% if
+        user.is_authenticated %}
+        <form action="{% url 'travels:travel_likes' travel.pk %}" method="POST">
+            {% csrf_token %} {% if user in travel.likes.all %}
+            <button>저장</button>
+            {% else %}
+            <button>저장안함</button>
+            {% endif %}
+        </form>
+        {% endif %} {% for comment in travel.travelcomment_set.all %}
+        {{comment.author}} {{comment.content}} {% empty %} 가장 먼저 댓글을
+        작성해보세요 {% endfor %} {% if user.is_authenticated %}
+        <form method="post">
+            {% csrf_token %} {{form.as_p}}
+            <button type="submit">Submit</button>
+        </form>
+        {% else %} 로그인을 하세요 {% endif %}
+    </body>
 </html>
