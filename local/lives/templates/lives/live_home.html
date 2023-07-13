@@ -16,18 +16,27 @@
         </div>
         <div>
             <ul class="menu1">
+                {% if request.user.is_authenticated %}
                 <li>
-                    <b><a href="live_home.html">홈</a></b>
+                    <b><a href="{% url 'live_home' %}">홈</a></b>
                 </li>
-                <li><a href="live_recent.html">최근 시청한</a></li>
-                <li><a href="live_Soon.html">라이브 예고</a></li>
+                <li><a href="{% url 'live_recent' %}">최근 시청한</a></li>
+                <li><a href="{% url 'live_Soon' %}">라이브 예고</a></li>
+                {% else %}
+                <li><a href="{% url 'login:login' %}">로그인</a></li>
+                <!--추후에 로그인 페이지명 나오면 수정-->
+                {% endif %}
             </ul>
         </div>
-        <input
-            type="search"
-            placeholder="현재 상황이 궁금한 여행지를 검색해보세요!"
-            style="width: 100%"
-        />
+        <form>
+            {% csrf_token %}
+            <input
+                type="search"
+                placeholder="현재 상황이 궁금한 여행지를 검색해보세요!"
+                style="width: 90%"
+            />
+            <input type="submit" value="&#128269;" />
+        </form>
         <br />
         <p>지금 <b style="color: #ff552b">오사카</b>는?</p>
         <div class="container">
@@ -76,12 +85,12 @@
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href="live_home.html"
+                        <a href="{% url 'live_home' %}"
                             ><img src="{% static 'media/Group 4on.svg' %}"
                         /></a>
                     </li>
                     <li>
-                        <a href="dispatch_all.html"
+                        <a href="{% url 'dispatch_all' %}"
                             ><img src="{% static 'media/Group 3.svg' %}"
                         /></a>
                     </li>

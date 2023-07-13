@@ -16,10 +16,14 @@
         </div>
         <div>
             <ul class="menu1">
-                <li><a href="live_home.html">홈</a></li>
-                <li><a href="live_recent.html">최근 시청한</a></li>
                 <li>
-                    <b><a href="live_Soon.html">라이브 예고</a></b>
+                    <a href="{% url 'live_home' %}">홈</a>
+                </li>
+                <li>
+                    <a href="{% url 'live_recent' %}">최근 시청한</a>
+                </li>
+                <li>
+                    <a href="{% url 'live_Soon' %}"><b>라이브 예고</b></a>
                 </li>
             </ul>
         </div>
@@ -105,12 +109,12 @@
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href="live_home.html"
+                        <a href="{% url 'live_home' %}"
                             ><img src="{% static 'media/Group 4on.svg' %}"
                         /></a>
                     </li>
                     <li>
-                        <a href="dispatch_all.html"
+                        <a href="{% url 'dispatch_all' %}"
                             ><img src="{% static 'media/Group 3.svg' %}"
                         /></a>
                     </li>

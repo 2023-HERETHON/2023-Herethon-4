@@ -16,18 +16,26 @@
         </div>
         <div>
             <ul class="menu1">
-                <li><a href="live_home.html">홈</a></li>
                 <li>
-                    <a href="live_recent.html"><b>최근 시청한</b></a>
+                    <a href="{% url 'live_home' %}">홈</a>
                 </li>
                 <li>
-                    <a href="live_Soon.html">라이브 예고</a>
+                    <a href="{% url 'live_recent' %}"><b>최근 시청한</b></a>
                 </li>
+                <li><a href="{% url 'live_Soon' %}">라이브 예고</a></li>
             </ul>
         </div>
 
         <p><b>최근 시청한 Live</b></p>
-
+        <form>
+            {% csrf_token %}
+            <input
+                type="search"
+                placeholder="현재 상황이 궁금한 여행지를 검색해보세요!"
+                style="width: 90%"
+            />
+            <input type="submit" value="&#128269;" />
+        </form>
         <div class="box3">
             <img src="{% static 'media/ja4.jpg' %}" class="thumb" />
             <section class="vid">
@@ -86,12 +94,12 @@
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href="live_home.html"
+                        <a href="{% url 'live_home' %}"
                             ><img src="{% static 'media/Group 4on.svg' %}"
                         /></a>
                     </li>
                     <li>
-                        <a href="dispatch_all.html"
+                        <a href="{% url 'dispatch_all' %}"
                             ><img src="{% static 'media/Group 3.svg' %}"
                         /></a>
                     </li>

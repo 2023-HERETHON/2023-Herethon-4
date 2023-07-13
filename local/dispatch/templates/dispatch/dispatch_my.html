@@ -1,25 +1,26 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="base2.css" />
+        <link rel="stylesheet" href="{% static 'css/base2.css' %}" />
     </head>
     <body>
         <div class="top">
-            <img src="pic/logo.svg" />
-            <img src="pic/alert.svg" />
-            <img src="pic/ticket.svg" />
+            <img src="{% static 'media/logo.svg' %}" />
+            <img src="{% static 'media/alert.svg' %}" />
+            <img src="{% static 'media/ticket.svg' %}" />
         </div>
         <div>
             <ul class="menu1">
                 <li>
-                    <a href="dispatch_all.html">전체</a>
+                    <a href="{% url 'dispatch_all' %}">전체</a>
                 </li>
-                <li><a href="dispatch_near.html">여기근처</a></li>
+                <li><a href="{% url 'dispatch_near' %}">여기근처</a></li>
                 <li>
-                    <a href="dispatch_my.html"><b>내파견</b></a>
+                    <a href="{% url 'dispatch_my' %}"><b>내파견</b></a>
                 </li>
             </ul>
         </div>
@@ -107,25 +108,27 @@
         <b id="diff" name="diff">다른 답변 보기</b>
         <div id="empty"></div>
 
-        <a href="dispatch_req.html"><img src="pic/plus.svg" id="plus" /></a>
+        <a href="{% url 'dispatch_req' %}"
+            ><img src="{% static 'media/plus.svg' %}" id="plus"
+        /></a>
         <footer>
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href="live_home.html"
-                            ><img src="pic/Group 4.svg"
+                        <a href="{% url 'live_home' %}"
+                            ><img src="{% static 'media/Group 4.svg' %}"
                         /></a>
                     </li>
                     <li>
-                        <a href="dispatch_all.html"
-                            ><img src="pic/Group 3on.svg"
+                        <a href="{% url 'dispatch_all' %}"
+                            ><img src="{% static 'media/Group 3on.svg' %}"
                         /></a>
                     </li>
-                    <li><img src="pic/Group 2.svg" /></li>
-                    <li><img src="pic/Group 511.svg" /></li>
+                    <li><img src="{% static 'media/Group 2.svg' %}" /></li>
+                    <li><img src="{% static 'media/Group 511.svg' %}" /></li>
                 </ul>
             </div>
         </footer>
-        <script src="moreComments.js"></script>
+        <script src="{% static 'js/moreComments.js' %}"></script>
     </body>
 </html>

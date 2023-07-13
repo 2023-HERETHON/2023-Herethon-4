@@ -1,15 +1,19 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="req.css" />
+        <link rel="stylesheet" href="{% static 'css/req.css' %}" />
     </head>
     <body>
         <form action="update.html" method="GET" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="head">
-                <a href="dispatch_my.html"><img src="pic/Union.svg" /></a>
+                <a href="{% url 'dispatch_my' %}"
+                    ><img src="{% static 'media/Union.svg' %}"
+                /></a>
                 <b>파견 요청 작성하기</b>
                 <input type="submit" value="등록" id="done" name="done" />
             </div>
@@ -61,6 +65,6 @@
                 modal_wrap.classList.add("show-modal");
             }
         </script>
-        <script src="moreComments.js"></script>
+        <script src="{% static 'js/moreComments.js' %}"></script>
     </body>
 </html>
