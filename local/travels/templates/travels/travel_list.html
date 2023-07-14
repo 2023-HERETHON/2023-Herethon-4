@@ -37,6 +37,7 @@
       {% endif %}
       {% for travel in travels %}
       <div class="t-list-box">
+        <a href="{% url 'travels:travel_detail' travel.pk %}">
         {% with photo=travel.travelphoto_set.first %}
         {% if photo %}
           <img src="{{ photo.image.url }}" alt="여행 사진">
@@ -44,12 +45,13 @@
           <img src="{% static 'img/ticket.svg' %}" alt="아무 랜덤사진?">
         {% endif %}
         {% endwith %}
-        <h3>{{travel.title}}</h3>
-        <p class="t-box-user flex align-center">
-          <img src="{% static 'img/Group 4on.svg' %}" alt="">
-          닉네임 | 거의 로컬
-        </p>
-        <p>{{travel.likes.count}}명 북마크 | {{travel.views}}명 조회</p>
+          <h3>{{travel.title}}</h3>
+          <p class="t-box-user flex align-center">
+            <img src="{% static 'img/Group 4on.svg' %}" alt="">
+            닉네임 | 거의 로컬
+          </p>
+          <p>{{travel.likes.count}}명 북마크 | {{travel.views}}명 조회</p>
+        </a>
       </div>
       {% empty %}
       <div id="nullbox">
