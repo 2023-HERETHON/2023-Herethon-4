@@ -14,7 +14,7 @@
       <div class="flex align-center">
         <a href=""><img src="{% static 'img/alert.svg' %}" alt=""></a>
         {% if user.is_authenticated %}
-        <p class="flex align-center"><img src="{% static 'img/ticket.svg' %}" alt="">3개</p>
+        <p class="flex align-center"><img src="{% static 'img/ticket.svg' %}" alt="">{{ current_user.profile.ticket_num }}개</p>
         {% endif %}
       </div>
     </div>
