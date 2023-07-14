@@ -1,10 +1,12 @@
 from django.urls import path
 from . import views
 from .views import *
+
 app_name = "dispatch"
 
 urlpatterns = [
-    path('', views.whole_list, name='whole_list'),
+    # path('', views.whole_list, name='whole_list'),
+    path('', views.dispatch_all, name='all_list'),
     path('near_list', views.near_list, name='near_list'),
     path('my_list', views.my_list, name='my_list'),
     path('post/', views.dispatch_post, name='dispatch_post'),

@@ -15,7 +15,7 @@ def signup(request):
             auth.login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
             print('회원가입 성공')
             return redirect('users:more_info')
-    return render(request, 'signup.html')
+    return render(request, 'idsignup.html')
 
 def input_info(request):
     if request.method == "POST":
@@ -29,6 +29,7 @@ def input_info(request):
         visited_city = request.POST['visited_city'] 
         preferred_cntry = request.POST['preferred_cntry'] 
         preferred_city = request.POST['preferred_city'] 
+        shop_option = request.POST['shop']
 
         try:
             profile = new_user.profile  # 기존에 연결된 프로필 객체 가져오기
@@ -42,18 +43,22 @@ def input_info(request):
             profile.visited_city = visited_city
             profile.preferred_cntry = preferred_cntry
             profile.preferred_city = preferred_city
+            if shop_option == 'No':
+                profile.is_provider = False
+            else:
+                profile.is_provider = True
             profile.save()
         except Profile.DoesNotExist:
             # 연결된 프로필이 없는 경우 새로운 프로필 생성
             profile = Profile.objects.create(user=new_user, name=name, nickname=nickname, phone=phone,
                                              cntry_residence=cntry_residence, city_residence=city_residence,
                                              visited_cntry=visited_cntry, visited_city=visited_city,
-                                             preferred_cntry=preferred_cntry, preferred_city=preferred_city)
+                                             preferred_cntry=preferred_cntry, preferred_city=preferred_city,
+                                             is_provider = (shop_option == 'Yes'))
         return redirect('lives:live_list')
     else:
-        return render(request, 'extra_info.html')
+        return render(request, 'general-signup.html')
     
-
 
 def login(request):
     if request.method == "POST":

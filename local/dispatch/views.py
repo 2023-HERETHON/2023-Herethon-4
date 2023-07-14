@@ -10,7 +10,7 @@ def whole_list(request):
     return render(request, 'dispatch/whole.html', {'dispatchs':dispatchs})
 
 def near_list(request):
-    return render(request, 'dispatch/near.html', {})
+    return render(request, 'dispatch/dispatch_near.html', {})
 
 @login_required
 def my_list(request):
@@ -21,18 +21,6 @@ def my_list(request):
 #     print(pk)
 #     dispatchs = get_object_or_404(dispatch, id=pk)
 #     return render(request, 'dispatch/dispatch_detail.html', {'dispatchs':dispatchs})
-
-# def dispatch_post(request):
-#     if request.method == "POST":
-#         form = dispatchForm(request.POST)
-#         if form.is_valid():
-#             dispatch = form.save(commit=False)
-#             dispatch.author = request.user
-#             dispatch.save()
-#             return redirect('dispatch:whole_list')
-#     else:
-#         form = dispatchForm()
-#     return render(request, 'dispatch/dispatch_post.html',{'form': form})
 
 @login_required
 def dispatch_post(request):
