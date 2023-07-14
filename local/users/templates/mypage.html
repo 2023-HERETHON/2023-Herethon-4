@@ -8,7 +8,7 @@
   <title>Local</title>
 </head>
 <body>
-  <div>
+  <div id="mpage-main">
     <div id="logo-bar" class="p-1">
       <img src="{% static 'img/logo.svg' %}" alt="">
       <div class="flex align-center">
@@ -41,6 +41,17 @@
         <p>여행</p>
       </div>
     </div>
+    {% comment %} for 문 돌릴곳 {% endcomment %}
+    <div class="flex save-list align-center">
+      <img src="{% static 'img/ticket.svg' %}" alt="">
+      <div>
+        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
+        <p>나라</p>
+        <p>닉네임</p>
+        <p>조회수</p>
+      </div>
+    </div>
+    {% comment %} for문 끝 {% endcomment %}
     <div class="flex save-list align-center">
       <img src="{% static 'img/ticket.svg' %}" alt="">
       <div>

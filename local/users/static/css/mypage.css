@@ -95,3 +95,7 @@ a:visited {
   text-decoration: none;
   color: black;
 }
+
+#mpage-main {
+  margin-bottom: 5rem;
+}
