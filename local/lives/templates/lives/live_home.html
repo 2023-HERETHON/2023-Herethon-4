@@ -37,7 +37,6 @@
             />
             <input type="submit" value="&#128269;" />
         </form> {% endcomment %}
-        <br />
         <p>지금 <b style="color: #ff552b">오사카</b>는?</p>
         <div class="container">
             {% if osaka1 %}
@@ -65,7 +64,6 @@
                 {% endfor %}
             </div>
         </div>
-        <br />
         <b>오늘의 Live</b>
         <div>
             <ul class="today">
@@ -85,7 +83,7 @@
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href=""
+                        <a href="{% url 'lives:live_list' %}"
                             ><img src="{% static 'Group 4on.svg' %}"
                         /></a>
                     </li>
