@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/step1.css"/>
+    <title>Local</title>
+</head>
+<body>
+    <div class="top-bar">
+        <button type="button" id="back-button" onclick="location.href='nickname.html'"><img src="../../static/img/back-button.png" alt="뒤로가기"></button>
+        <button type="button" id="close-button"><img src="../../static/img/close-button.png" alt="닫기"></button>
+    </div>
+    <hr id="step-line"><hr id="nonestep-line">
+    <div id="step1">Step 1</div>
+    <div id="q1">닉네임 님이 <span id="highlights">거주하는 도시</span>는 <br>어디인가요?</div>
+
+    <form id = "position-form">
+        <input required maxlength="15" type="text" placeholder="도시를 입력해주세요.">
+        <br>
+        <button type="button" onclick="location.href='step2.html'" id="next">다음</button>
+    </form>
+    <script type="text/javascript" src="../../static/js/step1.js"></script>
+</body>
+</html>
