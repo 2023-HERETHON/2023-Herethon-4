@@ -19,6 +19,11 @@
                 height: 25px;
                 width: 60px;
             }
+            #live-box {
+                width:3rem;
+                height:3rem;
+                border-radius: 2rem
+            }
         </style>
     </head>
     <body>
@@ -31,6 +36,9 @@
                 <source src="{{ video.video_file.url }}" type="video/mp4" />
             </video>
         </div>
+        <p>
+            <a href=""><img src="{% static 'Union.svg' %}" /></a>
+        </p>
         <br />
         <div class="box9">
             {% for comment in video.videocomment_set.all %}
@@ -58,6 +66,14 @@
             </b>
             {% endfor %} 
             {% if user.is_authenticated %}
+            <form style="text-align: right;" action="{% url 'lives:live_likes' video.pk %}" method="POST">
+                {% csrf_token %} 
+                {% if user in video.saves.all %}
+                <button type="submit" id="bm_btn">저장안함</button>
+                {% else %}
+                <button type="submit" id="bm_btn">저장</button>
+                {% endif %}
+            </form>
             <form method="post">
                 {% csrf_token %}
                 <div style="display: flex; align-items:center; justify-content: space-around; padding: 10px">

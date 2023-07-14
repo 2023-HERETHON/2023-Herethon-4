@@ -22,6 +22,9 @@ def travel_list(request):
 def travel_detail(request, pk):
   travel = TravelPost.objects.get(pk=pk)
   comments = TravelComment.objects.filter(travel=pk)
+  travel.views += 1 
+  travel.save()
+  
   writer_user = travel.author
 
   if request.method == 'POST':
