@@ -6,25 +6,45 @@
         <title>Document</title>
         <style>
             .box9 {
+                padding: 3px;
                 overflow-y: scroll;
             }
             .submitbox {
                 display: flex;
                 justify-content: center;
                 color: #ff552b;
+                background-color: white;
+                float: right;
+                border-radius: 10px;
+                height: 25px;
+                width: 60px;
+                margin-top: 170px;
             }
         </style>
     </head>
     <body>
-        <video controls autoplay style="width: 100%; height: 100%">
-            <source src="{{ video.video_file.url }}" type="video/mp4" />
-        </video>
+        <div style="width: 100%; height: 600px">
+            <video
+                controls
+                autoplay
+                style="width: 100%; height: 100%; padding: 0"
+            >
+                <source src="{{ video.video_file.url }}" type="video/mp4" />
+            </video>
+        </div>
+        <br />
         <div class="box9">
             {% for comment in video.videocomment_set.all %}
             <div>
-                작성자: {{comment.author}}
+                <div style="display: flex; align-items: center">
+                    <img
+                        src="{% static 'profile.svg' %}"
+                        style="width: 30px; height: 30px"
+                    />
+                    <b style="margin-left: 45px">{{comment.author}}</b>
+                    <div style="margin-left: 45px">{{comment.content}}</div>
+                </div>
                 <br />
-                내용: {{comment.content}}
             </div>
             {% empty %}
             <b style="color: #ff552b; text-align: center"
@@ -32,10 +52,13 @@
             </b>
             {% endfor %} {% if user.is_authenticated %}
             <form method="post">
-                {% csrf_token %} {{form.as_p}}
-                <button type="submit" class="submitbox">Submit</button>
+                {% csrf_token %}
+                <div style="display: flex; padding: 10px">
+                    {{form.as_p}}
+                    <button type="submit" class="submitbox"><b>완료</b></button>
+                </div>
             </form>
-            {% else %} 로그인을 하세요 {% endif %}
+            {% else %} <b>로그인을 하세요</b> {% endif %}
         </div>
     </body>
 </html>

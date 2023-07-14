@@ -7,14 +7,21 @@
         <title>Document</title>
         <link rel="stylesheet" href="{% static 'css/soon.css' %}" />
         <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+        <style>
+            .logout:link a:visited {
+            text-decoration: none;
+            color:gray;
+            }
+                    </style>
     </head>
     <body>
         <div class="top">
             <img src="{% static 'logo.svg' %}" />
-            <img src="{% static 'alert.svg' %}" />
-            <img src="{% static 'ticket.svg' %}" />
-            <b style="color: #ff552b">3개</b>
-            <b
+            <div style="float:right">
+                <img src="{% static 'alert.svg' %}" />
+                <img src="{% static 'ticket.svg' %}" /> <b class="logout" style="color:#ff552b">3개</b>
+            </div>
+            <b class="logout"
             style="
                 float: right;
                 text-decoration: underline;
@@ -79,7 +86,11 @@
                         <a href=""><img src="{% static 'Group 3.svg' %}" /></a>
                     </li>
                     <li><img src="{% static 'Group 2.svg' %}" /></li>
-                    <li><img src="{% static 'Group 511.svg' %}" /></li>
+                    <li>
+                        <a href="{% url 'users:login' %}">
+                            <img src="{% static 'Group 511.svg' %}" />
+                        </a>
+                    </li>
                 </ul>
             </div>
         </footer>
