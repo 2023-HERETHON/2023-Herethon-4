@@ -47,11 +47,15 @@
         {% endwith %}
           <h3>{{travel.title}}</h3>
           <p class="t-box-user flex align-center">
-            <img src="{% static 'img/Group 4on.svg' %}" alt="">
+            {% if travel.author.profile.nickname %}
+            <img src="{{ travel.author.profile.profile_photo }} " alt="">
+            {% else %}
+            <img src="{% static 'img/profile.svg' %}" alt="">
+            {% endif %}
             {% if travel.author.profile.nickname %}
             {{ travel.author.profile.nickname }} 
             {% else %}
-            닉네임
+            {{travel.author.profile.nickname}}
             {% endif %}
             | 거의 로컬
           </p>
@@ -72,7 +76,7 @@
         </a>
       </li>
       <li>
-        <a href=""><img src="{% static 'img/Group 3.svg' %}" /></a>
+        <a href="{% url 'dispatch:all_list' %}"><img src="{% static 'img/Group 3.svg' %}" /></a>
       </li>
       <li>
         <a href="{% url 'travels:travel_list' %}"><img src="{% static 'img/lotravel.svg' %}" /></a>
