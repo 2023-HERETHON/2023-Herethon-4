@@ -39,7 +39,15 @@
                 <div class="nickname">{{travel.author.profile.nickname}}</div>
                 <div class="when">{{travel.create_date|date:"m/d"}}</div>
             </div>
-            <button type="button" id="follow-btn">+ 팔로우</button>
+            {% for ul in user_list %}
+                {% if current_user in ul.user.profile.followers.all %}
+                    <a href="{% url 'users:user_follow' ul.user.id travel.pk %}"><button type="button" id="follow-btn">- 언팔로우</button></a>
+                {% else %}
+                    <a href="{% url 'users:user_follow' ul.user.id travel.pk %}"><button type="button" id="follow-btn">+ 팔로우</button></a>
+                {% endif %}
+            {% endfor %}
+
+
         </div>
 
         <div class="travel-info">
