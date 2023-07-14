@@ -1,36 +1,83 @@
-<html>
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
     <head>
-        <title>dispatch</title>
-        <link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'css/req.css' %}" />
     </head>
     <body>
-    <div class="container">
-        <h1>파견 추가하기</h1>
-        <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-
-                        <input type="text" name="content">
-                        <input type="text" name="country">
-                        <input type="text" name="city">
-                        <input type="file" name="photo">
-                    
-                        <button type="submit" class="btn btn-primary">등록</button>
-
-                    </form>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="head">
+                <a href=""><img src="{% static 'Union.svg' %}" /></a>
+                <b>파견 요청 작성하기</b>
+                <input type="submit" value="등록" id="done" name="done" />
+            </div>
+            <hr />
+                <p><b>로컬에게 파견 요청할 국가</b></p>
+                <input
+                    type="text"
+                    placeholder="예: 대한민국, 대만, 미국"
+                    id="country"
+                    style="width: 90%"
+                    name="country"
+                />
+                <p><b>로컬에게 파견 요청할 도시</b></p>
+                <input
+                    type="text"
+                    placeholder="예: 서울, 제주, 파리, 로마"
+                    id="country"
+                    style="width: 90%"
+                    name="city"
+                />
+            <div class="in" style="margin: 1rem 0;">
+                <input type="file" name="photo" accept="image/*" />
+            </div>
+            <br />
+            <input
+                type="text"
+                id="content"
+                placeholder="로컬에게 묻고 싶은 현지 상황에 대해 작성해주세요."
+                style="width: 100%"
+                name="content"
+            />
+            <br /><br />
+            <div id="modal_btn">
+                <b id="sub">작성 완료</b>
+            </div>
+            <div class="modal_wrap">
+                <div class="modal_background"></div>
+                <div class="modal_close"><b>X</b></div>
+                <div class="text">
+                    로컬에게 파견을 요청하기 위해 티켓 1개를 사용합니다.
                 </div>
             </div>
-            </div>
-        </div>
-        </div>
+        </form>
+        <script>
+            const modal_wrap = document.querySelector(".modal_wrap");
+
+            document
+                .querySelector("#modal_btn")
+                .addEventListener("click", () => {
+                    showModal();
+                });
+
+            document
+                .querySelector(".modal_close")
+                .addEventListener("click", () => {
+                    closeModal();
+                });
+
+            function closeModal() {
+                modal_wrap.classList.remove("show-modal");
+            }
+
+            function showModal() {
+                modal_wrap.classList.add("show-modal");
+            }
+        </script>
+        <script src="{% static 'js/moreComments.js' %}"></script>
     </body>
-    </div>
 </html>

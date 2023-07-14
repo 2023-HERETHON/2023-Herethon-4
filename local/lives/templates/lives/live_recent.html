@@ -7,14 +7,22 @@
         <title>Document</title>
         <link rel="stylesheet" href="{% static 'css/recent.css' %}" />
         <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+        <style>
+.logout:link a:visited {
+text-decoration: none;
+color:gray;
+}
+        </style>
     </head>
     <body>
         <div class="top">
             <img src="{% static 'logo.svg' %}" />
-            <img src="{% static 'alert.svg' %}" />
-            <img src="{% static 'ticket.svg' %}" />
-            <b style="color: #ff552b">3개</b>
-            <b
+            <div style="float:right">
+                <img src="{% static 'alert.svg' %}" />
+                <img src="{% static 'ticket.svg' %}" /> <b class="logout" style="color:#ff552b">3개</b>
+            </div>
+
+            <b class="logout"
                 style="
                     float: right;
                     text-decoration: underline;
@@ -52,6 +60,7 @@
             <input type="submit" value="&#128269;" />
         </form>
         {% for video in video %}
+        <a href="{% url 'lives:live_detail' video.pk %}" style="padding:0; text-decoration:none;">
         <div class="box3">
             <img src="{{video.thumbnail.url}}" class="thumb" />
             <section class="vid">
@@ -59,9 +68,10 @@
                 <br /><b style="font-size: 10pt; color: #ff552b"
                     >{{video.nation}}, {{video.city}}</b
                 ><br />
-                <b>닉네임자리</b> <br />조회수 {{video.views}}
+                <b>{{video.author.profile.nickname}}</b> <br />조회수 {{video.views}}
             </section>
         </div>
+        </a>
         <br />
         {% empty %} {% endfor %}
         <footer>
@@ -76,7 +86,11 @@
                         <a href=""><img src="{% static 'Group 3.svg' %}" /></a>
                     </li>
                     <li><img src="{% static 'Group 2.svg' %}" /></li>
-                    <li><img src="{% static 'Group 511.svg' %}" /></li>
+                    <li>
+                        <a href="{% url 'users:login' %}">
+                            <img src="{% static 'Group 511.svg' %}" />
+                        </a>
+                    </li>
                 </ul>
             </div>
         </footer>

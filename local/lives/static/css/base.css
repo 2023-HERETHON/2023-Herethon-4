@@ -4,10 +4,6 @@
 }
  */
 }
-.top {
-    display: flex;
-    flex-direction: row;
-}
 
 .menu1 {
     list-style-type: none;

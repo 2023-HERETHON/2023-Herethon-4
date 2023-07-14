@@ -1,22 +1,56 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link rel="stylesheet" href="{% static 'css/travel_create.css'%}"/>
     </head>
     <body>
+        <div class="top-bar">
+            <button type="button" id="close-button" onclick="location.href='onboarding.html'"><img src="{% static 'img/close-button.png' %}" alt="닫기"></button>
+            <span id="txt-post">여행포스트 작성하기</span>
+            <button type="submit"id="post-btn" >등록</button>
+        </div>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="text" name="title" placeholder="Title" />
-            <textarea name="content" placeholder="Content"></textarea>
-            <input type="text" name="nation" placeholder="Nation" />
-            <input type="text" name="city" placeholder="City" />
-            <input type="number" name="together" value="1" />
-            <input type="date" name="start_date" />
-            <input type="date" name="end_date" />
-            <input type="file" name="image_files" multiple />
-            <button type="submit">Submit</button>
+            <div class="box">
+                <div class="txt">국가</div>
+                <input type="text" name="nation" placeholder="포스트를 작성할 국가명을 입력해 주세요." id="txt-box"/>
+                <div class="sub-txt">예 : 대한민국, 일본, 태국, 미국, 대만</div>
+            </div>
+            <div class="box">
+                <div class="txt">도시</div>
+                <input type="text" name="city" placeholder="위의 국가에서 포스트를 작성할 도시명을 입력해 주세요." id="txt-box" />
+                <div class="sub-txt">예 : 서울, 강릉, 제주, 나고야, 삿포로, 하노이, 파리, 로마, 뉴욕, 라스베가스</div>
+            </div>
+            <div class="box">
+                <div class="txt">여행 일자</div>
+                <div class="box-flex">
+                <div class="start">
+                    <div class="sub-txt">시작일</div>
+                    <input type="date" required name="start_date" data-placeholder="날짜 선택" id="start-date"/>
+                </div>
+                <div style="padding-top: 30px; color: #A7A5A5;">~</div>
+                <div class="end">
+                    <div class="sub-txt" style="margin-left: 15px;">종료일</div>
+                    <input type="date" required name="end_date" data-placeholder="날짜 선택" id="end-date"/>
+                </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="txt">여행 인원</div>
+                <div class="box-flex">
+                    <input type="number" name="together" value="1" id="together" placeholder="숫자"/>
+                    <div class="sub-txt" style="margin-top: 15px; margin-left: 5px;">인</div>
+                </div>
+            </div>
+            <img src="{% static 'img/divide-line.svg'%}" id="line">
+            <input type="text" name="title" placeholder="제목을 입력하세요" id="title"/>
+            <img src="{% static 'img/divide-line-thin.svg'%}" id="thin-line">
+            <textarea name="content" placeholder="내용을 입력해주세요." id="content"></textarea>
+            <input type="file" name="image_files" multiple id="file"/>
         </form>
     </body>
 </html>

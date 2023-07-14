@@ -14,14 +14,21 @@
                 border: 0.5px;
                 border-radius: 10px;
             }
+
+            .logout:link a:visited {
+                text-decoration: none;
+                color: gray;
+            }
         </style>
     </head>
     <body>
         <div class="top">
             <img src="{% static 'logo.svg' %}" />
-            <img src="{% static 'alert.svg' %}" />
-            <img src="{% static 'ticket.svg' %}" />
-            <b style="color: #ff552b">3개</b>
+            <div style="float: right">
+                <img src="{% static 'alert.svg' %}" />
+                <img src="{% static 'ticket.svg' %}" />
+                <b class="logout" style="color: #ff552b">3개</b>
+            </div>
         </div>
         <div>
             <ul class="menu1">
@@ -76,8 +83,8 @@
                 "
             ></div>
             <div style="margin-left: 5px">
-                <b>닉네임</b>리얼로컬<br />스스키노 1번가 쪽만 공사 중이고 다른
-                곳은 괜찮아요~
+                <b>닉네임</b>리얼로컬<br />
+                <div>스스키노 1번가 쪽만 공사 중이고 다른 곳은 괜찮아요~</div>
             </div>
         </div>
         <b id="diff" name="diff">다른 답변 보기</b>

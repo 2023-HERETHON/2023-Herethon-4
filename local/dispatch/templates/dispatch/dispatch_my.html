@@ -10,9 +10,11 @@
     <body>
         <div class="top">
             <img src="{% static 'logo.svg' %}" />
-            <img src="{% static 'alert.svg' %}" />
-            <img src="{% static 'ticket.svg' %}" />
-            <b style="color: #ff552b">3개</b>
+            <div style="float: right">
+                <img src="{% static 'alert.svg' %}" />
+                <img src="{% static 'ticket.svg' %}" />
+                <b class="logout" style="color: #ff552b">3개</b>
+            </div>
         </div>
         <div>
             <ul class="menu1">

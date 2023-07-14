@@ -19,7 +19,7 @@
         <img id="logo" src="{% static 'img/logo.png' %}">
     <br/>
     <a href="{% provider_login_url 'kakao' %}"><button type="button" onclick="location.href='step3.html'" id="kakao-login">카카오로 시작하기</button></a>
-    <button type="button" onclick="location.href='step3.html'" id="phone-login">휴대전화로 로그인하기</button>
+    <button type="button" onclick="location.href=''" id="phone-login">휴대전화로 로그인하기</button>
     <div id="q">
         <span>로컬 계정이 없으신가요?</span> 
         <a href="#pop1" id="signup-btn" class="btn_open">회원가입</a>
@@ -28,7 +28,7 @@
         <div class="pop_inner">
             <div id="top"><img src="{% static 'img/logo.png' %}" id="small-logo">
             <span id="signup-txt">회원가입</span>
-            <button type="button" class="btn_close" onclick="location.href='onboarding.html'"><img src="{% static 'img/close-button.png' %}"></button></div>
+            <button type="button" class="btn_close" onclick="location.href=''"><img src="{% static 'img/close-button.png' %}"></button></div>
             <br>
             <a href="{% provider_login_url 'kakao' %}"><button type="button" id="kakao-signup" onclick="location.href='nickname.html'">카카오로 시작하기</button></a>
             <a href="{% url 'users:signup' %}"><button type="button" id="id-signup" onclick="location.href='idsignup.html'">아이디로 회원가입</button></a>

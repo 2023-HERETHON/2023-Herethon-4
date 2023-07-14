@@ -7,12 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <link rel="stylesheet" href="{% static 'css/base2.css' %}" />
-        <style>
-            .aaa:link a:visited{
-            text-decoration: none;
-            color:black;
-            }
-        </style>
+
         <script>
             // HTML이 로드된 후 실행되는 함수
             window.onload = function() {
@@ -24,13 +19,22 @@
                 }
             };
         </script>
+
+        <style>
+            .logout:link a:visited {
+                text-decoration: none;
+                color: gray;
+            }
+        </style>
+
     </head>
     <body>
         <div class="top">
             <img src="{% static 'logo.svg' %}" />
-            <img src="{% static 'alert.svg' %}" />
-            <img src="{% static 'ticket.svg' %}" />
-            <b style="color: #ff552b">3개</b>
+            <div style="float:right">
+                <img src="{% static 'alert.svg' %}" />
+                <img src="{% static 'ticket.svg' %}" /> <b class="logout" style="color:#ff552b">3개</b>
+            </div>
         </div>
 
         <div>
@@ -86,13 +90,14 @@
                     height: 40px;"><img style="
                     width: 40px;
                     height: 40px; border-radius:100%" src="{% static 'profile.svg' %}">
+
             </div>
                 <div style="margin-left: 5px">
                     {% for comment in dispatch.comment_set.all %}
                     {{ comment.author }}리얼로컬<br />
                 </div>
             </div>
-             </div>
+            </div>
             <span style="margin-left:50px">{{ comment.content }}</span>
             {% empty %}
             {% endfor %}

@@ -1,36 +1,94 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <style>
-            * {
-                overflow-y: scroll;
-            }
-        </style>
+        <link rel="stylesheet" href="{% static 'css/travel_detail.css' %}"/>
     </head>
     <body>
-        {{travel.title}} {{travel.together}} {{travel.start_date}}
-        {{travel.end_date}} 작성일{{travel.create_date}} 작성자{{travel.author}}
-        조회수{{travel.views}} {{travel.nation}} {{travel.city}}
-        {{travel.content}} {% if user.is_authenticated %}
+        <a href="travel_lsit.html"><img src="../../static/img/back.svg" alt="닫기" id="back"></button></a>
+        <div class="slider">
+            {% for photo in travel.travelphoto_set.all %}
+                <img src="{{ photo.image.url }}" alt="Travel Photo">
+            {% empty %}
+            <img src="{% static 'img/slide1.jpg' %}" id="img1">
+            {% endfor %}
+        </div>
+        {% if user.is_authenticated %}
         <form action="{% url 'travels:travel_likes' travel.pk %}" method="POST">
-            {% csrf_token %} {% if user in travel.likes.all %}
-            <button>저장</button>
+            {% csrf_token %} 
+            {% if user in travel.likes.all %}
+            <button type="submit" id="bm_btn">저장안함</button>
             {% else %}
-            <button>저장안함</button>
+            <button type="submit" id="bm_btn"><img src="../../static/img/bookmark.svg"></button>
             {% endif %}
         </form>
-        {% endif %} {% for comment in travel.travelcomment_set.all %}
-        {{comment.author}} {{comment.content}} {% empty %} 가장 먼저 댓글을
-        작성해보세요 {% endfor %} {% if user.is_authenticated %}
-        <form method="post">
-            {% csrf_token %} {{form.as_p}}
-            <button type="submit" value="작성 완료"></button>
+        {% endif %} 
+
+        <div class="where">{{travel.nation}}, {{travel.city}} | </div><div class="who"> 거의 로컬</div>
+
+        <div class="title">{{travel.title}}</div>
+
+        <div id="profile">
+            <div class="box">
+                <img class="profile" src="../../static/img/slide2.jpg" alt="프사">
+            </div>
+            <div class="info">
+                <div class="nickname">{{travel.author.profile.nickname}}</div>
+                <div class="when">{{travel.create_date|date:"m/d"}}</div>
+            </div>
+            <button type="button" id="follow-btn">+ 팔로우</button>
+        </div>
+
+        <div class="travel-info">
+            <div class="flex">
+            <div class="date">여행일자 <span id="highlight">{{ travel.start_date|date:"d.m.y" }} - {{ travel.end_date|date:"d.m.y" }}</span></div>
+            <div class="personnel">여행인원 <span id="highlight">{{travel.together}}인</span></div>
+        </div>        
+        <div class="post-content">
+            {{travel.content}}
+        </div>
+        </div>
+        <hr style="border:10px solid #FBFBFC;">
+        <div class="comment-here">
+        {% for comment in travel.travelcomment_set.all %}
+        <div id="profile">
+            <div class="comment-box">
+                <img class="profile" src="../../static/img/slide3.jpg" alt="댓글프사">
+
+                {% comment %} {% if comment.author.profile.profile_photo.url %}
+                <img class="profile" src="{{comment.author.profile.profile_photo.url}}" alt="댓글프사">
+                {% else %}
+                <img class="profile" src="../../static/img/slide3.jpg" alt="댓글프사">
+                {% endif %} {% endcomment %}
+            </div>
+            <div class="info">
+                {% if comment.author.profile.nickname %}
+                <div class="comment-nickname">{{comment.author.profile.nickname}}</div>
+                {% else %}
+                <div class="comment-nickname">비공개</div>
+                {% endif %}
+                <div class="comment">{{comment.content}}</div>
+            </div>
+        </div>
+        <div class="like-recomment">
+            <button type="button" id="like-btn"><img src="../../static/img/like-btn.svg"> 좋아요</button>
+            <button type="button" id="recomment-btn">• 답글달기</button>
+        </div>
+        {% empty %}
+        가장 먼저 댓글을 작성해보세요 
+        {% endfor %}
+        {% if user.is_authenticated %}
+        <form method="post" id = "comment-form">
+            {% csrf_token %} 
+            {{form.as_p}}
+            <button type="submit" value="작성 완료">작성</button>
         </form>
         {% else %}
-        <b>로그인을 하세요</b>
+        <input type="text" name="content" placeholder="댓글을 작성하려면 로그인을 해주세요" disabled>
         {% endif %}
+    
     </body>
 </html>
