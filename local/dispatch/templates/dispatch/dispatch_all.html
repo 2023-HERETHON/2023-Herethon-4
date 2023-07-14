@@ -3,36 +3,21 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <link rel="stylesheet" href="{% static 'css/base2.css' %}" />
 
         <script>
             // HTML이 로드된 후 실행되는 함수
-            window.onload = function () {
-                var dispatchTimes =
-                    document.getElementsByClassName("dispatch-time");
+            window.onload = function() {
+                var dispatchTimes = document.getElementsByClassName("dispatch-time");
                 for (var i = 0; i < dispatchTimes.length; i++) {
                     var createdAt = dispatchTimes[i].textContent;
-                    var parsedTime = moment(
-                        createdAt,
-                        "YYYY-MM-DDTHH:mm:ssZ"
-                    ).fromNow();
+                    var parsedTime = moment(createdAt, "YYYY-MM-DDTHH:mm:ssZ").fromNow();
                     dispatchTimes[i].textContent = parsedTime;
                 }
             };
-
-            // 카카오톡 공유
-            function shareKakao(url, text) {
-                var encodedUrl = encodeURIComponent(url);
-                var encodedText = encodeURIComponent(text);
-                window.open(
-                    "https://story.kakao.com/share?url=" +
-                        encodedUrl +
-                        "&text=" +
-                        encodedText
-                );
-            }
         </script>
 
         <style>
@@ -67,54 +52,45 @@
         </div>
 
         <div class="prof">
+            <div style="display:flex; flex-direction:row">
             <div
                 style="
                     width: 40px;
-                    height: 40px;
-                    border: 1px solid;
-                    border-radius: 100%;
-                "
-            ></div>
-            {% for dispatch in dispatchs %}
-            <div style="margin-left: 5px">
-                <b>{{ dispatch.author }}</b><br />{{ dispatch.city }}, {{ dispatch.country }}
+                    height: 40px;"><img style="
+                    width: 40px;
+                    height: 40px; border-radius:100%" src="{% static 'profile.svg' %}" style="border-radius:10px">
             </div>
-        </div>
-        <p class="box5">
-            <a href="{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}"
-                >{{ dispatch.content }}</a
-            >
-        </p>
-        <span class="dispatch-time"
-            >{{ dispatch.created_at|date:'Y-m-dTH:i:s' }}</span
-        >
-        <p>답변 {{ dispatch.comment_set.count }}개 · 나도 궁금해요 12</p>
-        <hr />
-        <div class="share">
-            <b>저장하기</b>
-            <b
-                ><a href="{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}"
-                    >댓글쓰기</a
-                ></b
-            >
-            <b
-                ><button
-                    onclick="shareKakao('{{ request.scheme }}://{{ request.get_host }}{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}', '{{ dispatch.content }}')"
-                >
-                    공유하기
-                </button></b
-            >
-        </div>
-        <hr />
+            {% for dispatch in dispatchs %}
+                <div style="margin-left: 5px">
+
+                    <b>{{ dispatch.author }}</b><br />{{ dispatch.city }}, {{ dispatch.country }}
+                </div>
+                </div>
+                <p class="box5">
+                    <a href="{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}" style="text-decoration:none; color:black">{{ dispatch.content }}</a>
+                </p>
+                <span class="dispatch-time">{{ dispatch.created_at|date:'Y-m-dTH:i:s' }}</span>
+                <p>답변 {{ dispatch.comment_set.count }}개 · 나도 궁금해요 12</p>
+                <hr />
+                <div class="share">
+                    <b>저장하기</b>
+                    <b><a href="{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}">댓글쓰기</a>
+                    </b>
+                    <b><button onclick="">?나도궁금 </button></b>
+                </div>
+                <hr />
+            {% endfor %}
         <!---->
+
         <div class="prof">
-            <div style="display: flex">
-                <div
-                    style="
-                        width: 30px;
-                        height: 30px
-                    "
-                ><img src="{% static 'profile.svg' %}"></div>
+ <div style="display:flex; flex-direction:row">
+            <div
+                style="
+                    width: 40px;
+                    height: 40px;"><img style="
+                    width: 40px;
+                    height: 40px; border-radius:100%" src="{% static 'profile.svg' %}">
+
             </div>
                 <div style="margin-left: 5px">
                     {% for comment in dispatch.comment_set.all %}
@@ -124,10 +100,10 @@
             </div>
             <span style="margin-left:50px">{{ comment.content }}</span>
             {% empty %}
-            {% endfor %} {% endfor %}
+            {% endfor %}
 
-        <b id="diff" name="diff">다른 답변 보기</b>
-        <div class="empty"></div>
+<!--        <b id="diff" name="diff">다른 답변 보기</b>-->
+<!--        <div class="empty"></div>-->
         <!---->
         <a href="{% url 'dispatch:dispatch_post' %}"><img src="{% static 'plus.svg' %}" id="plus" /></a>
         <footer>
