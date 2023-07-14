@@ -1,37 +1,79 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'css/travel_list.css' %}">
+  <title>Local</title>
 </head>
 <body>
-
-  <!-- 검색 폼 -->
-<form action="{% url 'travels:travel_list' %}">
-  <input type="text" name="query" value="" placeholder="위치를 입력하세요.">
-  <button type="submit">검색</button>
-</form>
-
-<!-- 검색 결과 표시 -->
-{% if query %}
-  <h2>"{{ query }}"에 대한 검색 결과</h2>
-{% else %}
-  <h2>전체 여행</h2>
-{% endif %}
-
-
-  {% for travel in travels %}
-    {{travel.title}}
-    {% with photo=travel.travelphoto_set.first %}
-    {% if photo %}
-        <img src="{{ photo.image.url }}" alt="여행 사진">
-    {% endif %}
-    {% endwith %}
-    {{travel.content | truncatechars:15 }}
-
-  {% empty %}
-    검색 결과가 없습니다.
-  {% endfor %}
+  <div id="mpage-main">
+    <div id="logo-bar" class="p-1">
+      <img src="{% static 'img/logo.svg' %}" alt="">
+      <div class="flex align-center">
+        <a href=""><img src="{% static 'img/alert.svg' %}" alt=""></a>
+        {% if user.is_authenticated %}
+        <p class="flex align-center"><img src="{% static 'img/ticket.svg' %}" alt="">3개</p>
+        {% endif %}
+      </div>
+    </div>
+    <nav id="mpage-nav" class="p-1">
+      <a href="">로컬여행</a>
+    </nav>
+    <div id="t-searchbox">
+      <form action="{% url 'travels:travel_list' %}">
+        {% if query %}
+        <input type="text" name="query" value="{{query}}" placeholder="위치를 입력하세요.">
+        {% else %}
+        <input type="text" name="query" placeholder="위치를 입력하세요.">
+        {% endif %}
+        <button type="submit">검색</button>
+      </form>
+    </div>
+    <div>
+      {% if travels %}
+      <small class="p-1">전체 {{travels.count}}개</small>
+      {% endif %}
+      {% for travel in travels %}
+      <div class="t-list-box">
+        {% with photo=travel.travelphoto_set.first %}
+        {% if photo %}
+          <img src="{{ photo.image.url }}" alt="여행 사진">
+        {% else %}
+          <img src="{% static 'img/ticket.svg' %}" alt="아무 랜덤사진?">
+        {% endif %}
+        {% endwith %}
+        <h3>{{travel.title}}</h3>
+        <p class="t-box-user flex align-center">
+          <img src="{% static 'img/Group 4on.svg' %}" alt="">
+          닉네임 | 거의 로컬
+        </p>
+        <p>{{travel.likes.count}}명 북마크 | {{travel.views}}명 조회</p>
+      </div>
+      {% empty %}
+      <div id="nullbox">
+        <p>검색 결과가 없습니다.</p>
+      </div>
+      {% endfor %}
+    </div>
+  <footer>
+    <ul class="foot">
+      <li>
+        <a href="{% url 'lives:live_list' %}">
+          <img src="{% static 'img/Group 4on.svg' %}"/>
+        </a>
+      </li>
+      <li>
+        <a href=""><img src="{% static 'img/Group 3.svg' %}" /></a>
+      </li>
+      <li>
+        <img src="{% static 'img/Group 2.svg' %}" />
+      </li>
+      <li>
+        <img src="{% static 'img/Group 511.svg' %}" />
+      </li>
+    </ul>
+  </footer>
 </body>
 </html>
