@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+  <title>Local</title>
+</head>
+<body>
+  <div>
+    <div id="logo-bar" class="p-1">
+      <img src="{% static 'img/logo.svg' %}" alt="">
+      <div class="flex align-center">
+        <a href=""><img src="{% static 'img/alert.svg' %}" alt=""></a>
+        {% if user.is_authenticated %}
+        <p class="flex align-center"><img src="{% static 'img/ticket.svg' %}" alt="">3개</p>
+        {% endif %}
+      </div>
+    </div>
+    <nav id="mpage-nav" class="p-1">
+      <a href="">프로필</a>
+      <a href="" class="ml-2">내 티켓</a>
+    </nav>
+    <div id="my-box" class="flex align-center">
+      <img id="mpage-img" src="{% static 'img/alert.svg' %}" alt="">
+      <div class="p-rl">
+        <h3>닉네임</h3>
+        <p>팔로워 | 팔로잉</p>
+        <p>서울 리얼 로컬</p>
+      </div>
+    </div>
+    <p class="p-1">북마크</p>
+    <div class="flex" id="mpage-savebox">
+      <div>
+        <p>개수</p>
+        <p>라이브</p>
+      </div>
+      <div>
+        <p>개수</p>
+        <p>여행</p>
+      </div>
+    </div>
+    <div class="flex save-list align-center">
+      <img src="{% static 'img/ticket.svg' %}" alt="">
+      <div>
+        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
+        <p>나라</p>
+        <p>닉네임</p>
+        <p>조회수</p>
+      </div>
+    </div>
+    <div class="flex save-list align-center">
+      <img src="{% static 'img/ticket.svg' %}" alt="">
+      <div>
+        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
+        <p>나라</p>
+        <p>닉네임</p>
+        <p>조회수</p>
+      </div>
+    </div>
+    <div class="flex save-list align-center">
+      <img src="{% static 'img/ticket.svg' %}" alt="">
+      <div>
+        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
+        <p>나라</p>
+        <p>닉네임</p>
+        <p>조회수</p>
+      </div>
+    </div>
+    <div class="flex save-list align-center">
+      <img src="{% static 'img/ticket.svg' %}" alt="">
+      <div>
+        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
+        <p>나라</p>
+        <p>닉네임</p>
+        <p>조회수</p>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <ul class="foot">
+      <li>
+        <a href="{% url 'lives:live_list' %}">
+          <img src="{% static 'Group 4on.svg' %}"/>
+        </a>
+      </li>
+      <li>
+        <a href=""><img src="{% static 'Group 3.svg' %}" /></a>
+      </li>
+      <li>
+        <img src="{% static 'Group 2.svg' %}" />
+      </li>
+      <li>
+        <img src="{% static 'Group 511.svg' %}" />
+      </li>
+    </ul>
+  </footer>
+</body>
+</html>

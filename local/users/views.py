@@ -105,3 +105,8 @@ def user_follow(request, id):
         click_profile.followers.add(my_profile.user)
         my_profile.followings.add(click_user)
     return redirect('users:user_list')
+
+
+@login_required
+def mypage(request):
+    return render(request, 'mypage.html')
