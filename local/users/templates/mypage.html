@@ -41,11 +41,11 @@
       {% csrf_token %}
       <div class="flex" id="mpage-savebox">
         <button type="submit" name="mypage-list" value="live" id="live-btn">
-          <p id="howmany">{{request.user.TravelLikes.all.count}}</p>
+          <p id="howmany">{{request.user.Livelikes.all.count}}</p>
           <p>라이브</p>
         </button>
         <button type="submit" name="mypage-list" value="travel" id="travel-btn">
-          <p id="howmany">{{request.user.Livelikes.all.count}}</p>
+          <p id="howmany">{{request.user.TravelLikes.all.count}}</p>
           <p>여행</p>
         </button>
       </div>
