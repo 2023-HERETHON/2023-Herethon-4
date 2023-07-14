@@ -42,7 +42,8 @@
         <ul class="list-group">
             {% for dispatch in dispatchs %}
             <li class="list-group-item">
-                {{ dispatch.username }}
+                {{ dispatch.author.profile.nickname }}
+<!--                {{ request.user.profile.nickname }}-->
                 {{ dispatch.city }}
                 {{ dispatch.country }}
                 <br>
