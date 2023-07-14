@@ -18,17 +18,17 @@
             <ul class="menu1">
                 {% if request.user.is_authenticated %}
                 <li>
-                    <b><a href="">홈</a></b>
+                    <b><a href="{% url 'lives:live_list' %}">홈</a></b>
                 </li>
-                <li><a href="">최근 시청한</a></li>
-                <li><a href="">라이브 예고</a></li>
+                <li><a href="{% url 'lives:live_recent' %}">최신 방송순</a></li>
+                <li><a href="{% url 'lives:live_soon' %}">라이브 예고</a></li>
                 {% else %}
                 <li><a href="">로그인</a></li>
                 <!--추후에 로그인 페이지명 나오면 수정-->
                 {% endif %}
             </ul>
         </div>
-        <form>
+        {% comment %} <form>
             {% csrf_token %}
             <input
                 type="search"
@@ -36,7 +36,7 @@
                 style="width: 90%"
             />
             <input type="submit" value="&#128269;" />
-        </form>
+        </form> {% endcomment %}
         <br />
         <p>지금 <b style="color: #ff552b">오사카</b>는?</p>
         <div class="container">

@@ -81,21 +81,6 @@ def home(request):
           b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
     
 
-# def live_list(request):
-#   video = Video.objects.all()
-#   osaka1 = Video.objects.filter(city__icontains='오사카').latest('id')
-#   osakas = Video.objects.filter(city__icontains='오사카').order_by('-id')[1:4]
-#   query = request.GET.get('query')
-#   if query:
-#     travels = Video.objects.filter(nation__icontains=query) | Video.objects.filter(city__icontains=query)
-#   context = {
-#     'video' : video,
-#     'query': query,
-#     'osaka1': osaka1,
-#     'osakas': osakas,
-#   }
-#   return render(request, 'lives/live_home.html',context)
-
 def live_list(request):
   video = Video.objects.all()[:6]
   osaka1 = None

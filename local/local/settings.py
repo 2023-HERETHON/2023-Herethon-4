@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'travels',
     'dispatch',
     'channels',
-
     'django.contrib.sites',
     'allauth',
     'allauth.account',

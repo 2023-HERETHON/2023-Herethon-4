@@ -17,12 +17,12 @@
         <div>
             <ul class="menu1">
                 <li>
-                    <a href="">홈</a>
+                    <a href="{% url 'lives:live_list' %}">홈</a>
                 </li>
                 <li>
-                    <a href=""><b>최근 시청한</b></a>
+                    <a href="{% url 'lives:live_recent' %}"><b>최신 방송순</b></a>
                 </li>
-                <li><a href="">라이브 예고</a></li>
+                <li><a href="{% url 'lives:live_soon' %}">라이브 예고</a></li>
             </ul>
         </div>
         {% if query %}
