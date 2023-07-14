@@ -47,7 +47,7 @@ def input_info(request):
                                              cntry_residence=cntry_residence, city_residence=city_residence,
                                              visited_cntry=visited_cntry, visited_city=visited_city,
                                              preferred_cntry=preferred_cntry, preferred_city=preferred_city)
-        return redirect('home')
+        return redirect('lives:live_list')
     else:
         return render(request, 'extra_info.html')
     
