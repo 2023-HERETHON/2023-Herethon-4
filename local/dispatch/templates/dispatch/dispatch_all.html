@@ -6,13 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <link rel="stylesheet" href="{% static 'css/base2.css' %}" />
+        <style>
+            .logout:link a:visited {
+                text-decoration: none;
+                color: gray;
+            }
+        </style>
     </head>
     <body>
         <div class="top">
             <img src="{% static 'logo.svg' %}" />
             <img src="{% static 'alert.svg' %}" />
             <img src="{% static 'ticket.svg' %}" />
-            <b style="color: #ff552b">3개</b>
+            <b class="logout" style="color: #ff552b">3개</b>
         </div>
 
         <div>

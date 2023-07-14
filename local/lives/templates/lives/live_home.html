@@ -7,12 +7,18 @@
         <title>Document</title>
         <link rel="stylesheet" href="{% static 'css/live.css' %}" />
         <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+        <style>
+            .logout:link a:visited {
+            text-decoration: none;
+            color:gray;
+            }
+                    </style>
     </head>
     <body>
         <div class="top">
             <img src="{% static 'logo.svg' %}" />
             <img src="{% static 'alert.svg' %}" />
-            <img src="{% static 'ticket.svg' %}" /> <b style="color:#ff552b">3개</b>
+            <img src="{% static 'ticket.svg' %}" /> <b class="logout" style="color:#ff552b">3개</b>
             <b
             style="
                 float: right;
@@ -21,7 +27,7 @@
                 font-size: 7pt;
             "
             ><a href="">로그아웃</b
-        ></a
+        ></a>
         </div>
         <div>
             <ul class="menu1">
