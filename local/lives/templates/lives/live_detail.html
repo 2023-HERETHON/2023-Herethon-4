@@ -37,17 +37,12 @@
             {% for comment in video.videocomment_set.all %}
             <div>
                 <div style="display: flex; align-items: center">
-                    <div
-                        style="
-                            width: 30px;
-                            height: 30px;
-                            border: 1px solid;
-                            border-radius: 100%;
-                        "
-                    >
-                        <b style="margin-left: 45px">{{comment.author}}</b>
-                        <div style="margin-left: 45px">{{comment.content}}</div>
-                    </div>
+                    <img
+                        src="{% static 'profile.svg' %}"
+                        style="width: 30px; height: 30px"
+                    />
+                    <b style="margin-left: 45px">{{comment.author}}</b>
+                    <div style="margin-left: 45px">{{comment.content}}</div>
                 </div>
                 <br />
             </div>
