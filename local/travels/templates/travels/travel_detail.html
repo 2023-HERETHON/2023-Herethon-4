@@ -10,9 +10,11 @@
     <body>
         <a href="travel_lsit.html"><img src="../../static/img/back.svg" alt="닫기" id="back"></button></a>
         <div class="slider">
-            <img src="{%static 'img/slide1.jpg'}" id="img1">
-            <img src="../../static/img/slide1.jpg" id="img1">
-            <img src="../../static/img/slide1.jpg" id="img1">
+            {% for photo in travel.travelphoto_set.all %}
+                <img src="{{ photo.image.url }}" alt="Travel Photo">
+            {% empty %}
+            <img src="{% static 'img/slide1.jpg' %}" id="img1">
+            {% endfor %}
         </div>
         {% if user.is_authenticated %}
         <form action="{% url 'travels:travel_likes' travel.pk %}" method="POST">
