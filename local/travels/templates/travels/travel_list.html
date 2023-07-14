@@ -40,9 +40,9 @@
         <a href="{% url 'travels:travel_detail' travel.pk %}">
         {% with photo=travel.travelphoto_set.first %}
         {% if photo %}
-          <img src="{{ photo.image.url }}" alt="여행 사진">
+          <img src="{{ photo.image.url }}" alt="여행 사진" id="travel_img">
         {% else %}
-          <img src="{% static 'img/ticket.svg' %}" alt="아무 랜덤사진?">
+          <img src="{% static 'img/ticket.svg' %}" alt="아무 랜덤사진?" id="travel_img">
         {% endif %}
         {% endwith %}
           <h3>{{travel.title}}</h3>

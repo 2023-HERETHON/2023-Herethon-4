@@ -1,0 +1,165 @@
+* {
+    overflow-y: scroll;
+}
+.slider {
+    width: 390px;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+#img {
+    width: 100%;
+    height: 420px;
+}
+#back {
+    position: relative;
+}
+#img1 {
+    top:0px;
+}
+#title {
+    margin: 20px;
+}
+.where {
+    color: #FF552B;
+    margin-top: 10px;
+    margin-left: 20px;
+    display: inline-flex;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+}
+.who {
+    color: #FF552B;
+    margin-top: 10px;
+    margin-left: 5px;
+    display: inline-flex;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+}
+.title {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 20px;
+    font-weight: bold;
+}
+#bm_btn {
+    position: absolute;
+    right: 10px;
+    top: 460px;
+    background-color: transparent;
+    border: 0px;
+}
+.box {
+    width: 40px;
+    height: 40px; 
+    border-radius: 70%;
+    overflow: hidden;
+    margin-left: 20px;
+}
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#profile {
+    display: flex;
+}
+.info {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.nickname {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+}
+.when {
+    color: #7B7878;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+}
+#follow-btn {
+    width: 80px;
+    height: 40px;
+    margin-left: 155px;
+    background-color: #FF552B;
+    border: 0px;
+    color: #fff;
+    border-radius: 5px;
+}
+.travel-info {
+    margin-top: 24px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 14px;
+}
+.flex {
+    display: flex;
+    margin-bottom: 8px;
+}
+#highlight {
+    color: #FF552B;
+}
+.personnel {
+    margin-left: 10px;
+}
+.post-content {
+    margin-top: 43px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+.comment-here {
+    margin-top: 20px;
+}
+.comment-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 70%;
+    overflow: hidden;
+    margin-left: 20px;
+}
+.comment-nickname {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+}
+.comment {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 5pxx;
+}
+#like-btn {
+    background-color: transparent;
+    border: 0px;
+    color: #7B7878;
+    font-family: Pretendard;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    margin-left: 74px;
+}
+#recomment-btn {
+    background-color: transparent;
+    border: 0px;
+    color: #7B7878;
+    font-family: Pretendard;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+}
+input {
+    border: 0px;
+    width: 350px;
+    height: 35px;
+    border-radius: 20px;
+    background: #F4F4F4;
+    padding-left: 20px;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
