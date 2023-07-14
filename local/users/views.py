@@ -89,7 +89,7 @@ def user_view(request):
         return render(request, 'user_list.html', {'user_list':user_list, 'current_user': request.user})
     
 
-def user_follow(request, id):
+def user_follow(request, id, pk):
     me = request.user
     click_user = User.objects.get(id=id)
 
@@ -111,7 +111,7 @@ def user_follow(request, id):
     else:
         click_profile.followers.add(my_profile.user)
         my_profile.followings.add(click_user)
-    return redirect('users:user_list')
+    return redirect('travels:travel_detail', pk=pk)
 
 
 @login_required

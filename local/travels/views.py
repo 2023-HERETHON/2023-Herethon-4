@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from .models import *
 from .forms import TravelCommentForm
+from users.models import Profile
 
 
 # Create your views here.
@@ -32,11 +33,14 @@ def travel_detail(request, pk):
     
   else:
     form = TravelCommentForm()
-  context = {
+    user_list = Profile.objects.exclude(user=request.user).prefetch_related('followers', 'followings')
+    context = {
     'travel' : travel,
     'comments' : comments,
-    'form' : form
-  } 
+    'form' : form,
+    'user_list':user_list,
+    'current_user': request.user
+    } 
   return render(request, 'travels/travel_detail.html', context)
 
 @login_required

@@ -8,13 +8,16 @@
         <link rel="stylesheet" href="{% static 'css/travel_create.css'%}"/>
     </head>
     <body>
-        <div class="top-bar">
-            <button type="button" id="close-button" onclick="location.href='onboarding.html'"><img src="{% static 'img/close-button.png' %}" alt="닫기"></button>
-            <span id="txt-post">여행포스트 작성하기</span>
-            <button type="submit"id="post-btn" >등록</button>
-        </div>
+
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
+
+            <div class="top-bar">
+                <button type="button" id="close-button" onclick="location.href='onboarding.html'"><img src="{% static 'img/close-button.png' %}" alt="닫기"></button>
+                <span id="txt-post">여행포스트 작성하기</span>
+                <button type="submit"id="post-btn" >등록</button>
+            </div>
+
             <div class="box">
                 <div class="txt">국가</div>
                 <input type="text" name="nation" placeholder="포스트를 작성할 국가명을 입력해 주세요." id="txt-box"/>
