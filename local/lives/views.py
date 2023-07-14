@@ -119,7 +119,7 @@ def live_list(request):
     if not profile.phone:  # phone 필드가 비어있는지 확인
       return redirect('users:more_info')
   else:
-      return render(request, 'lives:live_list', context)
+      return render(request, 'lives/live_home.html', context)
 
   return render(request, 'lives/live_home.html', context)
 
