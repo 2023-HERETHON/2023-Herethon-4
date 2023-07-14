@@ -20,7 +20,7 @@
                     <a href="{% url 'lives:live_list' %}">홈</a>
                 </li>
                 <li>
-                    <a href="{% url 'lives:live_recent' %}">최근 시청한</a>
+                    <a href="{% url 'lives:live_recent' %}">최신 방송순</a>
                 </li>
                 <li>
                     <a href="{% url 'lives:live_soon' %}"><b>라이브 예고</b></a>
@@ -42,59 +42,9 @@
                 ><br />
                 <b style="font-size: 7pt">닉네임</b><br />
                 <ul class="list1">
-                    <li>방문할 장소 1</li>
-                    <li>방문할 장소 2</li>
-                    <li>방문할 장소 3</li>
-                </ul>
-                <button id="button">
-                    <div class="btn">
-                        <img src="{% static 'alert.svg' %}" />
-                        <b>알림 받기</b>
-                    </div>
-                </button>
-            </section>
-        </div>
-        <br />
-        <div class="box4">
-            <div class="blank">
-                7월 20일 <br />
-                20:00
-            </div>
-            <section class="later">
-                <b style="font-size: 12pt">라이브 제목</b>
-                <br /><b style="font-size: 10pt; color: #ff552b"
-                    >태국 치앙마이</b
-                ><br />
-                <b style="font-size: 7pt">여행은 삶</b><br />
-                <ul class="list1">
-                    <li>방문할 장소 1</li>
-                    <li>방문할 장소 2</li>
-                    <li>방문할 장소 3</li>
-                </ul>
-                <button id="button">
-                    <div class="btn">
-                        <img src="{% static 'alert.svg' %}" />
-                        <b>알림 받기</b>
-                    </div>
-                </button>
-            </section>
-        </div>
-        <br />
-        <div class="box4">
-            <div class="blank">
-                7월 21일 <br />
-                10:00
-            </div>
-            <section class="later">
-                <b style="font-size: 12pt">라이브 제목</b>
-                <br /><b style="font-size: 10pt; color: #ff552b"
-                    >태국 치앙마이</b
-                ><br />
-                <b style="font-size: 7pt">여행은 삶</b><br />
-                <ul class="list1">
-                    <li>방문할 장소 1</li>
-                    <li>방문할 장소 2</li>
-                    <li>방문할 장소 3</li>
+                    <li>{{video.sub1}}</li>
+                    <li>{{video.sub2}}</li>
+                    <li>{{video.sub3}}</li>
                 </ul>
                 <button id="button">
                     <div class="btn">
@@ -111,7 +61,7 @@
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href=""
+                        <a href="{% url 'lives:live_list' %}"
                             ><img src="{% static 'Group 4on.svg' %}"
                         /></a>
                     </li>

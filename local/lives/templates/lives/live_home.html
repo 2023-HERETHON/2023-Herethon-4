@@ -28,7 +28,6 @@
                 {% endif %}
             </ul>
         </div>
-        <br />
         <p>지금 <b style="color: #ff552b">오사카</b>는?</p>
         <div class="container">
             <b class="comm"
@@ -37,15 +36,17 @@
             {% endcomment %}</b
         >
             {% if osaka1 %}
-            <img src="{{osaka1.thumbnail.url}}" class="left" style="width: 220px; height: 380px"/>
+            <a href="{% url 'lives:live_detail' osaka1.pk %}">
+                <img src="{{osaka1.thumbnail.url}}" class="left" style="width: 220px; height: 380px"/>
+                <p>{{osaka1.state}}</p>
+                <p>{{osaka1.title}}</p>
+            </a>
             {% else %}
-            <img src="{% static 'media/osaka.jpg' %}" class="left" style="width: 220px; height: 380px"/>
+            <img src="" class="left" style="width: 220px; height: 380px"/>
             {% endif %}
             <div class="highlight">
                 {% for osaka in osakas %}
-                
-                    <img src="{{osaka.thumbnail.url}}" class="box1" style="width: 100px; height: 120px"/>
-                
+                    <a href="{% url 'lives:live_detail' osaka.pk %}"><img src="{{osaka.thumbnail.url}}" class="box1" style="width: 100px; height: 120px"/></a>
                 {% empty %}
                 
                     <img src="" alt="없음" class="box1" style="width: 100px; height: 120px" />
@@ -59,7 +60,6 @@
                 {% endfor %}
             </div>
         </div>
-        <br />
         <b>오늘의 Live</b>
         <div>
             <ul class="today">
@@ -79,7 +79,7 @@
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href=""
+                        <a href="{% url 'lives:live_list' %}"
                             ><img src="{% static 'Group 4on.svg' %}"
                         /></a>
                     </li>
