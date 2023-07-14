@@ -78,7 +78,15 @@
         <img src="{% static 'img/Group 2.svg' %}" />
       </li>
       <li>
-        <img src="{% static 'img/Group 511.svg' %}" />
+        {% if user.is_authenticated %}
+        <a href="{% url 'users:mypage' %}">
+          <img src="{% static 'img/Group 511.svg' %}" />
+        </a>
+        {% else %}
+        <a href="{% url 'users:login' %}">
+          <img src="{% static 'img/Group 511.svg' %}" />
+        </a>
+        {% endif %}
       </li>
     </ul>
   </footer>
