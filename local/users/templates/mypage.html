@@ -19,9 +19,9 @@
       </div>
     </div>
     <nav id="mpage-nav" class="p-1">
-      <a href="">프로필</a>
-      <a href="" class="ml-2">내 티켓</a>
+      <a href="" id="profile-btn">프로필</a>
     </nav>
+    <img src="{% static 'img/bar.svg'%}" id="bar">
     <div id="my-box" class="flex align-center">
       <img id="mpage-img" src="{% static 'img/alert.svg' %}" alt="">
       <div class="p-rl">
@@ -30,9 +30,9 @@
         {% else %}
         <h3>닉네임을 설정하세요.</h3>
         {% endif %}
-        <p>팔로워 {{request.user.profile.followers.count}} | 팔로잉 {{request.user.profile.followings.count}}</p>
-        <p>{{request.user.profile.city_residence}} 리얼 로컬</p>
-        <small><a href="{% url 'users:more_info' %}">정보변경</a></small>
+        <p><span id="sub-txt">팔로워</span> <span id="bold">{{request.user.profile.followers.count}}</span> | <span id="sub-txt">팔로잉</span> <span id="bold">{{request.user.profile.followings.count}}</span></p>
+        <p><span id="highlight">{{request.user.profile.city_residence}}</span> <span id="txt">리얼 로컬</span></p>
+        <small><a href="{% url 'users:more_info' %}" id="txt-change">정보변경</a></small>
       </div>
     </div>
     <p class="p-1">북마크</p>
@@ -40,12 +40,12 @@
     <form method="POST" action="{% url 'users:mypage' %}">
       {% csrf_token %}
       <div class="flex" id="mpage-savebox">
-        <button type="submit" name="mypage-list" value="live">
-          <p>{{request.user.TravelLikes.all.count}}개</p>
+        <button type="submit" name="mypage-list" value="live" id="live-btn">
+          <p id="howmany">{{request.user.TravelLikes.all.count}}</p>
           <p>라이브</p>
         </button>
-        <button type="submit" name="mypage-list" value="travel">
-          <p>{{request.user.Livelikes.all.count}}개</p>
+        <button type="submit" name="mypage-list" value="travel" id="travel-btn">
+          <p id="howmany">{{request.user.Livelikes.all.count}}</p>
           <p>여행</p>
         </button>
       </div>

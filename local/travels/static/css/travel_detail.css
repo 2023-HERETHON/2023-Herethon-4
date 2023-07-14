@@ -48,7 +48,7 @@
 #bm_btn {
     position: absolute;
     right: 10px;
-    top: 460px;
+    top: 400px;
     background-color: transparent;
     border: 0px;
 }
@@ -166,4 +166,12 @@ input {
 #line {
     margin-top: 30px;
     margin-bottom: 20px;
+}
+.img-size {
+    width: 390px;
+    height: 418px;
+}
+#comment-form {
+    display: flex;
+    
 }
