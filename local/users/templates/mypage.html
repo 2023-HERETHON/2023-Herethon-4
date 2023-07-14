@@ -69,17 +69,19 @@
     <ul class="foot">
       <li>
         <a href="{% url 'lives:live_list' %}">
-          <img src="{% static 'Group 4on.svg' %}"/>
+          <img src="{% static 'img/lolive.svg' %}"/>
         </a>
       </li>
       <li>
         <a href=""><img src="{% static 'Group 3.svg' %}" /></a>
       </li>
       <li>
-        <img src="{% static 'Group 2.svg' %}" />
+        <a href="{% url 'travels:travel_list' %}"><img src="{% static 'Group 2.svg' %}" /></a>
       </li>
       <li>
-        <img src="{% static 'Group 511.svg' %}" />
+        <a href="{% url 'users:mypage' %}">
+          <img src="{% static 'img/mypa.svg' %}" />
+        </a>
       </li>
     </ul>
   </footer>
