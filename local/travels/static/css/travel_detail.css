@@ -86,7 +86,7 @@
 #follow-btn {
     width: 80px;
     height: 40px;
-    margin-left: 155px;
+    margin-left: 200px;
     background-color: #FF552B;
     border: 0px;
     color: #fff;
@@ -132,7 +132,7 @@
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
-    margin-top: 5pxx;
+    margin-top: 5px;
 }
 #like-btn {
     background-color: transparent;
@@ -173,5 +173,17 @@ input {
 }
 #comment-form {
     display: flex;
-    
+
+}
+.write-box {
+    display: flex;
+}
+#write-btn {
+    background-color: #FF552B;
+    border: 0px;
+    color: #fff;
+    height: 40px;
+    width: 50px;
+    margin-top: 115px;
+    border-radius: 20px;
 }
