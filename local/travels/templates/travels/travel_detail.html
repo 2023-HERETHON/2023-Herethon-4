@@ -20,9 +20,9 @@
         <form action="{% url 'travels:travel_likes' travel.pk %}" method="POST">
             {% csrf_token %} 
             {% if user in travel.likes.all %}
-            <button type="submit" id="bm_btn"><img src="../../static/img/bookmark.svg"></button>
-            {% else %}
             <button type="submit" id="bm_btn"><img src="../../static/img/yes-bm.svg"></button>
+            {% else %}
+            <button type="submit" id="bm_btn"><img src="../../static/img/bookmark.svg"></button>
             {% endif %}
         </form>
         {% endif %} 
