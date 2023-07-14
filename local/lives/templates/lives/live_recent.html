@@ -13,6 +13,16 @@
             <img src="{% static 'logo.svg' %}" />
             <img src="{% static 'alert.svg' %}" />
             <img src="{% static 'ticket.svg' %}" />
+            <b style="color: #ff552b">3개</b>
+            <b
+                style="
+                    float: right;
+                    text-decoration: underline;
+                    color: gray;
+                    font-size: 7pt;
+                "
+                ><a href="">로그아웃</b
+            ></a>
         </div>
         <div>
             <ul class="menu1">
@@ -20,7 +30,9 @@
                     <a href="{% url 'lives:live_list' %}">홈</a>
                 </li>
                 <li>
-                    <a href="{% url 'lives:live_recent' %}"><b>최신 방송순</b></a>
+                    <a href="{% url 'lives:live_recent' %}"
+                        ><b>최신 방송순</b></a
+                    >
                 </li>
                 <li><a href="{% url 'lives:live_soon' %}">라이브 예고</a></li>
             </ul>
