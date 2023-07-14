@@ -8,35 +8,46 @@
         <link rel="stylesheet" href="{% static 'css/live.css' %}" />
         <link rel="stylesheet" href="{% static 'css/base.css' %}" />
         <style>
-            .logout:link a:visited {
+            a{
             text-decoration: none;
-            color:gray;
+            color:black
             }
+            .logout{
+                position:absolute;
+                top:23px;
+                right:10px;
+            }
+            
                     </style>
     </head>
     <body>
         <div class="top">
             <img src="{% static 'logo.svg' %}" />
-            <div style="float:right">
-            <img src="{% static 'alert.svg' %}" />
-            <img src="{% static 'ticket.svg' %}" /> <b class="logout" style="color:#ff552b">3개</b>
-        </div>
-            <b
-            style="
-                float: right;
-                text-decoration: underline;
-                color: gray;
-                font-size: 7pt;
-            "
-
-            >
             {% if user.is_authenticated %}
-                <a href="{% url 'users:logout' %}">로그아웃</a> 
-            {% else %}
-                <a href="{% url 'users:login' %}">로그인</a> 
+            <div style="float: right; height: 30px">
+                <img src="{% static 'alert.svg' %}" />
+                <img
+                    src="{% static 'ticket.svg' %}"
+                    style="margin-right: 20px"
+                />
+                <b class="logout" style="color: #ff552b">3개</b>
+            </div>
             {% endif %}
-            </b>
+            <b
+                style="
+                    float: right;
+                    text-decoration: underline;
+                    color: gray;
+                    font-size: 7pt;
+                "
+            >
+                {% if user.is_authenticated %}
 
+                <a href="{% url 'users:logout' %}">로그아웃</a>
+                {% else %}
+                <a href="{% url 'users:login' %}">로그인</a>
+                {% endif %}
+            </b>
         </div>
         <div>
             <ul class="menu1">

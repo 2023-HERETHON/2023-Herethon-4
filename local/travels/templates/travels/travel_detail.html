@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="{% static 'css/travel_detail.css' %}"/>
     </head>
     <body>
-        <a href="travel_lsit.html"><img src="../../static/img/back.svg" alt="닫기" id="back"></button></a>
+        <a href="{% url 'travels:travel_list' %}"><img src="../../static/img/back.svg" alt="닫기" id="back"></button></a>
         <div class="slider">
             {% for photo in travel.travelphoto_set.all %}
                 <img src="{{ photo.image.url }}" alt="Travel Photo" class="img-size">
@@ -39,7 +39,15 @@
                 <div class="nickname">{{travel.author.profile.nickname}}</div>
                 <div class="when">{{travel.create_date|date:"m/d"}}</div>
             </div>
-            <button type="button" id="follow-btn">+ 팔로우</button>
+            
+                {% if current_user in writer_user.profile.followers.all %}
+                    <a href="{% url 'users:user_follow' writer_user.id travel.pk %}"><button type="button" id="follow-btn">- 언팔로우</button></a>
+                {% else %}
+                    <a href="{% url 'users:user_follow' writer_user.id travel.pk %}"><button type="button" id="follow-btn">+ 팔로우</button></a>
+                {% endif %}
+            
+
+
         </div>
 
         <div class="travel-info">
