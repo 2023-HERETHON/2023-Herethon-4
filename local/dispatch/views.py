@@ -31,7 +31,7 @@ def dispatch_post(request):
             return render(request, 'dispatch/whole.html', {'post': post})
     else:
         form = dispatchForm()
-    return render(request, 'dispatch/dispatch_post.html',{'form': form})
+        return render(request, 'dispatch/dispatch_post.html',{'form': form})
 
 
 def dispatch_detail(request, pk):
