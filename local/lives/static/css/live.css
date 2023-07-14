@@ -59,5 +59,9 @@
 }
 .container2 img {
     width: 50%;
+    height: 200px;
     border-radius: 10px;
+}
+.comm {
+    margin-top: 20px;
 }

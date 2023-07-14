@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import dispatch,Comment
+from .models import Dispatch, Comment
 # Register your models here.
 
-admin.site.register(dispatch)
+admin.site.register(Dispatch)
 admin.site.register(Comment)

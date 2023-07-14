@@ -1,44 +1,45 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
-from .forms import dispatchForm, CommentForm
-from django.urls import reverse
+from .forms import CommentForm
 from django.views.decorators.http import require_POST
 from django.utils import timezone
 # Create your views here.
-def dispatch_all(request):
-    dispatchs = dispatch.objects.all()
-    return render(request, 'dispatch/dispatch_all.html', {'dispatchs':dispatchs})
+def whole_list(request):
+    dispatchs = Dispatch.objects.all()
+    return render(request, 'dispatch/whole.html', {'dispatchs':dispatchs})
 
 def near_list(request):
     return render(request, 'dispatch/dispatch_near.html', {})
 
 @login_required
 def my_list(request):
-    my_dispatchs = dispatch.objects.filter(author=request.user)
-    return render(request, 'dispatch/dispatch_my.html', {'my_dispatchs': my_dispatchs})
+    my_dispatchs = Dispatch.objects.filter(username=request.user)
+    return render(request, 'dispatch/my.html', {'my_dispatchs': my_dispatchs})
 
 # def dispatch_detail(request, pk):
 #     print(pk)
 #     dispatchs = get_object_or_404(dispatch, id=pk)
 #     return render(request, 'dispatch/dispatch_detail.html', {'dispatchs':dispatchs})
 
-
+@login_required
 def dispatch_post(request):
-    if request.method == "POST":
-        form = dispatchForm(request.POST)
-        if form.is_valid():
-            dispatch = form.save(commit=False)
-            dispatch.author = request.user
-            dispatch.save()
-            return redirect('dispatch:all_list')
-    else:
-        form = dispatchForm()
-    return render(request, 'dispatch/dispatch_post.html', {'form': form})
+    if request.method == 'POST':
+        dispatch_post = Dispatch.objects.create(
+        content=request.POST.get('content'),
+        country=request.POST.get('country'),
+        city=request.POST.get('city'),
+        photo = request.FILES.get('photo'),
+        author=request.user
+        )
+    
+        return redirect('dispatch:whole_list')
+    
+    return render(request, 'dispatch/dispatch_post.html')
 
 
 def dispatch_detail(request, pk):
-    dispatch_obj = dispatch.objects.get(pk=pk)
+    dispatch_obj = Dispatch.objects.get(pk=pk)
     comments = Comment.objects.filter(article=dispatch_obj)
     # dispatch_obj = get_object_or_404(dispatch, pk=pk)
     if request.method == "POST":

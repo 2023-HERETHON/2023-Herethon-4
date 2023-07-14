@@ -1,0 +1,147 @@
+.top-bar {
+    height: 20px;
+    width: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    border-bottom: 1px solid #EEEEF0;
+}
+#close-button {
+    left: 10px;
+    border: 0px;
+    background-color: rgb(255, 255, 255);
+    justify-content: left;
+    position: absolute;
+}
+#txt-signup {
+    margin-left: 40%;
+}
+#logo {
+    width: 50px;
+}
+#txt {
+    font-size: 14px;
+    font-weight: bold;
+}
+#next {
+    margin-left: 10px;
+    width: 349px;
+    height: 58px;
+    border: 0;
+    background-color: #FF552B;
+    color: #fff;
+    border-radius: 14px;
+    position: fixed;
+    bottom: 45px;
+}
+#sub-txt {
+    color: #A7A5A5;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 5px;
+}
+#sub-txt-line {
+    color: #A7A5A5;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-bottom: 30px;
+    margin-top: 5px;
+}
+#highlights {
+    color: #FF552B;
+    font-weight: bold;
+    font-size: 14px;
+}
+#creater {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.iscreater-btn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#no-creater {
+    width: 100px;
+    height: 60px;
+    border: 1px solid #FF552B;
+    background-color: #FFEAE5;
+}
+#no-txt {
+    color: #FF552B;
+    font-weight: bold;
+    font-size: 15px;
+}
+#general-txt {
+    color: #231E1E;
+    font-size: 10px;
+}
+#yes-creater {
+    margin-left: 0px;
+    width: 100px;
+    height: 60px;
+    border: 0px;
+    background-color: #FDF8F7;
+}
+#yes-txt {
+    color: #FFDFD7;
+    font-weight: bold;
+    font-size: 15px;
+}
+#creater-txt {
+    color: #D3D2D2;
+    font-size: 10px;
+}
+#box {
+    margin-top: 30px;
+    margin-left: 20px;
+}
+#box-last {
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-bottom: 200px;
+}
+input {
+    width: 315px;
+    height: 46px;   
+    border-radius: 5px;
+    border: 0.5px solid #A7A5A5;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
+    margin-top: 10px;
+    padding-left: 16px;
+}
+
+.select {
+    padding: 15px 10px;
+}
+.select input[type=radio]{
+    display: none;
+}
+.select input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 24px;
+    width: 90px;
+    border: 1px solid #333;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:13px;
+}
+.select input[type=radio]+label{
+    background-color: #fff;
+    color: #333;
+}
+.select input[type=radio]:checked+label{
+    background-color: #333;
+    color: #fff;
+}

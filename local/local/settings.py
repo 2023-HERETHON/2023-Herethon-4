@@ -42,12 +42,13 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.kakao',
+    # 'social_django',
 ]
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/'  # 로그인 후 리다이렉트 될 경로
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'  
+LOGIN_REDIRECT_URL = '/lives'  # 로그인 후 리다이렉트 될 경로
+ACCOUNT_LOGOUT_REDIRECT_URL = '/lives'  
 ACCOUNT_LOGOUT_ON_GET = True
 
 MIDDLEWARE = [
@@ -65,9 +66,13 @@ ROOT_URLCONF = 'local.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'dispatch' / 'templates',
+            BASE_DIR / 'lives' / 'templates',
+            BASE_DIR / 'users' / 'templates',
+        ],
         'APP_DIRS': True,
-        'OPTIONS': {
+        'OPTIONS': {             
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',

@@ -1,10 +1,5 @@
 from django import forms
-from .models import dispatch, Comment
-
-class dispatchForm(forms.ModelForm):
-    class Meta:
-        model = dispatch
-        fields = ('city', 'country','content','photo')
+from .models import Comment
 
 class CommentForm(forms.ModelForm):
 

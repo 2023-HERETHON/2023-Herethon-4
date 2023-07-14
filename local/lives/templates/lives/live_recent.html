@@ -13,6 +13,16 @@
             <img src="{% static 'logo.svg' %}" />
             <img src="{% static 'alert.svg' %}" />
             <img src="{% static 'ticket.svg' %}" />
+            <b style="color: #ff552b">3개</b>
+            <b
+                style="
+                    float: right;
+                    text-decoration: underline;
+                    color: gray;
+                    font-size: 7pt;
+                "
+                ><a href="">로그아웃</b
+            ></a>
         </div>
         <div>
             <ul class="menu1">
@@ -20,7 +30,9 @@
                     <a href="{% url 'lives:live_list' %}">홈</a>
                 </li>
                 <li>
-                    <a href="{% url 'lives:live_recent' %}"><b>최신 방송순</b></a>
+                    <a href="{% url 'lives:live_recent' %}"
+                        ><b>최신 방송순</b></a
+                    >
                 </li>
                 <li><a href="{% url 'lives:live_soon' %}">라이브 예고</a></li>
             </ul>
@@ -30,7 +42,7 @@
         {% else %}
         <p><b>최신 Live</b></p>
         {% endif %}
-        <form action="{% url 'lives:live_recent' %}">
+        <form id="rc-form" action="{% url 'lives:live_recent' %}">
             <input
                 type="text"
                 name="query"
@@ -56,7 +68,7 @@
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href=""
+                        <a href="{% url 'lives:live_list' %}"
                             ><img src="{% static 'Group 4on.svg' %}"
                         /></a>
                     </li>
