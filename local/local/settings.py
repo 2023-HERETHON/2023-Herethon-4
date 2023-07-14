@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.kakao',
+    # 'social_django',
 ]
 
 SITE_ID = 1
@@ -65,9 +66,13 @@ ROOT_URLCONF = 'local.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'dispatch' / 'templates',
+            BASE_DIR / 'lives' / 'templates',
+            BASE_DIR / 'users' / 'templates',
+        ],
         'APP_DIRS': True,
-        'OPTIONS': {
+        'OPTIONS': {             
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',

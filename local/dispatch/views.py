@@ -37,6 +37,7 @@ def dispatch_post(request):
     return render(request, 'dispatch/dispatch_post.html', {'form': form})
 
 
+
 def dispatch_detail(request, pk):
     dispatch_obj = dispatch.objects.get(pk=pk)
     comments = Comment.objects.filter(article=dispatch_obj)

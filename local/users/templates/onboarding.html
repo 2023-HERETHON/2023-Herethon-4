@@ -1,0 +1,47 @@
+{% load socialaccount %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/onboarding.css' %}"/>
+    <title>Local</title>
+</head>
+<body>
+    <div class="top-bar">
+        <span id="txt-login">로그인</span>
+    </div>
+    <div id="start-message">
+        생생한 <span id="highlights">현지</span> 여행 정보를<br/>
+        지금 두 눈으로 보고, <br/>
+        <span id="highlights">로컬</span>에게 물어보기.</div>
+        <img id="logo" src="{% static 'img/logo.png' %}">
+    <br/>
+    <a href="{% provider_login_url 'kakao' %}"><button type="button" onclick="location.href='step3.html'" id="kakao-login">카카오로 시작하기</button></a>
+    <button type="button" onclick="location.href='step3.html'" id="phone-login">휴대전화로 로그인하기</button>
+    <div id="q">
+        <span>로컬 계정이 없으신가요?</span> 
+        <a href="#pop1" id="signup-btn" class="btn_open">회원가입</a>
+    </div>
+    <div id="pop1" class="pop_wrap" style="display:none;">
+        <div class="pop_inner">
+            <div id="top"><img src="{% static 'img/logo.png' %}" id="small-logo">
+            <span id="signup-txt">회원가입</span>
+            <button type="button" class="btn_close" onclick="location.href='onboarding.html'"><img src="{% static 'img/close-button.png' %}"></button></div>
+            <br>
+            <a href="{% provider_login_url 'kakao' %}"><button type="button" id="kakao-signup" onclick="location.href='nickname.html'">카카오로 시작하기</button></a>
+            <a href="{% url 'users:signup' %}"><button type="button" id="id-signup" onclick="location.href='idsignup.html'">아이디로 회원가입</button></a>
+        </div>
+      </div>
+
+
+    <div class="footer">
+        <button type="button" id="live-btn"><img src="{% static 'img/live-button.png' %}"></button>
+        <button type="button" id="dispatch-btn"><img src="{% static 'img/dispatch-button.png' %}"></button>
+        <button type="button" id="travel-btn"><img src="{% static 'img/travel-button.png' %}"></button>
+        <button type="button" id="mypage-btn"><img src="{% static 'img/mypage-button-check.png' %}"></button>
+    </div>
+    <script src ="{% static 'js/onboarding.js' %}"></script>
+</body>
+</html>

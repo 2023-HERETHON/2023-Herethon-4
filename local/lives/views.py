@@ -63,6 +63,9 @@ def gen(camera):
     
 
 def home(request):
+    yield (b'--frame\r\n'
+      b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
     if request.user.is_authenticated:  # 로그인된 상태인지 확인
         try:
             profile = request.user.profile  # 프로필 객체 가져오기
@@ -73,12 +76,11 @@ def home(request):
         if not profile.phone:  # phone 필드가 비어있는지 확인
             return redirect('users:more_info')
     else:
-        return render(request, 'index.html')
+        return render(request, 'lives:live_list')
 
-    return render(request, 'index.html')
+    return render(request, 'lives:live_list')
 
-    yield (b'--frame\r\n'
-          b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
     
 
 def live_list(request):
