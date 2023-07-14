@@ -58,7 +58,6 @@ def input_info(request):
         return render(request, 'general-signup.html')
     
 
-
 def login(request):
     if request.method == "POST":
         username = request.POST["username"]
