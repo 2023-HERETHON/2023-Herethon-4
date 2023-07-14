@@ -7,6 +7,12 @@
         <title>Document</title>
         <link rel="stylesheet" href="{% static 'css/soon.css' %}" />
         <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+        <style>
+            .logout:link a:visited {
+            text-decoration: none;
+            color:gray;
+            }
+                    </style>
     </head>
     <body>
         <div class="top">
@@ -14,7 +20,7 @@
             <img src="{% static 'alert.svg' %}" />
             <img src="{% static 'ticket.svg' %}" />
             <b style="color: #ff552b">3개</b>
-            <b
+            <b class="logout"
             style="
                 float: right;
                 text-decoration: underline;
