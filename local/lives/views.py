@@ -62,23 +62,23 @@ def gen(camera):
             b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
     
 
-def home(request):
-    yield (b'--frame\r\n'
-      b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+# def home(request):
+#     yield (b'--frame\r\n'
+#       b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
-    if request.user.is_authenticated:  # 로그인된 상태인지 확인
-        try:
-            profile = request.user.profile  # 프로필 객체 가져오기
-        except Profile.DoesNotExist:
-            # 프로필 객체가 없는 경우 신규 프로필 생성
-            profile = Profile.objects.create(user=request.user)
+#     if request.user.is_authenticated:  # 로그인된 상태인지 확인
+#         try:
+#             profile = request.user.profile  # 프로필 객체 가져오기
+#         except Profile.DoesNotExist:
+#             # 프로필 객체가 없는 경우 신규 프로필 생성
+#             profile = Profile.objects.create(user=request.user)
 
-        if not profile.phone:  # phone 필드가 비어있는지 확인
-            return redirect('users:more_info')
-    else:
-        return render(request, 'lives:live_list')
+#         if not profile.phone:  # phone 필드가 비어있는지 확인
+#             return redirect('users:more_info')
+#     else:
+#         return render(request, 'lives:live_list')
 
-    return render(request, 'lives:live_list')
+#     return render(request, 'lives:live_list')
 
 
     
@@ -108,6 +108,19 @@ def live_list(request):
     'osaka1': osaka1,
     'osakas': osakas,
   }
+
+  if request.user.is_authenticated:  # 로그인된 상태인지 확인
+    try:
+        profile = request.user.profile  # 프로필 객체 가져오기
+    except Profile.DoesNotExist:
+        # 프로필 객체가 없는 경우 신규 프로필 생성
+        profile = Profile.objects.create(user=request.user)
+
+    if not profile.phone:  # phone 필드가 비어있는지 확인
+      return redirect('users:more_info')
+  else:
+      return render(request, 'lives:live_list', context)
+
   return render(request, 'lives/live_home.html', context)
 
 def live_recent(request):
