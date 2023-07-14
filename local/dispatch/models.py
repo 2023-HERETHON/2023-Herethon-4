@@ -8,7 +8,7 @@ from django.dispatch import receiver
 User = get_user_model()
 # Create your models here.
 class dispatch(models.Model):
-    username = models.CharField(max_length=50)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     city = models.CharField(max_length=50)
     country  = models.CharField(max_length=50)
     content = models.TextField()

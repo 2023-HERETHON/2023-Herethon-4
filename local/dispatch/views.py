@@ -2,36 +2,39 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import dispatchForm, CommentForm
+from django.urls import reverse
 from django.views.decorators.http import require_POST
 from django.utils import timezone
 # Create your views here.
-def whole_list(request):
+def dispatch_all(request):
     dispatchs = dispatch.objects.all()
-    return render(request, 'dispatch/whole.html', {'dispatchs':dispatchs})
+    return render(request, 'dispatch/dispatch_all.html', {'dispatchs':dispatchs})
 
 def near_list(request):
-    return render(request, 'dispatch/near.html', {})
+    return render(request, 'dispatch/dispatch_near.html', {})
 
 @login_required
 def my_list(request):
-    my_dispatchs = dispatch.objects.filter(username=request.user)
-    return render(request, 'dispatch/my.html', {'my_dispatchs': my_dispatchs})
+    my_dispatchs = dispatch.objects.filter(author=request.user)
+    return render(request, 'dispatch/dispatch_my.html', {'my_dispatchs': my_dispatchs})
 
 # def dispatch_detail(request, pk):
 #     print(pk)
 #     dispatchs = get_object_or_404(dispatch, id=pk)
 #     return render(request, 'dispatch/dispatch_detail.html', {'dispatchs':dispatchs})
 
+
 def dispatch_post(request):
     if request.method == "POST":
         form = dispatchForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return render(request, 'dispatch/whole.html', {'post': post})
+            dispatch = form.save(commit=False)
+            dispatch.author = request.user
+            dispatch.save()
+            return redirect('dispatch:all_list')
     else:
         form = dispatchForm()
-    return render(request, 'dispatch/dispatch_post.html',{'form': form})
+    return render(request, 'dispatch/dispatch_post.html', {'form': form})
 
 
 def dispatch_detail(request, pk):

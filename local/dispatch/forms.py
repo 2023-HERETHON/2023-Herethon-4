@@ -4,7 +4,7 @@ from .models import dispatch, Comment
 class dispatchForm(forms.ModelForm):
     class Meta:
         model = dispatch
-        fields = ('username','city', 'country','content','photo')
+        fields = ('city', 'country','content','photo')
 
 class CommentForm(forms.ModelForm):
 
