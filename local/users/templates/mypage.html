@@ -25,9 +25,14 @@
     <div id="my-box" class="flex align-center">
       <img id="mpage-img" src="{% static 'img/alert.svg' %}" alt="">
       <div class="p-rl">
-        <h3>닉네임</h3>
-        <p>팔로워 | 팔로잉</p>
+        {% if request.user.profile.nickname %}
+        <h3>{{request.user.profile.nickname}}</h3>
+        {% else %}
+        <h3>닉네임을 설정하세요.</h3>
+        {% endif %}
+        <p>팔로워 {{request.user.profile.followers.count}} | 팔로잉 {{request.user.profile.followers.count}}</p>
         <p>서울 리얼 로컬</p>
+        <small><a href="{% url 'users:more_info' %}">정보변경</a></small>
       </div>
     </div>
     <p class="p-1">북마크</p>
