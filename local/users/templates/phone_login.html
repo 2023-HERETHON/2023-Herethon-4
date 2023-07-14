@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local</title>
+    <link rel="stylesheet" href="{% static 'css/phone_login.css' %}">
+</head>
+<body>
+    <div class="top-bar">
+        <span id="txt-login">로그인</span>
+    </div>
+    <img src="{% static 'img/logo.svg' %}" id="logo">
+    <form method="POST" id="id-pw">
+        {% csrf_token %}
+        <input type="text" name="username" id="id-input" placeholder="아이디"/>
+        <input type="password" name="password" id="pw-input" placeholder="비밀번호"/>
+        <button type="submit" id="login-btn">로그인</button>
+    </form>
+    
+    
+</body>
+</html>

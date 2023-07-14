@@ -33,7 +33,7 @@ def dispatch_post(request):
         author=request.user
         )
     
-        return redirect('dispatch:whole_list')
+        return redirect('dispatch:all_list')
     
     return render(request, 'dispatch/dispatch_post.html')
 

@@ -19,6 +19,9 @@
 }
 #txt-login {
     margin-left: 40%;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
 }
 #start-message {
     color: #231E1E;

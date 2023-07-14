@@ -68,15 +68,16 @@
     <ul class="foot">
       <li>
         <a href="{% url 'lives:live_list' %}">
-          <img src="{% static 'img/Group 4on.svg' %}"/>
+          <img src="{% static 'img/lolive.svg' %}"/>
         </a>
       </li>
       <li>
         <a href=""><img src="{% static 'img/Group 3.svg' %}" /></a>
       </li>
       <li>
-        <img src="{% static 'img/Group 2.svg' %}" />
+        <a href="{% url 'travels:travel_list' %}"><img src="{% static 'img/lotravel.svg' %}" /></a>
       </li>
+
       <li>
         {% if user.is_authenticated %}
         <a href="{% url 'users:mypage' %}">

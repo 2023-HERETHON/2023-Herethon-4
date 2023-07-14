@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
     <head>
         <meta charset="UTF-8" />
@@ -14,16 +15,14 @@
                 justify-content: center;
                 color: #ff552b;
                 background-color: white;
-                float: right;
                 border-radius: 10px;
                 height: 25px;
                 width: 60px;
-                margin-top: 170px;
             }
         </style>
     </head>
     <body>
-        <div style="width: 100%; height: 600px">
+        <div style="width: 100%; height: 60%">
             <video
                 controls
                 autoplay
@@ -40,10 +39,17 @@
             {% for comment in video.videocomment_set.all %}
             <div>
                 <div style="display: flex; align-items: center">
+                    {% if video.author.profile.profile_photo %}
+                    <img
+                        src="{{video.author.profile.profile_photo.url}}"
+                        style="width: 30px; height: 30px"
+                    />
+                    {% else %}
                     <img
                         src="{% static 'profile.svg' %}"
                         style="width: 30px; height: 30px"
                     />
+                    {% endif %}
                     <b style="margin-left: 45px">{{comment.author}}</b>
                     <div style="margin-left: 45px">{{comment.content}}</div>
                 </div>
@@ -53,15 +59,18 @@
             <b style="color: #ff552b; text-align: center"
                 >가장 먼저 댓글을 작성해보세요!
             </b>
-            {% endfor %} {% if user.is_authenticated %}
+            {% endfor %} 
+            {% if user.is_authenticated %}
             <form method="post">
                 {% csrf_token %}
-                <div style="display: flex; padding: 10px">
+                <div style="display: flex; align-items:center; justify-content: space-around; padding: 10px">
                     {{form.as_p}}
                     <button type="submit" class="submitbox"><b>완료</b></button>
                 </div>
             </form>
-            {% else %} <b>로그인을 하세요</b> {% endif %}
+            {% else %}
+             <b>로그인을 하세요</b> 
+            {% endif %}
         </div>
     </body>
 </html>

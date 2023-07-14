@@ -1,21 +1,33 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="../../static/css/travel_detail.css"/>
+        <link rel="stylesheet" href="{% static 'css/travel_detail.css' %}"/>
     </head>
     <body>
-        <a href="travel_lsit.html"><img src="../../static/img/back.svg" alt="닫기" id="back"></button></a>
+        <a href="{% url 'travels:travel_list' %}"><img src="../../static/img/back.svg" alt="닫기" id="back"></button></a>
         <div class="slider">
-            <img src="../../static/img/slide1.jpg" id="img1">
-            <img src="../../static/img/slide1.jpg" id="img1">
-            <img src="../../static/img/slide1.jpg" id="img1">
+            {% for photo in travel.travelphoto_set.all %}
+                <img src="{{ photo.image.url }}" alt="Travel Photo" class="img-size">
+            {% empty %}
+            <img src="{% static 'img/slide1.jpg' %}" id="img1">
+            {% endfor %}
         </div>
-        <button type="button" id="bm_btn"><img src="../../static/img/bookmark.svg"></button>
+        {% if user.is_authenticated %}
+        <form action="{% url 'travels:travel_likes' travel.pk %}" method="POST">
+            {% csrf_token %} 
+            {% if user in travel.likes.all %}
+            <button type="submit" id="bm_btn">저장안함</button>
+            {% else %}
+            <button type="submit" id="bm_btn"><img src="../../static/img/bookmark.svg"></button>
+            {% endif %}
+        </form>
+        {% endif %} 
 
-        <div class="where">일본 삿포로 | </div><div class="who"> 거의 로컬</div>
+        <div class="where">{{travel.nation}}, {{travel.city}} | </div><div class="who"> 거의 로컬</div>
 
         <div class="title">{{travel.title}}</div>
 
@@ -24,131 +36,67 @@
                 <img class="profile" src="../../static/img/slide2.jpg" alt="프사">
             </div>
             <div class="info">
-                <div class="nickname">닉네임이름</div>
-                <div class="when">8시간 전</div>
+                <div class="nickname">{{travel.author.profile.nickname}}</div>
+                <div class="when">{{travel.create_date|date:"m/d"}}</div>
             </div>
-            <button type="button" id="follow-btn">+ 팔로우</button>
+            
+                {% if current_user in writer_user.profile.followers.all %}
+                    <a href="{% url 'users:user_follow' writer_user.id travel.pk %}"><button type="button" id="follow-btn">- 언팔로우</button></a>
+                {% else %}
+                    <a href="{% url 'users:user_follow' writer_user.id travel.pk %}"><button type="button" id="follow-btn">+ 팔로우</button></a>
+                {% endif %}
+            
+
+
         </div>
 
         <div class="travel-info">
             <div class="flex">
-            <div class="date">여헹일자 <span id="highlight">23.01.26 - 23.01.30</span></div>
-            <div class="personnel">여헹인원 <span id="highlight">{{travel.together}}인</span></div>
+            <div class="date">여행일자 <span id="highlight">{{ travel.start_date|date:"d.m.y" }} - {{ travel.end_date|date:"d.m.y" }}</span></div>
+            <div class="personnel">여행인원 <span id="highlight">{{travel.together}}인</span></div>
+        </div>        
+        <div class="post-content">
+            {{travel.content}}
         </div>
-            <div class="money">인당경비 <span id="highlight">35만원</span></div>
-        
-        <div class="post-content">Uh-oh
-                Too spicy
-                You want my A to the Z, but you won't, 어림없지
-                맞혀봐 sweet, 또는 freak, what's hiding underneath? (I see)
-                망설이듯 간 보는 너, 기회는 없어, oh
-                No, you won't get it, no, no, you won't get it (I say, hey)
-                깜빡 한순간 끌어당겨, you'll be mine (mine)
-                살짝 다가와, can cross my borderline (hey, line, line, line)
-                널 따분하게 했던 everyday (day), 흥미로운 덫을 던져줄게 (게)
-                뛰어들어 봐 just right now
-                'Cause I'm too spicy for your heart (ring the fire alarm)
-                심장을 파고들어 넌 (I'm too spicy)
-                번지는 자극 속에 넌 (바로 그 순간)
-                또 다른 나를 발견해 (I'm too spicy, too, too, I'm too spicy)
-                Don't stop, 겁내지 마 (hey), 뱅뱅, 외쳐봐
-                I'm too spicy, yeah, I'm too spicy (you know that I)
-                Don't stop, 용기 내 봐 (hey), next step, myself
-                I'm too spicy (too spicy, too, too, I'm too spicy)
-                Tell me what you see (see) when you look at me (me)
-                'Cause I am a ten out of ten, honestly
-                기세가 다른 move (move), 널 압도하는 groove (groove)
-                But you keep wasting your time, dudе
-                Don't chase me, 경고해 난, erase mе, 멀리 달아나
-                Hey, 이젠 알겠니? 원래부터 bad, I'm so bad, honestly (so bad, hey)
-                전부 가질래, 지금부턴, call you mine (mine)
-                도망칠 거면, don't cross my borderline (hey, line, line, line)
-                늘 뻔하기만 했던 everyday (day), 이제 그만 rule을 벗어날 때 (때)
-                어렵지 않아 just right now
-                'Cause I'm too spicy for your heart (ring the fire alarm)
-                심장을 파고들어 넌 (I'm too spicy)
-                번지는 자극 속에 넌 (바로 그 순간)
-                또 다른 나를 발견해 (I'm too spicy, too, too, I'm too spicy, ready? Uh)
-                좀 더 강도를 높여 다음, 다음, 다음
-                Ayy, ayy, ayy, one of a kind (ooh-whoo)
-                우린 한계를 앞서, wow, wow, wow
-                That's right (oh, oh, oh, oh, oh)
-                'Cause I'm too spicy for your heart (ring the fire alarm)
-                새로운 도전 끝에 넌 (ooh-ooh, I'm too spicy)
-                변화할 시간이야 넌 (지금 이 순간, so hot)
-                또 다른 나를 찾아내 (I'm too spicy, too, too, I'm too spicy)
-                Don't stop, 겁내지 마 (hey), 뱅뱅, 외쳐봐
-                I'm too spicy, yeah, I'm too spicy (you know that I)
-                Don't stop, 용기 내 봐 (hey), next step, myself
-                I'm too spicy, I'm too spicy (too spicy, too, too, I'm too spicy)
-                'Cause I (oh, yeah, yeah, yeah)
-                Yeah, I'm too spicy for your heart, yeah, I'm too spicy for your heart
-                마침내 번져오는 joy (enjoy-joy-joy-joy)
-                Yeah, I'm too spicy for your heart
-                I'm too spicy, too, too, I'm too spicy
-                For you></div>
         </div>
         <hr style="border:10px solid #FBFBFC;">
         <div class="comment-here">
-            <div id="profile">
-                <div class="comment-box">
-                    <img class="profile" src="../../static/img/slide3.jpg" alt="댓글프사">
-                </div>
-                <div class="info">
-                    <div class="comment-nickname">닉네임이름</div>
-                    <div class="comment">우와 연등이 떠오르는 풍경을 보며 온천이라니.. 최고네요</div>
-                </div>
+        {% for comment in travel.travelcomment_set.all %}
+        <div id="profile">
+            <div class="comment-box">
+                <img class="profile" src="../../static/img/slide3.jpg" alt="댓글프사">
+
+                {% comment %} {% if comment.author.profile.profile_photo.url %}
+                <img class="profile" src="{{comment.author.profile.profile_photo.url}}" alt="댓글프사">
+                {% else %}
+                <img class="profile" src="../../static/img/slide3.jpg" alt="댓글프사">
+                {% endif %} {% endcomment %}
             </div>
-            <div class="like-recomment">
-                <button type="button" id="like-btn"><img src="../../static/img/like-btn.svg"> 좋아요</button>
-                <button type="button" id="recomment-btn">• 답글달기</button>
-            </div>
-            <div id="profile">
-                <div class="comment-box">
-                    <img class="profile" src="../../static/img/slide3.jpg" alt="댓글프사">
-                </div>
-                <div class="info">
-                    <div class="comment-nickname">닉네임이름</div>
-                    <div class="comment">우와 연등이 떠오르는 풍경을 보며 온천이라니.. 최고네요</div>
-                </div>
-            </div>
-            <div class="like-recomment">
-                <button type="button" id="like-btn"><img src="../../static/img/like-btn.svg"> 좋아요</button>
-                <button type="button" id="recomment-btn">• 답글달기</button>
+            <div class="info">
+                {% if comment.author.profile.nickname %}
+                <div class="comment-nickname">{{comment.author.profile.nickname}}</div>
+                {% else %}
+                <div class="comment-nickname">비공개</div>
+                {% endif %}
+                <div class="comment">{{comment.content}}</div>
             </div>
         </div>
-        <form id = "comment-form">
-            <input type="text" placeholder="댓글을 입력해주세요." id="my-comment">
-        </form>
-        
-        
-
-        
-
-
-
-
-
-        {{travel.title}} {{travel.together}} {{travel.start_date}}
-        {{travel.end_date}} 작성일{{travel.create_date}} 작성자{{travel.author}}
-        조회수{{travel.views}} {{travel.nation}} {{travel.city}}
-        {{travel.content}} {% if user.is_authenticated %}
-        <form action="{% url 'travels:travel_likes' travel.pk %}" method="POST">
-            {% csrf_token %} {% if user in travel.likes.all %}
-            <button>저장</button>
-            {% else %}
-            <button>저장안함</button>
-            {% endif %}
-        </form>
-        {% endif %} {% for comment in travel.travelcomment_set.all %}
-        {{comment.author}} {{comment.content}} {% empty %} 가장 먼저 댓글을
-        작성해보세요 {% endfor %} {% if user.is_authenticated %}
-        <form method="post">
-            {% csrf_token %} {{form.as_p}}
-            <button type="submit" value="작성 완료"></button>
+        <div class="like-recomment">
+            <button type="button" id="like-btn"><img src="../../static/img/like-btn.svg"> 좋아요</button>
+            <button type="button" id="recomment-btn">• 답글달기</button>
+        </div>
+        {% empty %}
+        가장 먼저 댓글을 작성해보세요 
+        {% endfor %}
+        {% if user.is_authenticated %}
+        <form method="post" id = "comment-form">
+            {% csrf_token %} 
+            {{form.as_p}}
+            <button type="submit" value="작성 완료">작성</button>
         </form>
         {% else %}
-        <b>로그인을 하세요</b>
+        <input type="text" name="content" placeholder="댓글을 작성하려면 로그인을 해주세요" disabled>
         {% endif %}
+    
     </body>
 </html>

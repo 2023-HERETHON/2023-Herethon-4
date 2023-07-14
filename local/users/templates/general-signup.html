@@ -9,8 +9,8 @@
 </head>
 <body>
     <div class="top-bar">
-        <button type="button" id="close-button" onclick="location.href='onboarding.html'"><img src="{% static 'img/close-button.png' %}" alt="닫기"></button>
-        <span id="txt-signup">회원가입</span>
+        <button type="button" id="close-button" onclick="href='/mypage'"><img src="{% static 'img/close-button.png' %}" alt="닫기"></button>
+        <span id="txt-signup">추가정보</span>
     </div>
     <form method="POST">
         {% csrf_token %}
@@ -31,25 +31,25 @@
         <div class="input-box">
             <div id = "signup-form">
                 <div id="box">
-                    <div id="txt">이름</span><span id="highlights">*</div>
-                    <input required type="text" name="name" placeholder="본인의 이름을 입력해 주세요." id="name">
+                    <div id="txt">이름</span><span id="highlights"></div>
+                    <input type="text" name="name" placeholder="본인의 이름을 입력해 주세요." id="name">
                 </div>
                 <div id="box">
-                    <div id="txt">휴대폰</span><span id="highlights">*</div>
-                    <input required type="text" name="phone" placeholder="‘-’ 제외하고 번호만 입력해 주세요." id="phone">
+                    <div id="txt">휴대폰</span><span id="highlights"></div>
+                    <input type="text" name="phone" placeholder="‘-’ 제외하고 번호만 입력해 주세요." id="phone">
                 </div>
                 <div id="box">
-                    <div id="txt">닉네임</span><span id="highlights">*</div>
-                    <input required type="text" name="nickname" placeholder="로컬에서 사용할 닉네임을 입력해 주세요." id="nickname">
+                    <div id="txt">닉네임</span><span id="highlights"></div>
+                    <input type="text" name="nickname" placeholder="로컬에서 사용할 닉네임을 입력해 주세요." id="nickname">
                 </div>
                 <div id="box">
-                    <div id="txt">거주 중인 국가</span><span id="highlights">*</div>  
-                    <input required type="text" name="cntry_residence" placeholder="거주 중인 국가를 작성해주세요." id="living-country">
+                    <div id="txt">거주 중인 국가</span><span id="highlights"></div>  
+                    <input type="text" name="cntry_residence" placeholder="거주 중인 국가를 작성해주세요." id="living-country">
                     <br><div id="sub-txt">예 : 대한민국, 일본, 태국, 미국, 대만</div>
                 </div>  
                 <div id="box">
-                    <div id="txt">거주 중인 도시</span><span id="highlights">*</div>
-                    <input required type="text" name="city_residence" placeholder="거주 중인 국가를 작성해주세요." id="living-country">
+                    <div id="txt">거주 중인 도시</span><span id="highlights"></div>
+                    <input type="text" name="city_residence" placeholder="거주 중인 국가를 작성해주세요." id="living-country">
                     <br><div id="sub-txt-line">예 : 서울, 강릉, 제주, 나고야, 삿포로, 하노이, 파리, 로마, 뉴욕, 라스베가스</div>
                 </div>
                 <hr>
@@ -69,17 +69,20 @@
                     <input type="text" name="preferred_cntry" placeholder="여행하고 싶은 국가명을 입력해 주세요." id="want-country">
                     <br><div id="sub-txt">예 : 대한민국, 일본, 태국, 미국, 대만</div>
                 </div>
-                <div id="box-last">
+                <div id="box">
                     <div id="txt">여행하고 싶은 도시</div>
                     <input type="text" name="preferred_city" placeholder="여행하고 싶은 도시명을 입력해 주세요." id="want-city">
                     <br><div id="sub-txt">예 : 서울, 강릉, 제주, 나고야, 삿포로, 하노이, 파리, 로마, 뉴욕, 라스베가스</div>
+                </div>
+                <div id="box-last">
+                    <div id="txt">프로필 사진</div>
+                    <input type="file" name="profile">
                 </div>
             </form>
         </div>
         <div id="start-box">
             <button type="submit" id="next">로컬 시작하기!</button>
         </div>
-
 
 
     </form>
