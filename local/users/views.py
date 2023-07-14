@@ -66,7 +66,7 @@ def login(request):
         else: 
             return render(request, 'bad_login.html')
     else:
-        return render(request, 'login.html')
+        return render(request, 'onboarding.html')
 
 
 def logout(request):
