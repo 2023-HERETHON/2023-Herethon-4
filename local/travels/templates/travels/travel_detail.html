@@ -20,7 +20,7 @@
         <form action="{% url 'travels:travel_likes' travel.pk %}" method="POST">
             {% csrf_token %} 
             {% if user in travel.likes.all %}
-            <button type="submit" id="bm_btn">저장안함</button>
+            <button type="submit" id="bm_btn"><img src="../../static/img/yes-bm.svg"></button>
             {% else %}
             <button type="submit" id="bm_btn"><img src="../../static/img/bookmark.svg"></button>
             {% endif %}
@@ -89,11 +89,13 @@
         가장 먼저 댓글을 작성해보세요 
         {% endfor %}
         {% if user.is_authenticated %}
+        <div class="write-box">
         <form method="post" id = "comment-form">
             {% csrf_token %} 
             {{form.as_p}}
-            <button type="submit" value="작성 완료">작성</button>
+            <button type="submit" value="작성 완료" id="write-btn">작성</button>
         </form>
+        </div>  
         {% else %}
         <input type="text" name="content" placeholder="댓글을 작성하려면 로그인을 해주세요" disabled>
         {% endif %}
