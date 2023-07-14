@@ -66,7 +66,7 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             print('로그인 성공')
-            return redirect('home')
+            return redirect('lives:live_list')
         else: 
             return render(request, 'bad_login.html')
     else:

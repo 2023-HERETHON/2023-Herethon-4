@@ -26,9 +26,8 @@ def dispatch_post(request):
     if request.method == "POST":
         form = dispatchForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return render(request, 'dispatch/whole.html', {'post': post})
+            form.save(commit=False)
+        return render(request, 'dispatch/whole.html', {'post': post})
     else:
         form = dispatchForm()
         return render(request, 'dispatch/dispatch_post.html',{'form': form})
