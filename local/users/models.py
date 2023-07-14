@@ -1,5 +1,8 @@
 from django.db import models
 
+
+
+
 # Create your models here.
 # class Profile(models.Model): 유저 모델 확장?!
 #   닉네임

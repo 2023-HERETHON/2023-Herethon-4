@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>local 목록 앱</title>
+        <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>여기근처 페이지 입니다@</h1>
+
+            <br>
+            <br>
+            <a href="{% url 'dispatch:whole_list' %}">전체</a>
+            &nbsp
+            <a href="{% url 'dispatch:near_list' %}">여기 근처</a>
+            &nbsp
+            <a href="{% url 'dispatch:my_list' %}">내 파견</a>
+            <br>
+            <br>
+<!--            <a href="{% url 'dispatch:dispatch_post' %}">파견 추가</a>-->
+            <p>
+            <a href="{% url 'dispatch:dispatch_post' %}"><i class="bi-plus"></i>파견 추가</a>
+
+            </p>
+            <ul class="list-group">
+            {% for dispatch in dispatchs %}
+            <li class="list-group-item">
+                {{ dispatch.username }}
+                {{ dispatch.city }}
+                {{ dispatch.country}}
+                <br>
+
+                <a href="{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}">{{ dispatch.content}}</a>
+                <br>
+                <br>
+                {{ dispatch.created_at }}
+
+            </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>
+
+
