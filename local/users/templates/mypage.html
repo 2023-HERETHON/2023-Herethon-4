@@ -30,73 +30,41 @@
         {% else %}
         <h3>닉네임을 설정하세요.</h3>
         {% endif %}
-        <p>팔로워 {{request.user.profile.followers.count}} | 팔로잉 {{request.user.profile.followers.count}}</p>
-        <p>서울 리얼 로컬</p>
+        <p>팔로워 {{request.user.profile.followers.count}} | 팔로잉 {{request.user.profile.followings.count}}</p>
+        <p>{{request.user.profile.city_residence}} 리얼 로컬</p>
         <small><a href="{% url 'users:more_info' %}">정보변경</a></small>
       </div>
     </div>
     <p class="p-1">북마크</p>
+
     <form method="POST" action="{% url 'users:mypage' %}">
       {% csrf_token %}
       <div class="flex" id="mpage-savebox">
         <button type="submit" name="mypage-list" value="live">
-          <p>개수</p>
+          <p>{{request.user.TravelLikes.all.count}}개</p>
           <p>라이브</p>
         </button>
         <button type="submit" name="mypage-list" value="travel">
-          <p>개수</p>
+          <p>{{request.user.Livelikes.all.count}}개</p>
           <p>여행</p>
         </button>
       </div>
-  </form>
+    </form>
+
     {% comment %} for 문 돌릴곳 {% endcomment %}
+    {% for obj in objs %}
     <div class="flex save-list align-center">
       <img src="{% static 'img/ticket.svg' %}" alt="">
       <div>
-        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
-        <p>나라</p>
-        <p>닉네임</p>
-        <p>조회수</p>
+        <h4>{{obj.title}}</h4>
+        <p>{{obj.nation}}</p>
+        <p>{{obj.author}}</p>
+        <p>{{obj.views}}</p>
       </div>
     </div>
-    {% comment %} for문 끝 {% endcomment %}
-    <div class="flex save-list align-center">
-      <img src="{% static 'img/ticket.svg' %}" alt="">
-      <div>
-        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
-        <p>나라</p>
-        <p>닉네임</p>
-        <p>조회수</p>
-      </div>
-    </div>
-    <div class="flex save-list align-center">
-      <img src="{% static 'img/ticket.svg' %}" alt="">
-      <div>
-        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
-        <p>나라</p>
-        <p>닉네임</p>
-        <p>조회수</p>
-      </div>
-    </div>
-    <div class="flex save-list align-center">
-      <img src="{% static 'img/ticket.svg' %}" alt="">
-      <div>
-        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
-        <p>나라</p>
-        <p>닉네임</p>
-        <p>조회수</p>
-      </div>
-    </div>
-    <div class="flex save-list align-center">
-      <img src="{% static 'img/ticket.svg' %}" alt="">
-      <div>
-        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
-        <p>나라</p>
-        <p>닉네임</p>
-        <p>조회수</p>
-      </div>
-    </div>
-  </div>
+    {% endfor %}
+    {% comment %} for문 끝 {% endcomment %} 
+
   <footer>
     <ul class="foot">
       <li>
