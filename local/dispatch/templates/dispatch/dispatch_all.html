@@ -61,12 +61,11 @@
                     width: 40px;
                     height: 40px;
                     border: 1px solid;
-                    border-radius: 100%;
-                "
-            ></div>
+                    border-radius: 100%;">
+            </div>
             {% for dispatch in dispatchs %}
             <div style="margin-left: 5px">
-                <b>{{ dispatch.author }}</b><br />{{ dispatch.city }}, {{ dispatch.country }}
+                <b>{{ dispatch.author.profile.nickname }}</b><br />{{ dispatch.city }}, {{ dispatch.country }}
             </div>
         </div>
         <p class="box5">
@@ -81,25 +80,18 @@
         <hr />
         <div class="share">
             <b>저장하기</b>
-            <b
-                ><a href="{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}"
-                    >댓글쓰기</a
-                ></b
-            >
-            <b
-                ><button
-                    onclick="shareKakao('{{ request.scheme }}://{{ request.get_host }}{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}', '{{ dispatch.content }}')"
-                >
-                    공유하기
-                </button></b
-            >
+            <b><a href="{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}">댓글쓰기</a>
+            </b>
+            <b><button onclick="shareKakao('{{ request.scheme }}://{{ request.get_host }}{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}', '{{ dispatch.content }}')">
+                    ?나도궁금
+                </button></b>
         </div>
         <hr />
         <!---->
         <div class="prof">
-            <div style="display: flex">
+            <div style="display: flex">-->
                 <div
-                    style="
+                   style="
                         width: 30px;
                         height: 30px;
                         border: 1px solid;
@@ -117,8 +109,8 @@
             {% empty %}
             {% endfor %} {% endfor %}
 
-        <b id="diff" name="diff">다른 답변 보기</b>
-        <div class="empty"></div>
+<!--        <b id="diff" name="diff">다른 답변 보기</b>-->
+<!--        <div class="empty"></div>-->
         <!---->
         <a href="{% url 'dispatch:dispatch_post' %}"><img src="{% static 'plus.svg' %}" id="plus" /></a>
         <footer>
