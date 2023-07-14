@@ -6,6 +6,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <link rel="stylesheet" href="{% static 'css/base2.css' %}" />
+        <script>
+            // HTML이 로드된 후 실행되는 함수
+            window.onload = function () {
+                var dispatchTimes =
+                    document.getElementsByClassName("dispatch-time");
+                for (var i = 0; i < dispatchTimes.length; i++) {
+                    var createdAt = dispatchTimes[i].textContent;
+                    var parsedTime = moment(
+                        createdAt,
+                        "YYYY-MM-DDTHH:mm:ssZ"
+                    ).fromNow();
+                    dispatchTimes[i].textContent = parsedTime;
+                }
+            };
+
+            // 카카오톡 공유
+            function shareKakao(url, text) {
+                var encodedUrl = encodeURIComponent(url);
+                var encodedText = encodeURIComponent(text);
+                window.open(
+                    "https://story.kakao.com/share?url=" +
+                        encodedUrl +
+                        "&text=" +
+                        encodedText
+                );
+            }
+        </script>
     </head>
     <body>
         <div class="top">
@@ -18,13 +45,13 @@
         <div>
             <ul class="menu1">
                 <li>
-                    <a href=""><b>전체</b></a>
+                    <a href="{% url 'dispatch:all_list' %}"><b>전체</b></a>
                 </li>
                 <li>
-                    <a href="">여기근처</a>
+                    <a href="{% url 'dispatch:near_list' %}">여기 근처</a>
                 </li>
                 <li>
-                    <a href="">내파견</a>
+                    <a href="{% url 'dispatch:my_list' %}">내 파견</a>
                 </li>
             </ul>
         </div>
@@ -38,79 +65,63 @@
                     border-radius: 100%;
                 "
             ></div>
-            <div style="margin-left: 5px"><b>닉네임</b><br />삿포로, 일본</div>
+            {% for dispatch in dispatchs %}
+            <div style="margin-left: 5px">
+                <b>{{ dispatch.author }}</b><br />{{ dispatch.city }}, {{ dispatch.country }}
+            </div>
         </div>
         <p class="box5">
-            지금 삿포로 시내 스스키노 거리 부근이 다 공사 중이라는데 맞나요?
-            숙소를 그 근처에 잡았는데 소음이 심할까봐 걱정됩니다.. 그 근처에
-            계시는 분 아무나 알려주세요!
+            <a href="{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}"
+                >{{ dispatch.content }}</a
+            >
         </p>
-        <p>1시간 전</p>
-        <p>답변 2개 · 나도 궁금해요 12</p>
+        <span class="dispatch-time"
+            >{{ dispatch.created_at|date:'Y-m-dTH:i:s' }}</span
+        >
+        <p>답변 {{ dispatch.comment_set.count }}개 · 나도 궁금해요 12</p>
         <hr />
         <div class="share">
-            <b>저장하기</b> <b>댓글 쓰기</b> <b>공유하기</b>
+            <b>저장하기</b>
+            <b
+                ><a href="{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}"
+                    >댓글쓰기</a
+                ></b
+            >
+            <b
+                ><button
+                    onclick="shareKakao('{{ request.scheme }}://{{ request.get_host }}{% url 'dispatch:dispatch_detail' pk=dispatch.pk %}', '{{ dispatch.content }}')"
+                >
+                    공유하기
+                </button></b
+            >
         </div>
         <hr />
         <!---->
         <div class="prof">
-            <div
-                style="
-                    width: 30px;
-                    height: 30px;
-                    border: 1px solid;
-                    border-radius: 100%;
-                "
-            ></div>
-            <div style="margin-left: 5px">
-                <b>닉네임</b>리얼로컬<br />스스키노 1번가 쪽만 공사 중이고 다른
-                곳은 괜찮아요~
+            <div style="display: flex">
+                <div
+                    style="
+                        width: 30px;
+                        height: 30px;
+                        border: 1px solid;
+                        border-radius: 100%;
+                    "
+                ></div>
             </div>
-        </div>
+                <div style="margin-left: 5px">
+                    {% for comment in dispatch.comment_set.all %}
+                    {{ comment.author }}리얼로컬<br />
+                </div>
+            </div>
+             </div>
+            <span style="margin-left:50px">{{ comment.content }}</span>
+            {% empty %}
+            {% endfor %} {% endfor %}
+
         <b id="diff" name="diff">다른 답변 보기</b>
         <div class="empty"></div>
-        <hr />
-        <div class="prof">
-            <div
-                style="
-                    width: 40px;
-                    height: 40px;
-                    border: 1px solid;
-                    border-radius: 100%;
-                "
-            ></div>
-            <div style="margin-left: 5px"><b>닉네임</b><br />삿포로, 일본</div>
-        </div>
-        <p class="box5">
-            지금 삿포로 시내 스스키노 거리 부근이 다 공사 중이라는데 맞나요?
-            숙소를 그 근처에 잡았는데 소음이 심할까봐 걱정됩니다.. 그 근처에
-            계시는 분 아무나 알려주세요!
-        </p>
-        <p>1시간 전</p>
-        <p>답변 2개 · 나도 궁금해요 12</p>
-        <hr />
-        <div class="share">
-            <b>저장하기</b> <b>댓글 쓰기</b> <b>공유하기</b>
-        </div>
-        <hr />
         <!---->
-        <div class="prof">
-            <div
-                style="
-                    width: 30px;
-                    height: 30px;
-                    border: 1px solid;
-                    border-radius: 100%;
-                "
-            ></div>
-            <div style="margin-left: 5px">
-                <b>닉네임</b>리얼로컬<br />스스키노 1번가 쪽만 공사 중이고 다른
-                곳은 괜찮아요~
-            </div>
-        </div>
-        <b id="diff" name="diff">다른 답변 보기</b>
-        <div id="empty"></div>
-        <a href=""><img src="{% static 'plus.svg' %}" id="plus" /></a>
+        <a href="{% url 'dispatch:dispatch_post' %}"><img src="{% static 'plus.svg' %}" id="plus" /></a>
         <footer>
             <div class="footer">
                 <ul class="foot">
