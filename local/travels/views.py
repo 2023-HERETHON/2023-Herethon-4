@@ -24,6 +24,7 @@ def travel_detail(request, pk):
   comments = TravelComment.objects.filter(travel=pk)
   travel.views += 1 
   travel.save()
+
   if request.method == 'POST':
     form = TravelCommentForm(request.POST)
     if form.is_valid():
@@ -41,7 +42,8 @@ def travel_detail(request, pk):
     'comments' : comments,
     'form' : form,
     'user_list':user_list,
-    'current_user': request.user
+    'current_user': request.user,
+    'writer_user' : writer_user
     } 
   return render(request, 'travels/travel_detail.html', context)
 

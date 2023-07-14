@@ -8,10 +8,10 @@
         <link rel="stylesheet" href="{% static 'css/travel_detail.css' %}"/>
     </head>
     <body>
-        <a href="travel_lsit.html"><img src="../../static/img/back.svg" alt="닫기" id="back"></button></a>
+        <a href="{% url 'travels:travel_list' %}"><img src="../../static/img/back.svg" alt="닫기" id="back"></button></a>
         <div class="slider">
             {% for photo in travel.travelphoto_set.all %}
-                <img src="{{ photo.image.url }}" alt="Travel Photo">
+                <img src="{{ photo.image.url }}" alt="Travel Photo" class="img-size">
             {% empty %}
             <img src="{% static 'img/slide1.jpg' %}" id="img1">
             {% endfor %}
@@ -39,13 +39,13 @@
                 <div class="nickname">{{travel.author.profile.nickname}}</div>
                 <div class="when">{{travel.create_date|date:"m/d"}}</div>
             </div>
-            {% for ul in user_list %}
-                {% if current_user in ul.user.profile.followers.all %}
-                    <a href="{% url 'users:user_follow' ul.user.id travel.pk %}"><button type="button" id="follow-btn">- 언팔로우</button></a>
+            
+                {% if current_user in writer_user.profile.followers.all %}
+                    <a href="{% url 'users:user_follow' writer_user.id travel.pk %}"><button type="button" id="follow-btn">- 언팔로우</button></a>
                 {% else %}
-                    <a href="{% url 'users:user_follow' ul.user.id travel.pk %}"><button type="button" id="follow-btn">+ 팔로우</button></a>
+                    <a href="{% url 'users:user_follow' writer_user.id travel.pk %}"><button type="button" id="follow-btn">+ 팔로우</button></a>
                 {% endif %}
-            {% endfor %}
+            
 
 
         </div>
