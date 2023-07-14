@@ -8,13 +8,13 @@
   <title>Local</title>
 </head>
 <body>
-  <div>
+  <div id="mpage-main">
     <div id="logo-bar" class="p-1">
       <img src="{% static 'img/logo.svg' %}" alt="">
       <div class="flex align-center">
         <a href=""><img src="{% static 'img/alert.svg' %}" alt=""></a>
         {% if user.is_authenticated %}
-        <p class="flex align-center"><img src="{% static 'img/ticket.svg' %}" alt="">3개</p>
+        <p class="flex align-center"><img src="{% static 'img/ticket.svg' %}" alt="">{{request.user.profile.ticket_num}}개</p>
         {% endif %}
       </div>
     </div>
@@ -25,22 +25,41 @@
     <div id="my-box" class="flex align-center">
       <img id="mpage-img" src="{% static 'img/alert.svg' %}" alt="">
       <div class="p-rl">
-        <h3>닉네임</h3>
-        <p>팔로워 | 팔로잉</p>
+        {% if request.user.profile.nickname %}
+        <h3>{{request.user.profile.nickname}}</h3>
+        {% else %}
+        <h3>닉네임을 설정하세요.</h3>
+        {% endif %}
+        <p>팔로워 {{request.user.profile.followers.count}} | 팔로잉 {{request.user.profile.followers.count}}</p>
         <p>서울 리얼 로컬</p>
+        <small><a href="{% url 'users:more_info' %}">정보변경</a></small>
       </div>
     </div>
     <p class="p-1">북마크</p>
-    <div class="flex" id="mpage-savebox">
-      <div>
-        <p>개수</p>
-        <p>라이브</p>
+    <form method="POST" action="{% url 'users:mypage' %}">
+      {% csrf_token %}
+      <div class="flex" id="mpage-savebox">
+        <button type="submit" name="mypage-list" value="live">
+          <p>개수</p>
+          <p>라이브</p>
+        </button>
+        <button type="submit" name="mypage-list" value="travel">
+          <p>개수</p>
+          <p>여행</p>
+        </button>
       </div>
+  </form>
+    {% comment %} for 문 돌릴곳 {% endcomment %}
+    <div class="flex save-list align-center">
+      <img src="{% static 'img/ticket.svg' %}" alt="">
       <div>
-        <p>개수</p>
-        <p>여행</p>
+        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
+        <p>나라</p>
+        <p>닉네임</p>
+        <p>조회수</p>
       </div>
     </div>
+    {% comment %} for문 끝 {% endcomment %}
     <div class="flex save-list align-center">
       <img src="{% static 'img/ticket.svg' %}" alt="">
       <div>

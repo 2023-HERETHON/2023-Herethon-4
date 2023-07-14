@@ -48,7 +48,7 @@ color:gray;
         {% else %}
         <p><b>최신 Live</b></p>
         {% endif %}
-        <form action="{% url 'lives:live_recent' %}">
+        <form id="rc-form" action="{% url 'lives:live_recent' %}">
             <input
                 type="text"
                 name="query"

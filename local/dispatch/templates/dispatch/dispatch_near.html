@@ -31,13 +31,13 @@
         <div>
             <ul class="menu1">
                 <li>
-                    <a href="">전체</a>
+                    <a href="{% url 'dispatch:all_list' %}"><b>전체</b></a>
                 </li>
                 <li>
-                    <a href=""><b>여기근처</b></a>
+                    <a href="{% url 'dispatch:near_list' %}">여기 근처</a>
                 </li>
                 <li>
-                    <a href="">내파견</a>
+                    <a href="{% url 'dispatch:my_list' %}">내 파견</a>
                 </li>
             </ul>
         </div>
