@@ -7,7 +7,7 @@ from django.utils import timezone
 # Create your views here.
 def whole_list(request):
     dispatchs = Dispatch.objects.all()
-    return render(request, 'dispatch/whole.html', {'dispatchs':dispatchs})
+    return render(request, 'dispatch/dispatch_all.html', {'dispatchs':dispatchs})
 
 def near_list(request):
     return render(request, 'dispatch/dispatch_near.html', {})

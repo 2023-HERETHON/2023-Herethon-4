@@ -32,6 +32,9 @@
                 <source src="{{ video.video_file.url }}" type="video/mp4" />
             </video>
         </div>
+        <p>
+            <a href=""><img src="{% static 'Union.svg' %}" /></a>
+        </p>
         <br />
         <div class="box9">
             {% for comment in video.videocomment_set.all %}
