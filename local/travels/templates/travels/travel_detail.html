@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="../../static/css/travel_detail.css"/>
+        <link rel="stylesheet" href="{% static 'css/travel_detail.css' %}"/>
     </head>
     <body>
         <a href="travel_lsit.html"><img src="../../static/img/back.svg" alt="닫기" id="back"></button></a>
         <div class="slider">
-            <img src="../../static/img/slide1.jpg" id="img1">
+            <img src="{%static 'img/slide1.jpg'}" id="img1">
             <img src="../../static/img/slide1.jpg" id="img1">
             <img src="../../static/img/slide1.jpg" id="img1">
         </div>
