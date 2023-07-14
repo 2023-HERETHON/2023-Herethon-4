@@ -22,6 +22,8 @@ def travel_list(request):
 def travel_detail(request, pk):
   travel = TravelPost.objects.get(pk=pk)
   comments = TravelComment.objects.filter(travel=pk)
+  travel.views += 1 
+  travel.save()
   if request.method == 'POST':
     form = TravelCommentForm(request.POST)
     if form.is_valid():

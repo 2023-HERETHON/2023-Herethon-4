@@ -109,9 +109,15 @@
                         <a href="{% url 'travels:travel_list' %}"><img src="{% static 'Group 2.svg' %}" /></a>
                     </li>
                     <li>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'users:mypage' %}">
+                            <img src="{% static 'Group 511.svg' %}" />
+                        </a>
+                        {% else %}
                         <a href="{% url 'users:login' %}">
                             <img src="{% static 'Group 511.svg' %}" />
                         </a>
+                        {% endif %}
                     </li>
                 </ul>
             </div>

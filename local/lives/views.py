@@ -1,5 +1,5 @@
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 
 from django.http import HttpResponse
@@ -13,6 +13,7 @@ import threading
 from .forms import VideoCommentForm
 from django.contrib.auth.decorators import login_required
 
+from django.views.decorators.http import require_POST
 
 from users.models import Profile
 
@@ -201,4 +202,14 @@ def live_create(request):
   return render(request, 'lives/live_create.html')
 
 
-
+@require_POST
+def live_likes(request, pk, *args, **kwargs):
+  if request.user.is_authenticated:
+    video = get_object_or_404(Video, pk=pk)
+    users = video.saves.all()
+    if users.filter(pk=request.user.pk).exists():
+      video.saves.remove(request.user)
+    else:
+      video.saves.add(request.user)
+    return redirect('lives:live_detail',pk)
+  return render(request, 'lives/live_detail.html')
