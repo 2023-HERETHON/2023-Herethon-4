@@ -21,8 +21,8 @@ class Video(models.Model):
   city = models.TextField()
   views = models.IntegerField(default=0)
   date = models.DateTimeField()
-  # save = models.ManyToManyField(User, related_name='LiveLikes', blank=True)
-  # alarm = models.ManyToManyField(User, related_name='LiveAlarm', blank=True)
+  saves = models.ManyToManyField(User, related_name='Livelikes', blank=True)
+  alarms = models.BooleanField(default=False)
 
   def __str__(self):
     return self.title

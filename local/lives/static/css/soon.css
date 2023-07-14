@@ -1,6 +1,6 @@
 .blank {
     width: 150px;
-    height: 200px;
+    height: 210px;
     border: 1px solid gray;
     border-radius: 10px;
     background-color: gray;
@@ -22,10 +22,11 @@ button {
 }
 .box4 {
     display: flex;
+    align-items: center;
 }
 .later {
     margin-left: 20px;
-    width: 135px;
+    width: 180px;
 }
 .btn {
     display: flex;
@@ -42,4 +43,10 @@ button {
     padding: 15pt;
     font-size: 10pt;
     color: gray;
+}
+.comm {
+    position: absolute;
+    top: 500px;
+    left: 30px;
+    color: white;
 }

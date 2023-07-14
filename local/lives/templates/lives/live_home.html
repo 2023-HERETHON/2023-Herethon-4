@@ -12,44 +12,45 @@
         <div class="top">
             <img src="{% static 'logo.svg' %}" />
             <img src="{% static 'alert.svg' %}" />
-            <img src="{% static 'ticket.svg' %}" />
+            <img src="{% static 'ticket.svg' %}" /> <b style="color:#ff552b">3개</b>
+            <b
+            style="
+                float: right;
+                text-decoration: underline;
+                color: gray;
+                font-size: 7pt;
+            "
+            >
+            {% if user.is_authenticated %}
+                <a href="{% url 'users:logout' %}">로그아웃</a> 
+            {% else %}
+                <a href="{% url 'users:login' %}">로그인</a> 
+            {% endif %}
+            </b>
         </div>
         <div>
             <ul class="menu1">
-                {% if request.user.is_authenticated %}
                 <li>
                     <b><a href="{% url 'lives:live_list' %}">홈</a></b>
                 </li>
                 <li><a href="{% url 'lives:live_recent' %}">최신 방송순</a></li>
                 <li><a href="{% url 'lives:live_soon' %}">라이브 예고</a></li>
-                {% else %}
-                <li><a href="">로그인</a></li>
-                <!--추후에 로그인 페이지명 나오면 수정-->
-                {% endif %}
             </ul>
         </div>
-        {% comment %} <form>
-            {% csrf_token %}
-            <input
-                type="search"
-                placeholder="현재 상황이 궁금한 여행지를 검색해보세요!"
-                style="width: 90%"
-            />
-            <input type="submit" value="&#128269;" />
-        </form> {% endcomment %}
-        <br />
-        <p>지금 <b style="color: #ff552b">오사카</b>는?</p>
+        <p>지금 <b style="color: #ff552b;">오사카</b>는?</p>
         <div class="container">
             {% if osaka1 %}
-            <img src="{{osaka1.thumbnail.url}}" class="left" style="width: 220px; height: 380px"/>
+            <a href="{% url 'lives:live_detail' osaka1.pk %}">
+                <img src="{{osaka1.thumbnail.url}}" class="left" style="width: 220px; height: 380px"/>
+                <p>{{osaka1.state}}</p>
+                <p>{{osaka1.title}}</p>
+            </a>
             {% else %}
-            <img src="{% static 'media/osaka.jpg' %}" class="left" style="width: 220px; height: 380px"/>
+            <img src="" class="left" style="width: 220px; height: 380px"/>
             {% endif %}
             <div class="highlight">
                 {% for osaka in osakas %}
-                
-                    <img src="{{osaka.thumbnail.url}}" class="box1" style="width: 100px; height: 120px"/>
-                
+                    <a href="{% url 'lives:live_detail' osaka.pk %}"><img src="{{osaka.thumbnail.url}}" class="box1" style="width: 100px; height: 120px"/></a>
                 {% empty %}
                 
                     <img src="" alt="없음" class="box1" style="width: 100px; height: 120px" />
@@ -63,7 +64,6 @@
                 {% endfor %}
             </div>
         </div>
-        <br />
         <b>오늘의 Live</b>
         <div>
             <ul class="today">
@@ -83,7 +83,7 @@
             <div class="footer">
                 <ul class="foot">
                     <li>
-                        <a href=""
+                        <a href="{% url 'lives:live_list' %}"
                             ><img src="{% static 'Group 4on.svg' %}"
                         /></a>
                     </li>
@@ -91,7 +91,16 @@
                         <a href=""><img src="{% static 'Group 3.svg' %}" /></a>
                     </li>
                     <li><img src="{% static 'Group 2.svg' %}" /></li>
-                    <li><img src="{% static 'Group 511.svg' %}" /></li>
+                    <li>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'users:mypage' %}">
+                            <img src="{% static 'img/Group 511.svg' %}" />
+                        </a>
+                        {% else %}
+                        <a href="{% url 'users:login' %}">
+                            <img src="{% static 'img/Group 511.svg' %}" />
+                        </a>
+                        {% endif %}</li>
                 </ul>
             </div>
         </footer>

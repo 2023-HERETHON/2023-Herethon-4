@@ -73,8 +73,6 @@ hr {
     color: lightgray;
 }
 .prof {
-    display: flex;
-    flex-direction: row;
     font-size: 10pt;
 }
 #diff {
