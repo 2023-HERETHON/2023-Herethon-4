@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from users.models import Profile
+from travels.models import TravelPost
+from lives.models import Video
 
 
 def signup(request):
@@ -109,4 +111,15 @@ def user_follow(request, id):
 
 @login_required
 def mypage(request):
-    return render(request, 'mypage.html')
+    if request.method == 'POST':
+        mypage_list = request.POST.get('mypage-list')
+        if mypage_list == "travel":
+            objs = TravelPost.objects.filter(likes=request.user)
+            travel = '여행리스트'
+            context = {
+                'travel': travel,
+                'objs': objs,
+            }
+            return render(request, 'mypage.html', context)   
+    objs = Video.objects.filter(saves=request.user)
+    return render(request, 'mypage.html', {'objs': objs})

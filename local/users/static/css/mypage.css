@@ -99,3 +99,14 @@ a:visited {
 #mpage-main {
   margin-bottom: 5rem;
 }
+
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
