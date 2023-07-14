@@ -48,7 +48,12 @@
           <h3>{{travel.title}}</h3>
           <p class="t-box-user flex align-center">
             <img src="{% static 'img/Group 4on.svg' %}" alt="">
-            닉네임 | 거의 로컬
+            {% if travel.author.profile.nickname %}
+            {{ travel.author.profile.nickname }} 
+            {% else %}
+            닉네임
+            {% endif %}
+            | 거의 로컬
           </p>
           <p>{{travel.likes.count}}명 북마크 | {{travel.views}}명 조회</p>
         </a>
