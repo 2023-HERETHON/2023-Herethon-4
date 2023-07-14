@@ -19,9 +19,9 @@
       </div>
     </div>
     <nav id="mpage-nav" class="p-1">
-      <a href="">프로필</a>
-      <a href="" class="ml-2">내 티켓</a>
+      <a href="" id="profile-btn">프로필</a>
     </nav>
+    <img src="{% static 'img/bar.svg'%}" id="bar">
     <div id="my-box" class="flex align-center">
       <img id="mpage-img" src="{% static 'img/alert.svg' %}" alt="">
       <div class="p-rl">
@@ -30,88 +30,58 @@
         {% else %}
         <h3>닉네임을 설정하세요.</h3>
         {% endif %}
-        <p>팔로워 {{request.user.profile.followers.count}} | 팔로잉 {{request.user.profile.followers.count}}</p>
-        <p>서울 리얼 로컬</p>
-        <small><a href="{% url 'users:more_info' %}">정보변경</a></small>
+        <p><span id="sub-txt">팔로워</span> <span id="bold">{{request.user.profile.followers.count}}</span> | <span id="sub-txt">팔로잉</span> <span id="bold">{{request.user.profile.followings.count}}</span></p>
+        <p><span id="highlight">{{request.user.profile.city_residence}}</span> <span id="txt">리얼 로컬</span></p>
+        <small><a href="{% url 'users:more_info' %}" id="txt-change">정보변경</a></small>
       </div>
     </div>
     <p class="p-1">북마크</p>
+
     <form method="POST" action="{% url 'users:mypage' %}">
       {% csrf_token %}
       <div class="flex" id="mpage-savebox">
-        <button type="submit" name="mypage-list" value="live">
-          <p>개수</p>
+        <button type="submit" name="mypage-list" value="live" id="live-btn">
+          <p id="howmany">{{request.user.TravelLikes.all.count}}</p>
           <p>라이브</p>
         </button>
-        <button type="submit" name="mypage-list" value="travel">
-          <p>개수</p>
+        <button type="submit" name="mypage-list" value="travel" id="travel-btn">
+          <p id="howmany">{{request.user.Livelikes.all.count}}</p>
           <p>여행</p>
         </button>
       </div>
-  </form>
+    </form>
+
     {% comment %} for 문 돌릴곳 {% endcomment %}
+    {% for obj in objs %}
     <div class="flex save-list align-center">
       <img src="{% static 'img/ticket.svg' %}" alt="">
       <div>
-        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
-        <p>나라</p>
-        <p>닉네임</p>
-        <p>조회수</p>
+        <h4>{{obj.title}}</h4>
+        <p>{{obj.nation}}</p>
+        <p>{{obj.author}}</p>
+        <p>{{obj.views}}</p>
       </div>
     </div>
-    {% comment %} for문 끝 {% endcomment %}
-    <div class="flex save-list align-center">
-      <img src="{% static 'img/ticket.svg' %}" alt="">
-      <div>
-        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
-        <p>나라</p>
-        <p>닉네임</p>
-        <p>조회수</p>
-      </div>
-    </div>
-    <div class="flex save-list align-center">
-      <img src="{% static 'img/ticket.svg' %}" alt="">
-      <div>
-        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
-        <p>나라</p>
-        <p>닉네임</p>
-        <p>조회수</p>
-      </div>
-    </div>
-    <div class="flex save-list align-center">
-      <img src="{% static 'img/ticket.svg' %}" alt="">
-      <div>
-        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
-        <p>나라</p>
-        <p>닉네임</p>
-        <p>조회수</p>
-      </div>
-    </div>
-    <div class="flex save-list align-center">
-      <img src="{% static 'img/ticket.svg' %}" alt="">
-      <div>
-        <h4>제목어쩌구저쩌구 길텐데아ㅓ란머란아ㅓ리ㅏ어</h4>
-        <p>나라</p>
-        <p>닉네임</p>
-        <p>조회수</p>
-      </div>
-    </div>
-  </div>
+    {% endfor %}
+    {% comment %} for문 끝 {% endcomment %} 
+
   <footer>
     <ul class="foot">
       <li>
         <a href="{% url 'lives:live_list' %}">
-          <img src="{% static 'Group 4on.svg' %}"/>
+          <img src="{% static 'img/lolive.svg' %}"/>
         </a>
       </li>
       <li>
         <a href=""><img src="{% static 'Group 3.svg' %}" /></a>
       </li>
       <li>
-        <img src="{% static 'Group 2.svg' %}" />
+        <a href="{% url 'travels:travel_list' %}"><img src="{% static 'Group 2.svg' %}" /></a>
       </li>
       <li>
-        <img src="{% static 'Group 511.svg' %}" />
+        <a href="{% url 'users:mypage' %}">
+          <img src="{% static 'img/mypa.svg' %}" />
+        </a>
       </li>
     </ul>
   </footer>

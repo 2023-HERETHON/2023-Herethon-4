@@ -74,6 +74,21 @@ def login(request):
             return render(request, 'bad_login.html')
     else:
         return render(request, 'onboarding.html')
+    
+def id_login(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = auth.authenticate(request, username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            print('로그인 성공')
+            return redirect('lives:live_list')
+        else: 
+            return render(request, 'bad_login.html')
+    else:
+        return render(request, 'phone_login.html')
 
 
 def logout(request):
@@ -89,7 +104,7 @@ def user_view(request):
         return render(request, 'user_list.html', {'user_list':user_list, 'current_user': request.user})
     
 
-def user_follow(request, id):
+def user_follow(request, id, pk):
     me = request.user
     click_user = User.objects.get(id=id)
 
@@ -111,7 +126,7 @@ def user_follow(request, id):
     else:
         click_profile.followers.add(my_profile.user)
         my_profile.followings.add(click_user)
-    return redirect('users:user_list')
+    return redirect('travels:travel_detail', pk=pk)
 
 
 @login_required
